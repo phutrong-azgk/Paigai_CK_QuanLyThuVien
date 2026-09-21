@@ -1,0 +1,60 @@
+.pending-panel {
+    margin-top: 20px
+}
+
+.pending-count {
+    display: inline-grid;
+    place-items: center;
+    vertical-align: middle;
+    margin-left: 5px;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fbe8df;
+    color: #c9603e;
+    font: 700 11px 'DM Sans'
+}
+
+.pending-table td {
+    white-space: nowrap
+}
+
+.duyet-yeu-cau,
+.tu-choi-yeu-cau {
+    border-radius: 5px;
+    padding: 6px 9px;
+    font: 600 10px 'DM Sans';
+    cursor: pointer
+}
+
+.duyet-yeu-cau {
+    border: 1px solid #cfe8d9;
+    background: #e4f3ea;
+    color: #367b5b;
+    margin-right: 5px
+}
+
+.tu-choi-yeu-cau {
+    border: 1px solid #f1d2cd;
+    background: #fff4f1;
+    color: #bd5a4b
+}
+
+.duyet-yeu-cau.vo-hieu {
+    opacity: .55;
+    cursor: not-allowed
+}
+
+@media(max-width:600px) {
+    .pending-panel {
+        padding: 16px
+    }
+
+    .pending-panel .section-head {
+        gap: 8px
+    }
+
+    .pending-panel .section-head h2 {
+        font-size: 18px
+    }
+}

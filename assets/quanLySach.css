@@ -1,0 +1,235 @@
+.inventory-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px
+}
+
+.inventory-stats article {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 11px;
+    padding: 16px
+}
+
+.inventory-icon {
+    width: 37px;
+    height: 37px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    font-size: 17px
+}
+
+.blue-soft {
+    background: #e6eff5;
+    color: #477b98
+}
+
+.green-soft {
+    background: #e3f2e9;
+    color: #418264
+}
+
+.orange-soft {
+    background: #fbe8df;
+    color: #cb6746
+}
+
+.red-soft {
+    background: #fbe5e3;
+    color: #bf5d56
+}
+
+.inventory-stats b {
+    font-size: 21px;
+    display: block
+}
+
+.inventory-stats small {
+    font-size: 10px;
+    color: #858b88
+}
+
+.inventory-panel {
+    padding: 0;
+    overflow: hidden
+}
+
+.inventory-toolbar {
+    padding: 20px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 10px
+}
+
+.inventory-search {
+    height: 39px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #deded9;
+    border-radius: 7px;
+    padding: 0 11px;
+    color: #838a87
+}
+
+.inventory-search input {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    font: 12px 'DM Sans'
+}
+
+.inventory-filter {
+    border: 1px solid #deded9;
+    border-radius: 7px;
+    padding: 0 8px;
+    background: #fff;
+    color: #646c69;
+    font: 11px 'DM Sans'
+}
+
+.inventory-caption {
+    padding: 16px 20px 9px;
+    display: flex;
+    justify-content: space-between
+}
+
+.inventory-caption b {
+    font: 600 14px 'DM Sans'
+}
+
+.inventory-caption span {
+    font-size: 11px;
+    color: #878d8a
+}
+
+.inventory-table {
+    padding: 0 8px
+}
+
+.inventory-table td {
+    white-space: nowrap
+}
+
+.table-book {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 200px
+}
+
+.table-book i {
+    display: grid;
+    place-items: center;
+    width: 29px;
+    height: 38px;
+    border-radius: 3px;
+    color: white;
+    font-style: normal;
+    font: 16px Georgia
+}
+
+.table-book b,
+.table-book span {
+    display: block
+}
+
+.table-book span,
+.inventory-table td span {
+    font-size: 10px;
+    color: #8a908d;
+    margin-top: 3px
+}
+
+.table-action {
+    border: 0;
+    background: none;
+    color: #d26440;
+    font: 600 11px 'DM Sans';
+    cursor: pointer;
+    margin-right: 7px
+}
+
+.red-mark {
+    background: #fde9e7;
+    color: #bf5d56
+}
+
+.inventory-footer {
+    border-top: 1px solid var(--line);
+    padding: 13px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #858b88;
+    font-size: 11px
+}
+
+.page-button {
+    border: 1px solid #e0e0db;
+    background: #fff;
+    border-radius: 5px;
+    width: 27px;
+    height: 25px;
+    color: #6e7572;
+    margin-left: 3px;
+    font: 11px 'DM Sans'
+}
+
+.page-button.active {
+    background: #253a48;
+    color: #fff;
+    border-color: #253a48
+}
+
+@media(max-width:1000px) {
+    .inventory-stats {
+        grid-template-columns: repeat(2, 1fr)
+    }
+
+    .inventory-toolbar {
+        flex-wrap: wrap
+    }
+
+    .inventory-search {
+        min-width: 100%
+    }
+}
+
+@media(max-width:600px) {
+    .inventory-stats {
+        grid-template-columns: 1fr
+    }
+
+    .inventory-toolbar {
+        padding: 15px
+    }
+
+    .inventory-filter {
+        height: 38px;
+        flex: 1
+    }
+
+    .inventory-caption {
+        display: block
+    }
+
+    .inventory-caption span {
+        display: block;
+        margin-top: 5px
+    }
+
+    .inventory-footer {
+        padding: 13px
+    }
+
+    .inventory-footer>span {
+        display: none
+    }
+}

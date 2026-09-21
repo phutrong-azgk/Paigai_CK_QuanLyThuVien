@@ -66,6 +66,14 @@ hopThoai.addEventListener('click', e => {
     if (e.target === hopThoai) hopThoai.classList.remove('open')
 });
 $$('.renew-btn').forEach(b => b.addEventListener('click', () => hienThongBao('Yêu cầu gia hạn đã được gửi thành công.')));
+$$('.huy-yeu-cau-doc-gia').forEach(nut => nut.addEventListener('click', () => {
+    nut.closest('[data-yeu-cau-doc-gia]')?.remove();
+    const soConLai = $$('[data-yeu-cau-doc-gia]').length;
+    const huyHieu = $('.huy-hieu-yeu-cau-doc-gia');
+    if (huyHieu) huyHieu.textContent = String(soConLai).padStart(2, '0');
+    if (soConLai === 0) $('.trang-thai-rong-doc-gia').hidden = false;
+    hienThongBao('Đã hủy yêu cầu mượn tài liệu.');
+}));
 $$('.borrow-btn').forEach(b => b.addEventListener('click', () => {
     hopThoai.classList.remove('open');
     hienThongBao('Đăng ký mượn sách đã được gửi đến thủ thư.')

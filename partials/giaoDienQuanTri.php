@@ -1,4 +1,7 @@
-<?php if ($maTrang === 'admin-dashboard'): ?>
+<?php
+$maTrang = $maTrang ?? '';
+if ($maTrang === 'admin-dashboard'):
+?>
 <div class="quan-tri-chi-so">
   <article><i class="xanh">♙</i><div><b>1.286</b><span>Tài khoản hệ thống</span></div><small>+18 trong tháng này</small></article>
   <article><i class="tim">◉</i><div><b>1.248</b><span>Đầu tài liệu</span></div><small>34 danh mục</small></article>

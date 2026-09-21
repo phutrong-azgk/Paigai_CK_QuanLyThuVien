@@ -42,13 +42,14 @@ $danhSachTaiLieu = [
   <link rel="stylesheet" href="assets/yeuCauCho.css?v=20260921-2">
   <link rel="stylesheet" href="assets/chonTaiLieu.css">
   <link rel="stylesheet" href="assets/quanTri.css?v=20260921-1">
+  <link rel="stylesheet" href="assets/yeuCauDocGia.css?v=20260921-1">
 </head>
 
 <body data-role="<?= htmlspecialchars($vaiTroHienTai) ?>">
   <aside class="sidebar">
     <a class="brand" href="#"><span class="brand-mark">L</span><span>LIBRA<small>THƯ VIỆN SỐ</small></span></a>
     <?php if ($vaiTroHienTai === 'reader'): ?><nav id="reader-nav" class="nav-group">
-        <p>KHÔNG GIAN ĐỘC GIẢ</p><a class="nav-link active" href="#dashboard" data-page="dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#catalog" data-page="catalog"><i>⌕</i> Tìm kiếm sách</a><a class="nav-link" href="#loans" data-page="loans"><i>▣</i> Mượn & trả sách</a><a class="nav-link" href="#history" data-page="history"><i>◷</i> Lịch sử mượn trả</a><a class="nav-link" href="#profile" data-page="profile"><i>♙</i> Hồ sơ cá nhân</a>
+        <p>KHÔNG GIAN ĐỘC GIẢ</p><a class="nav-link active" href="#dashboard" data-page="dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#catalog" data-page="catalog"><i>⌕</i> Tìm kiếm sách</a><a class="nav-link" href="#loans" data-page="loans"><i>▣</i> Mượn & trả sách</a><a class="nav-link" href="#history" data-page="history"><i>◷</i> Lịch sử mượn trả</a><a class="nav-link" href="#reader-pending" data-page="reader-pending"><i>◌</i> Yêu cầu chờ duyệt <em class="huy-hieu-yeu-cau-doc-gia">02</em></a><a class="nav-link" href="#profile" data-page="profile"><i>♙</i> Hồ sơ cá nhân</a>
       </nav><?php endif; ?>
     <?php if ($vaiTroHienTai === 'librarian'): ?><nav id="staff-nav" class="nav-group">
         <p>QUẢN LÝ NGHIỆP VỤ</p><a class="nav-link active" href="#staff-dashboard" data-page="staff-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#book-admin" data-page="book-admin"><i>▤</i> Quản lý sách</a><a class="nav-link" href="#borrow-admin" data-page="borrow-admin"><i>↔</i> Quản lý mượn sách</a><a class="nav-link" href="#return-admin" data-page="return-admin"><i>↵</i> Quản lý trả sách</a><a class="nav-link" href="#reader-admin" data-page="reader-admin"><i>♙</i> Hồ sơ độc giả</a><a class="nav-link" href="#fines" data-page="fines"><i>₫</i> Quản lý phạt</a>
@@ -156,7 +157,7 @@ $danhSachTaiLieu = [
           <h1>Sách của tôi</h1>
           <p>Đăng ký mượn, theo dõi thời hạn và gia hạn sách trực tuyến.</p>
         </div>
-        <div class="tabs"><button class="active">Đang mượn (2)</button><button>Lịch sử mượn</button><button>Yêu cầu chờ duyệt</button></div>
+        <div class="tom-tat-muon-doc-gia"><span>02 tài liệu đang mượn</span><span>01 tài liệu sắp đến hạn</span></div>
         <section class="panel table-panel">
           <table>
             <thead>
@@ -218,6 +219,19 @@ $danhSachTaiLieu = [
             </tbody>
           </table>
         </section>
+      </section>
+      <section id="reader-pending" class="page">
+        <div class="page-heading">
+          <p class="eyebrow">ĐĂNG KÝ TRỰC TUYẾN</p>
+          <h1>Yêu cầu chờ duyệt</h1>
+          <p>Các yêu cầu sẽ được thủ thư kiểm tra trước khi bạn đến thư viện nhận sách.</p>
+        </div>
+        <div class="luu-y-doc-gia"><i>i</i><p>Bạn có thể hủy yêu cầu khi thủ thư chưa xử lý. Khi yêu cầu được duyệt, hãy đến quầy lưu thông để nhận tài liệu.</p></div>
+        <div class="danh-sach-yeu-cau-doc-gia">
+          <article data-yeu-cau-doc-gia><div class="bia-yeu-cau-doc-gia blue">◉</div><div class="thong-tin-yeu-cau-doc-gia"><div><b>CNTT-145</b><mark class="yellow">Chờ duyệt</mark></div><h2>Nhập Môn Trí Tuệ Nhân Tạo</h2><p>Stuart Russell & Peter Norvig</p><small>Gửi lúc 09:15 · 21/09/2026 · Mong muốn nhận trước 24/09/2026</small></div><div class="hanh-dong-yeu-cau-doc-gia"><span>Đang chờ thủ thư phản hồi</span><button class="outline huy-yeu-cau-doc-gia">Hủy yêu cầu</button></div></article>
+          <article data-yeu-cau-doc-gia><div class="bia-yeu-cau-doc-gia purple">§</div><div class="thong-tin-yeu-cau-doc-gia"><div><b>LUAT-032</b><mark class="yellow">Chờ duyệt</mark></div><h2>Giáo Trình Luật Dân Sự Việt Nam</h2><p>Đại học Luật Hà Nội</p><small>Gửi lúc 14:30 · 20/09/2026 · Mong muốn nhận trước 23/09/2026</small></div><div class="hanh-dong-yeu-cau-doc-gia"><span>Đang chờ thủ thư phản hồi</span><button class="outline huy-yeu-cau-doc-gia">Hủy yêu cầu</button></div></article>
+        </div>
+        <section class="trang-thai-rong-doc-gia" hidden><i>✓</i><h2>Không có yêu cầu chờ duyệt</h2><p>Bạn có thể tìm tài liệu và gửi đăng ký mượn trực tuyến.</p><button class="primary" data-go="catalog">Tìm tài liệu <span>→</span></button></section>
       </section>
       <section id="profile" class="page">
         <div class="page-heading">
@@ -409,7 +423,7 @@ $danhSachTaiLieu = [
     </div>
   </div>
   <div id="hienThongBao" class="toast">Đã cập nhật thành công</div>
-  <script src="assets/app.js?v=20260921-3"></script>
+  <script src="assets/app.js?v=20260921-4"></script>
 </body>
 
 </html>

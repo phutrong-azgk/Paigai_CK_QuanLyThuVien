@@ -39,8 +39,9 @@ $danhSachTaiLieu = [
   <link rel="stylesheet" href="assets/tuongTac.css">
   <link rel="stylesheet" href="assets/quanLySach.css">
   <link rel="stylesheet" href="assets/thuThu.css">
-  <link rel="stylesheet" href="assets/yeuCauCho.css">
+  <link rel="stylesheet" href="assets/yeuCauCho.css?v=20260921-2">
   <link rel="stylesheet" href="assets/chonTaiLieu.css">
+  <link rel="stylesheet" href="assets/quanTri.css?v=20260921-1">
 </head>
 
 <body data-role="<?= htmlspecialchars($vaiTroHienTai) ?>">
@@ -374,44 +375,8 @@ $danhSachTaiLieu = [
           </section>
         <?php elseif ($vaiTroHienTai === 'librarian'): ?>
           <?php include __DIR__ . '/partials/giaoDienThuThu.php'; ?>
-        <?php else: ?>
-          <div class="staff-stats">
-            <article><b>1,248</b><span>Tổng đầu sách</span></article>
-            <article><b>86</b><span>Độc giả hoạt động</span></article>
-            <article><b>14</b><span>Phiếu chờ xử lý</span></article>
-          </div>
-          <section class="panel table-panel">
-            <div class="section-head">
-              <h2>Danh sách cần xử lý</h2><button class="primary">+ Thêm mới</button>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>MÃ</th>
-                  <th>THÔNG TIN</th>
-                  <th>NGÀY TẠO</th>
-                  <th>TRẠNG THÁI</th>
-                  <th>THAO TÁC</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><?= $banGhi['code'] ?></td>
-                  <td><b><?= $banGhi['title'] ?></b><span><?= $banGhi['sub'] ?></span></td>
-                  <td><?= $banGhi['date'] ?></td>
-                  <td><mark class="<?= $banGhi['class'] ?>"><?= $banGhi['status'] ?></mark></td>
-                  <td><button class="text-btn">Xem chi tiết</button></td>
-                </tr>
-                <tr>
-                  <td>#<?= $maTrang === 'fines' ? 'THU-090' : 'LS-001' ?></td>
-                  <td><b><?= $maTrang === 'fines' ? 'Thu phí vi phạm tháng 9' : 'Cập nhật gần nhất của hệ thống' ?></b><span><?= $maTrang === 'fines' ? 'Độc giả: Vũ Đức Long · 10.000 đ' : 'Dữ liệu mẫu phục vụ giao diện' ?></span></td>
-                  <td>15/09/2026</td>
-                  <td><mark class="green-mark">Hoàn tất</mark></td>
-                  <td><button class="text-btn">Xem chi tiết</button></td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
+        <?php elseif ($vaiTroHienTai === 'admin'): ?>
+          <?php include __DIR__ . '/partials/giaoDienQuanTri.php'; ?>
         <?php endif; ?>
       </section><?php endforeach; ?>
   </main>
@@ -444,7 +409,7 @@ $danhSachTaiLieu = [
     </div>
   </div>
   <div id="hienThongBao" class="toast">Đã cập nhật thành công</div>
-  <script src="assets/app.js"></script>
+  <script src="assets/app.js?v=20260921-3"></script>
 </body>
 
 </html>

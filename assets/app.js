@@ -86,6 +86,16 @@ if (oTimKiemKho) {
     $$('.book-action').forEach(button => button.addEventListener('click', () => hienThongBao(button.dataset.message || 'Đã cập nhật dữ liệu.')));
 }
 $$('.librarian-action').forEach(button => button.addEventListener('click', () => hienThongBao(button.dataset.message || 'Đã mở tác vụ nghiệp vụ.')));
+$$('.quan-tri-thao-tac').forEach(button => button.addEventListener('click', () => hienThongBao(button.dataset.message || 'Đã mở tác vụ quản trị.')));
+const oTimTaiKhoan = $('#tim-tai-khoan');
+if (oTimTaiKhoan) {
+    oTimTaiKhoan.addEventListener('input', suKien => {
+        const tuKhoa = suKien.target.value.toLocaleLowerCase('vi').trim();
+        $$('[data-tai-khoan]').forEach(dong => {
+            dong.style.display = dong.dataset.taiKhoan.includes(tuKhoa) ? '' : 'none';
+        });
+    });
+}
 $$('.duyet-yeu-cau, .tu-choi-yeu-cau').forEach(nut => nut.addEventListener('click', () => {
     const dongYeuCau = nut.closest('[data-yeu-cau-cho]');
     dongYeuCau?.remove();
@@ -93,6 +103,51 @@ $$('.duyet-yeu-cau, .tu-choi-yeu-cau').forEach(nut => nut.addEventListener('clic
     if (huyHieuCho) huyHieuCho.textContent = $$('.pending-table tbody tr').length.toString().padStart(2, '0');
     hienThongBao(nut.dataset.message || 'Đã xử lý yêu cầu mượn.');
 }));
+const hopDanhSachYeuCau = $('#hop-danh-sach-yeu-cau');
+if (hopDanhSachYeuCau) {
+    const oTimDanhSachYeuCau = $('#tim-danh-sach-yeu-cau');
+    const oLocTrangThaiYeuCau = $('#loc-trang-thai-yeu-cau');
+    const tongYeuCauHienThi = $('#tong-yeu-cau-hien-thi');
+    const dongHopDanhSachYeuCau = () => {
+        hopDanhSachYeuCau.classList.remove('mo');
+        hopDanhSachYeuCau.hidden = true;
+        hopDanhSachYeuCau.setAttribute('aria-hidden', 'true');
+    };
+    const locDanhSachYeuCau = () => {
+        const tuKhoa = oTimDanhSachYeuCau.value.toLocaleLowerCase('vi').trim();
+        const trangThai = oLocTrangThaiYeuCau.value;
+        let soLuong = 0;
+        $$('[data-muc-yeu-cau]').forEach(dong => {
+            const khopTuKhoa = dong.dataset.timYeuCau.includes(tuKhoa);
+            const khopTrangThai = trangThai === 'tat-ca' || dong.dataset.trangThaiYeuCau === trangThai;
+            const dangHienThi = khopTuKhoa && khopTrangThai;
+            dong.style.display = dangHienThi ? '' : 'none';
+            if (dangHienThi) soLuong++;
+        });
+        tongYeuCauHienThi.textContent = `${String(soLuong).padStart(2, '0')} yêu cầu`;
+    };
+    $$('.mo-danh-sach-yeu-cau').forEach(nut => nut.addEventListener('click', () => {
+        hopDanhSachYeuCau.hidden = false;
+        hopDanhSachYeuCau.classList.add('mo');
+        hopDanhSachYeuCau.setAttribute('aria-hidden', 'false');
+        oTimDanhSachYeuCau.focus();
+        locDanhSachYeuCau();
+    }));
+    $$('.dong-danh-sach-yeu-cau').forEach(nut => nut.addEventListener('click', dongHopDanhSachYeuCau));
+    hopDanhSachYeuCau.addEventListener('click', suKien => {
+        if (suKien.target === hopDanhSachYeuCau) dongHopDanhSachYeuCau();
+    });
+    oTimDanhSachYeuCau.addEventListener('input', locDanhSachYeuCau);
+    oLocTrangThaiYeuCau.addEventListener('change', locDanhSachYeuCau);
+    $$('.duyet-yeu-cau-day-du, .tu-choi-yeu-cau-day-du').forEach(nut => nut.addEventListener('click', () => {
+        nut.closest('[data-muc-yeu-cau]')?.remove();
+        locDanhSachYeuCau();
+        hienThongBao(nut.dataset.message || 'Đã xử lý yêu cầu mượn.');
+    }));
+    document.addEventListener('keydown', suKien => {
+        if (suKien.key === 'Escape' && hopDanhSachYeuCau.classList.contains('mo')) dongHopDanhSachYeuCau();
+    });
+}
 const hopChonTaiLieu = $('#hop-chon-tai-lieu');
 if (hopChonTaiLieu) {
     const oTimTaiLieuTrongHop = $('#tim-tai-lieu-trong-hop');

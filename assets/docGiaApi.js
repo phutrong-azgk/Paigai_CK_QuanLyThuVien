@@ -1,11 +1,67 @@
 (() => {
   if (document.body.dataset.role !== 'reader') return;
-  const goiApi = async url => { const r = await fetch(url); const d = await r.json(); if (!r.ok) throw new Error(d.loi); return d.duLieu || []; };
-  const anToan = v => String(v ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const goiApi = async url => {
+    const r = await fetch(url);
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.loi);
+    return d.duLieu || [];
+  };
+  const anToan = v => String(v ?? '').replace(/[&<>"]/g, c => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;'
+  } [c]));
   const dinhDangNgay = v => v ? new Date(v).toLocaleDateString('vi-VN') : '';
-  const napTaiLieu = async () => { const khung=document.querySelector('#book-grid'); if(!khung)return; const ds=await goiApi('api/docGia.php?hanhDong=taiLieu'); khung.innerHTML=ds.map((x,i)=>`<article class="book-card" tabindex="0" role="link" data-search="${anToan(`${x.tieuDe} ${x.tacGia} ${x.danhMuc}`).toLowerCase()}" data-detail-url="chiTietTaiLieu.php?id=${encodeURIComponent(x.ma)}"><div class="cover large ${['blue','purple','green','orange'][i%4]}">◫<span>${anToan(x.ma)}</span></div><div class="book-card-body"><p>${anToan(x.danhMuc)}</p><h3>${anToan(x.tieuDe)}</h3><span>${anToan(x.tacGia)}</span><footer><b class="${x.soBan>0?'available':'unavailable'}">● ${x.soBan>0?`Còn ${x.soBan} cuốn`:'Đã hết sách'}</b><a class="detail-btn" href="chiTietTaiLieu.php?id=${encodeURIComponent(x.ma)}">Xem →</a></footer></div></article>`).join(''); };
-  const napMuon = async () => { const tbody = document.querySelector('#du-lieu-dang-muon'); if (!tbody) return; const ds = await goiApi('api/docGia.php?hanhDong=phieuMuon'); tbody.innerHTML = ds.map(x => `<tr><td><b>${anToan(x.tieuDe)}</b><span>${anToan(x.ma)}</span></td><td>—</td><td><b class="${new Date(x.hanTra) < new Date() ? 'warning' : ''}">${dinhDangNgay(x.hanTra)}</b></td><td><mark class="green-mark">Đang mượn</mark></td><td><button class="outline gia-han-api" data-id="${x.maChiTietPhieuMuon}">Gia hạn</button></td></tr>`).join('') || '<tr><td colspan="5">Bạn chưa mượn tài liệu nào.</td></tr>'; document.querySelectorAll('.gia-han-api').forEach(b => b.onclick = async () => { const r=await fetch('api/docGia.php?hanhDong=giaHan',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({maChiTietPhieuMuon:b.dataset.id})}); const d=await r.json(); window.hienThongBao?.(d.thanhCong?'Đã gửi yêu cầu gia hạn.':d.loi); }); };
-  const napLichSu = async () => { const tbody=document.querySelector('#du-lieu-lich-su'); if(!tbody)return; const ds=await goiApi('api/docGia.php?hanhDong=phieuMuon&loai=lichSu'); tbody.innerHTML=ds.map(x=>`<tr><td><b>${anToan(x.tieuDe)}</b><span>${anToan(x.ma)}</span></td><td>—</td><td>${dinhDangNgay(x.ngayTra)}</td><td class="stars">★★★★★</td></tr>`).join('') || '<tr><td colspan="4">Chưa có lịch sử mượn trả.</td></tr>'; };
-  const napYeuCau = async () => { const khung=document.querySelector('#du-lieu-yeu-cau-muon'); if(!khung)return; const ds=await goiApi('api/docGia.php?hanhDong=yeuCauMuon'); khung.innerHTML=ds.map(x=>`<article data-id="${x.maYeuCauMuon}"><div class="bia-yeu-cau-doc-gia blue">◉</div><div class="thong-tin-yeu-cau-doc-gia"><div><b>${anToan(x.taiLieu.split('|')[0])}</b><mark class="yellow">Chờ duyệt</mark></div><h2>${anToan(x.taiLieu.split('|')[1] || 'Yêu cầu mượn')}</h2><small>Gửi lúc ${dinhDangNgay(x.ngayYeuCau)}</small></div><div class="hanh-dong-yeu-cau-doc-gia"><button class="outline huy-yeu-cau-api">Hủy yêu cầu</button></div></article>`).join(''); document.querySelectorAll('.huy-yeu-cau-api').forEach(b=>b.onclick=async()=>{const id=b.closest('article').dataset.id;await fetch('api/docGia.php?hanhDong=huyYeuCau',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({maYeuCauMuon:id})});napYeuCau();}); };
-  Promise.all([napTaiLieu(),napMuon(),napLichSu(),napYeuCau()]).catch(loi => console.warn(loi.message));
+  const napTaiLieu = async () => {
+    const khung = document.querySelector('#book-grid');
+    if (!khung) return;
+    const ds = await goiApi('api/docGia.php?hanhDong=taiLieu');
+    khung.innerHTML = ds.map((x, i) => `<article class="book-card" tabindex="0" role="link" data-search="${anToan(`${x.tieuDe} ${x.tacGia} ${x.danhMuc}`).toLowerCase()}" data-detail-url="chiTietTaiLieu.php?id=${encodeURIComponent(x.ma)}"><div class="cover large ${['blue','purple','green','orange'][i%4]}">◫<span>${anToan(x.ma)}</span></div><div class="book-card-body"><p>${anToan(x.danhMuc)}</p><h3>${anToan(x.tieuDe)}</h3><span>${anToan(x.tacGia)}</span><footer><b class="${x.soBan>0?'available':'unavailable'}">● ${x.soBan>0?`Còn ${x.soBan} cuốn`:'Đã hết sách'}</b><a class="detail-btn" href="chiTietTaiLieu.php?id=${encodeURIComponent(x.ma)}">Xem →</a></footer></div></article>`).join('');
+  };
+  const napMuon = async () => {
+    const tbody = document.querySelector('#du-lieu-dang-muon');
+    if (!tbody) return;
+    const ds = await goiApi('api/docGia.php?hanhDong=phieuMuon');
+    tbody.innerHTML = ds.map(x => `<tr><td><b>${anToan(x.tieuDe)}</b><span>${anToan(x.ma)}</span></td><td>—</td><td><b class="${new Date(x.hanTra) < new Date() ? 'warning' : ''}">${dinhDangNgay(x.hanTra)}</b></td><td><mark class="green-mark">Đang mượn</mark></td><td><button class="outline gia-han-api" data-id="${x.maChiTietPhieuMuon}">Gia hạn</button></td></tr>`).join('') || '<tr><td colspan="5">Bạn chưa mượn tài liệu nào.</td></tr>';
+    document.querySelectorAll('.gia-han-api').forEach(b => b.onclick = async () => {
+      const r = await fetch('api/docGia.php?hanhDong=giaHan', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          maChiTietPhieuMuon: b.dataset.id
+        })
+      });
+      const d = await r.json();
+      window.hienThongBao?.(d.thanhCong ? 'Đã gửi yêu cầu gia hạn.' : d.loi);
+    });
+  };
+  const napLichSu = async () => {
+    const tbody = document.querySelector('#du-lieu-lich-su');
+    if (!tbody) return;
+    const ds = await goiApi('api/docGia.php?hanhDong=phieuMuon&loai=lichSu');
+    tbody.innerHTML = ds.map(x => `<tr><td><b>${anToan(x.tieuDe)}</b><span>${anToan(x.ma)}</span></td><td>—</td><td>${dinhDangNgay(x.ngayTra)}</td><td class="stars">★★★★★</td></tr>`).join('') || '<tr><td colspan="4">Chưa có lịch sử mượn trả.</td></tr>';
+  };
+  const napYeuCau = async () => {
+    const khung = document.querySelector('#du-lieu-yeu-cau-muon');
+    if (!khung) return;
+    const ds = await goiApi('api/docGia.php?hanhDong=yeuCauMuon');
+    khung.innerHTML = ds.map(x => `<article data-id="${x.maYeuCauMuon}"><div class="bia-yeu-cau-doc-gia blue">◉</div><div class="thong-tin-yeu-cau-doc-gia"><div><b>${anToan(x.taiLieu.split('|')[0])}</b><mark class="yellow">Chờ duyệt</mark></div><h2>${anToan(x.taiLieu.split('|')[1] || 'Yêu cầu mượn')}</h2><small>Gửi lúc ${dinhDangNgay(x.ngayYeuCau)}</small></div><div class="hanh-dong-yeu-cau-doc-gia"><button class="outline huy-yeu-cau-api">Hủy yêu cầu</button></div></article>`).join('');
+    document.querySelectorAll('.huy-yeu-cau-api').forEach(b => b.onclick = async () => {
+      const id = b.closest('article').dataset.id;
+      await fetch('api/docGia.php?hanhDong=huyYeuCau', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          maYeuCauMuon: id
+        })
+      });
+      napYeuCau();
+    });
+  };
+  Promise.all([napTaiLieu(), napMuon(), napLichSu(), napYeuCau()]).catch(loi => console.warn(loi.message));
 })();

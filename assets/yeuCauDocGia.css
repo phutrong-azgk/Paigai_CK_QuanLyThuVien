@@ -4,7 +4,7 @@
     border-radius: 10px;
     color: #fff;
     display: inline-flex;
-    font: 700 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     height: 17px;
     justify-content: center;
     margin-left: auto;
@@ -51,7 +51,7 @@
     color: #fff;
     display: flex;
     flex: 0 0 17px;
-    font: 700 12px 'Playfair Display', 'Segoe UI', Arial, serif;
+    font: 700 12px 'Merriweather', 'Segoe UI', Arial, serif;
     height: 17px;
     justify-content: center
 }

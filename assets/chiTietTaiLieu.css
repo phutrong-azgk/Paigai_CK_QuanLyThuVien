@@ -52,12 +52,12 @@
 }
 
 .book-overview h1 {
-    font: 700 39px/1.12 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 39px/1.12 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 0
 }
 
 .book-overview h2 {
-    font: 400 17px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 400 17px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     color: #727977;
     margin: 7px 0 19px
 }
@@ -96,7 +96,7 @@
     border: 0;
     background: none;
     color: #d26440;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -115,7 +115,7 @@
 }
 
 .detail-panel h2 {
-    font: 700 20px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 20px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 17px
 }
 

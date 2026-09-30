@@ -154,7 +154,7 @@
 .circulation-form h2,
 .loan-ticket h2,
 .return-result h2 {
-    font: 700 20px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 20px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 15px
 }
 
@@ -173,7 +173,7 @@
     flex: 1;
     border: 0;
     outline: 0;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .o-nhap-lieu button {
@@ -183,7 +183,7 @@
     color: #fff;
     padding: 0 14px;
     border-radius: 0 6px 6px 0;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -219,6 +219,21 @@
     font-size: 12px;
     color: #848b88;
     margin: 3px 0
+}
+
+.reader-preview p {
+    align-items: center;
+    display: flex;
+    gap: 8px
+}
+
+.return-book b,
+.return-book span {
+    display: block
+}
+
+.return-book span {
+    margin-top: 3px
 }
 
 .ticket-book {
@@ -301,7 +316,7 @@
     border-radius: 6px;
     padding: 9px;
     background: #fff;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .return-result {
@@ -365,7 +380,7 @@
 
 .fine-stats b {
     display: block;
-    font: 700 25px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 25px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 6px 0
 }
 

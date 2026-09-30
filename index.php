@@ -33,7 +33,7 @@ $danhSachTaiLieu = [
   <title>LIBRA | Quản lý thư viện</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/login.css">
   <link rel="stylesheet" href="assets/tuongTac.css">
@@ -49,7 +49,7 @@ $danhSachTaiLieu = [
   <aside class="sidebar">
     <a class="brand" href="#"><span class="brand-mark">L</span><span>LIBRA<small>THƯ VIỆN SỐ</small></span></a>
     <?php if ($vaiTroHienTai === 'reader'): ?><nav id="reader-nav" class="nav-group">
-        <p>KHÔNG GIAN ĐỘC GIẢ</p><a class="nav-link active" href="#dashboard" data-page="dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#catalog" data-page="catalog"><i>⌕</i> Tìm kiếm sách</a><a class="nav-link" href="#loans" data-page="loans"><i>▣</i> Mượn & trả sách</a><a class="nav-link" href="#history" data-page="history"><i>◷</i> Lịch sử mượn trả</a><a class="nav-link" href="#reader-pending" data-page="reader-pending"><i>◌</i> Yêu cầu chờ duyệt <em class="huy-hieu-yeu-cau-doc-gia">02</em></a><a class="nav-link" href="#profile" data-page="profile"><i>♙</i> Hồ sơ cá nhân</a>
+        <p>KHÔNG GIAN ĐỘC GIẢ</p><a class="nav-link active" href="#dashboard" data-page="dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#catalog" data-page="catalog"><i>⌕</i> Tìm kiếm sách</a><a class="nav-link" href="#loans" data-page="loans"><i>▣</i> Mượn & trả sách</a><a class="nav-link" href="#history" data-page="history"><i>◷</i> Lịch sử mượn trả</a><a class="nav-link" href="#reader-pending" data-page="reader-pending"><i>◌</i> Yêu cầu chờ duyệt</a><a class="nav-link" href="#profile" data-page="profile"><i>♙</i> Hồ sơ cá nhân</a>
       </nav><?php endif; ?>
     <?php if ($vaiTroHienTai === 'librarian'): ?><nav id="staff-nav" class="nav-group">
         <p>QUẢN LÝ NGHIỆP VỤ</p><a class="nav-link active" href="#staff-dashboard" data-page="staff-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#book-admin" data-page="book-admin"><i>▤</i> Quản lý sách</a><a class="nav-link" href="#borrow-admin" data-page="borrow-admin"><i>↔</i> Quản lý mượn sách</a><a class="nav-link" href="#return-admin" data-page="return-admin"><i>↵</i> Quản lý trả sách</a><a class="nav-link" href="#reader-admin" data-page="reader-admin"><i>♙</i> Hồ sơ độc giả</a><a class="nav-link" href="#fines" data-page="fines"><i>₫</i> Quản lý phạt</a>

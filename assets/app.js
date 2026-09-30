@@ -195,4 +195,3 @@ if (hopChonTaiLieu) {
         hienThongBao(loaiThaoTac === 'tra' ? `Đã chọn ${soLuong} tài liệu để tiếp nhận trả.` : `Đã thêm ${soLuong} tài liệu vào phiếu mượn tạm.`);
     });
 }
-

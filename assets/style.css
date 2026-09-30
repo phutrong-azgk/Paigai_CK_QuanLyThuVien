@@ -11,11 +11,12 @@
     box-sizing: border-box
 }
 
+
 body {
     margin: 0;
     background: var(--cream);
     color: var(--ink);
-    font: 14px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 14px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .sidebar {
@@ -52,7 +53,7 @@ body {
     border-radius: 10px;
     background: var(--accent);
     color: white;
-    font: 700 23px 'Playfair Display', 'Segoe UI', Arial, serif
+    font: 700 23px 'Merriweather', 'Segoe UI', Arial, serif
 }
 
 .brand small {
@@ -77,7 +78,7 @@ body {
     border-radius: 6px;
     background: transparent;
     padding: 7px 1px;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     color: #737977;
     cursor: pointer
 }
@@ -261,7 +262,7 @@ header {
 
 .welcome h1,
 .page-heading h1 {
-    font: 700 36px/1.12 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 36px/1.12 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 12px
 }
 
@@ -283,7 +284,7 @@ header {
     background: var(--accent);
     padding: 11px 17px;
     color: #fff;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -421,7 +422,7 @@ header {
 
 .section-head h2,
 .panel h2 {
-    font: 700 20px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 20px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 0
 }
 
@@ -449,14 +450,14 @@ header {
     place-items: center;
     border-radius: 3px;
     box-shadow: 3px 4px 0 #00000010;
-    font: 23px 'Playfair Display', 'Segoe UI', Arial, serif;
+    font: 23px 'Merriweather', 'Segoe UI', Arial, serif;
     position: relative
 }
 
 .cover span {
     position: absolute;
     bottom: 5px;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .orange {
@@ -520,7 +521,7 @@ header {
     border-radius: 6px;
     color: #616966;
     padding: 7px 10px;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -560,7 +561,7 @@ header {
     padding: 0;
     background: none;
     color: #d26440;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -598,7 +599,7 @@ header {
     flex: 1;
     border: 0;
     outline: 0;
-    font: 14px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 14px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     min-width: 0
 }
 
@@ -615,7 +616,7 @@ header {
     border-radius: 20px;
     padding: 7px 13px;
     color: #6e7471;
-    font: 500 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 500 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -665,7 +666,7 @@ header {
 }
 
 .book-card h3 {
-    font: 700 16px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 16px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 4px
 }
 
@@ -698,7 +699,7 @@ header {
 .detail-btn {
     border: 0;
     background: none;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     color: #d26440;
     cursor: pointer
 }
@@ -714,7 +715,7 @@ header {
     border: 0;
     background: none;
     padding: 0 0 11px;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     color: #858b87
 }
 
@@ -861,7 +862,7 @@ mark {
     border: 1px solid #deded9;
     border-radius: 6px;
     padding: 10px;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     color: #4f5754
 }
 
@@ -884,7 +885,7 @@ mark {
 }
 
 .staff-stats b {
-    font: 700 27px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 27px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     display: block;
     color: #253a48
 }
@@ -918,7 +919,7 @@ mark {
 }
 
 .modal-card h2 {
-    font: 700 28px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 28px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 12px
 }
 

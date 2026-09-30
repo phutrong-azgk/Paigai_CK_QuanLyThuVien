@@ -15,9 +15,23 @@
   const locVaiTro = document.querySelector('#loc-vai-tro');
   let danhSach = [];
 
-  const anToan = giaTri => String(giaTri ?? '').replace(/[&<>'"]/g, kyTu => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[kyTu]);
-  const nhanVaiTro = ma => ({ ADMIN: 'Quản trị viên', THUTHU: 'Thủ thư', DOCGIA: 'Độc giả' })[ma] || ma;
-  const lopVaiTro = ma => ({ ADMIN: 'quan-tri', THUTHU: 'thu-thu', DOCGIA: 'doc-gia' })[ma] || '';
+  const anToan = giaTri => String(giaTri ?? '').replace(/[&<>'"]/g, kyTu => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#39;',
+    '"': '&quot;'
+  })[kyTu]);
+  const nhanVaiTro = ma => ({
+    ADMIN: 'Quản trị viên',
+    THUTHU: 'Thủ thư',
+    DOCGIA: 'Độc giả'
+  })[ma] || ma;
+  const lopVaiTro = ma => ({
+    ADMIN: 'quan-tri',
+    THUTHU: 'thu-thu',
+    DOCGIA: 'doc-gia'
+  })[ma] || '';
   const nhanTrangThai = ma => ma === 'hoatDong' ? 'Hoạt động' : 'Tạm khóa';
 
   async function goiApi(duongDan, tuyChon = {}) {
@@ -97,7 +111,9 @@
   document.querySelector('#mo-tao-tai-khoan').addEventListener('click', moHopTao);
   form.maVaiTro.addEventListener('change', capNhatLoaiDocGia);
   document.querySelectorAll('.dong-hop-tai-khoan').forEach(nut => nut.addEventListener('click', dongHop));
-  hop.addEventListener('click', suKien => { if (suKien.target === hop) dongHop(); });
+  hop.addEventListener('click', suKien => {
+    if (suKien.target === hop) dongHop();
+  });
   oTim.addEventListener('input', veBang);
   locVaiTro.addEventListener('change', veBang);
   bang.addEventListener('click', async suKien => {
@@ -108,26 +124,55 @@
     if (nutXoa) {
       if (!confirm(`Xóa tài khoản ${nutXoa.dataset.ten}? Thao tác này không thể hoàn tác.`)) return;
       try {
-        await goiApi('api/quanTriTaiKhoan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ hanhDong: 'xoa', maNguoiDung: nutXoa.dataset.id }) });
+        await goiApi('api/quanTriTaiKhoan.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            hanhDong: 'xoa',
+            maNguoiDung: nutXoa.dataset.id
+          })
+        });
         await taiDanhSach();
         window.hienThongBao?.('Đã xóa tài khoản.');
-      } catch (loi) { alert(loi.message); }
+      } catch (loi) {
+        alert(loi.message);
+      }
       return;
     }
     if (!nutTrangThai) return;
     const trangThaiMoi = nutTrangThai.dataset.trangThai === 'hoatDong' ? 'tamKhoa' : 'hoatDong';
     if (!confirm(`${trangThaiMoi === 'tamKhoa' ? 'Tạm khóa' : 'Mở khóa'} tài khoản này?`)) return;
     try {
-      await goiApi('api/quanTriTaiKhoan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ hanhDong: 'capNhatTrangThai', maNguoiDung: nutTrangThai.dataset.id, trangThai: trangThaiMoi }) });
+      await goiApi('api/quanTriTaiKhoan.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          hanhDong: 'capNhatTrangThai',
+          maNguoiDung: nutTrangThai.dataset.id,
+          trangThai: trangThaiMoi
+        })
+      });
       await taiDanhSach();
-    } catch (loi) { alert(loi.message); }
+    } catch (loi) {
+      alert(loi.message);
+    }
   });
   form.addEventListener('submit', async suKien => {
     suKien.preventDefault();
     loi.hidden = true;
     const duLieu = Object.fromEntries(new FormData(form));
     try {
-      await goiApi('api/quanTriTaiKhoan.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(duLieu) });
+      await goiApi('api/quanTriTaiKhoan.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(duLieu)
+      });
       dongHop();
       await taiDanhSach();
       window.hienThongBao?.(duLieu.hanhDong === 'tao' ? 'Đã tạo tài khoản.' : 'Đã cập nhật mật khẩu.');
@@ -136,6 +181,8 @@
       loi.hidden = false;
     }
   });
-  document.addEventListener('keydown', suKien => { if (suKien.key === 'Escape') dongHop(); });
+  document.addEventListener('keydown', suKien => {
+    if (suKien.key === 'Escape') dongHop();
+  });
   taiDanhSach();
 })();

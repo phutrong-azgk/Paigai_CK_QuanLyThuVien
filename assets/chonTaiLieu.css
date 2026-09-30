@@ -43,7 +43,7 @@
 }
 
 .dau-chon-tai-lieu h2 {
-    font: 700 24px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 24px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 0
 }
 
@@ -59,7 +59,7 @@
     border: 1px solid #d9d9d3;
     border-radius: 6px;
     padding: 8px 13px;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     color: #626966
 }
 
@@ -79,7 +79,7 @@
     border: 0;
     outline: 0;
     width: 100%;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .ghi-chu-chon-tai-lieu {

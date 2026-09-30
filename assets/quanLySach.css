@@ -82,7 +82,7 @@
     border: 0;
     outline: 0;
     width: 100%;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .inventory-filter {
@@ -91,7 +91,7 @@
     padding: 0 8px;
     background: #fff;
     color: #646c69;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .inventory-caption {
@@ -101,7 +101,7 @@
 }
 
 .inventory-caption b {
-    font: 600 14px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 600 14px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .inventory-caption span {
@@ -132,7 +132,7 @@
     border-radius: 3px;
     color: white;
     font-style: normal;
-    font: 16px 'Playfair Display', 'Segoe UI', Arial, serif
+    font: 16px 'Merriweather', 'Segoe UI', Arial, serif
 }
 
 .table-book b,
@@ -151,7 +151,7 @@
     border: 0;
     background: none;
     color: #d26440;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     cursor: pointer;
     margin-right: 7px
 }
@@ -179,7 +179,7 @@
     height: 25px;
     color: #6e7572;
     margin-left: 3px;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .page-button.active {

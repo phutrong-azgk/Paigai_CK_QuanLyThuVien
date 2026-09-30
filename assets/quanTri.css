@@ -185,7 +185,7 @@
     background: #fff;
     border: 0;
     color: #59635f;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     height: 38px;
     outline: 0
 }
@@ -248,7 +248,7 @@
     border: 0;
     color: #c9603e;
     cursor: pointer;
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .hop-tai-khoan-quan-tri {
@@ -287,7 +287,7 @@
 
 .dau-hop-tai-khoan h2 {
     color: #2d3935;
-    font: 700 24px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 700 24px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin: 4px 0 0
 }
 
@@ -331,7 +331,7 @@
     border-radius: 7px;
     box-sizing: border-box;
     color: #35413d;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin-top: 6px;
     outline: 0;
     padding: 10px;
@@ -419,7 +419,7 @@
 
 .luoi-danh-muc-quan-tri .sua-danh-muc,
 .luoi-danh-muc-quan-tri .xoa-danh-muc {
-    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif
 }
 
 .luoi-danh-muc-quan-tri .xoa-danh-muc {
@@ -450,7 +450,7 @@
     border-radius: 6px;
     box-sizing: border-box;
     color: #34413c;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin-top: 6px;
     outline: 0;
     padding: 10px;
@@ -463,7 +463,7 @@
     border-radius: 6px;
     box-sizing: border-box;
     color: #34413c;
-    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
     margin-top: 6px;
     outline: 0;
     padding: 10px;

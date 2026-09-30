@@ -9,6 +9,7 @@ CREATE TABLE vaiTro (
 
 CREATE TABLE nguoiDung (
   maNguoiDung INT AUTO_INCREMENT PRIMARY KEY,
+  maVaiTro INT,
   tenDangNhap VARCHAR(50) UNIQUE,
   matKhau VARCHAR(255),
   hoTen VARCHAR(150),
@@ -16,14 +17,7 @@ CREATE TABLE nguoiDung (
   soDienThoai VARCHAR(20),
   ngaySinh DATE,
   trangThai VARCHAR(30),
-  ngayTao DATETIME
-);
-
-CREATE TABLE nguoiDungVaiTro (
-  maNguoiDung INT,
-  maVaiTro INT,
-  PRIMARY KEY (maNguoiDung, maVaiTro),
-  FOREIGN KEY (maNguoiDung) REFERENCES nguoiDung(maNguoiDung),
+  ngayTao DATETIME,
   FOREIGN KEY (maVaiTro) REFERENCES vaiTro(maVaiTro)
 );
 
@@ -33,25 +27,15 @@ CREATE TABLE khoa (
   ten VARCHAR(150)
 );
 
-CREATE TABLE chuyenNganh (
-  maChuyenNganh INT AUTO_INCREMENT PRIMARY KEY,
-  maKhoa INT,
-  ma VARCHAR(30) UNIQUE,
-  ten VARCHAR(150),
-  FOREIGN KEY (maKhoa) REFERENCES khoa(maKhoa)
-);
-
 CREATE TABLE hoSoDocGia (
   maDocGia INT AUTO_INCREMENT PRIMARY KEY,
   maNguoiDung INT UNIQUE,
   maSo VARCHAR(30) UNIQUE,
   maKhoa INT,
-  maChuyenNganh INT,
   loaiDocGia VARCHAR(50),
   trangThaiThe VARCHAR(30),
   FOREIGN KEY (maNguoiDung) REFERENCES nguoiDung(maNguoiDung),
-  FOREIGN KEY (maKhoa) REFERENCES khoa(maKhoa),
-  FOREIGN KEY (maChuyenNganh) REFERENCES chuyenNganh(maChuyenNganh)
+  FOREIGN KEY (maKhoa) REFERENCES khoa(maKhoa)
 );
 
 CREATE TABLE danhMucTaiLieu (
@@ -64,6 +48,7 @@ CREATE TABLE danhMucTaiLieu (
 
 CREATE TABLE nhaXuatBan (
   maNhaXuatBan INT AUTO_INCREMENT PRIMARY KEY,
+  ma VARCHAR(30) UNIQUE,
   ten VARCHAR(200),
   diaChi VARCHAR(255),
   soDienThoai VARCHAR(20)
@@ -76,10 +61,11 @@ CREATE TABLE tacGia (
 
 CREATE TABLE taiLieu (
   maTaiLieu INT AUTO_INCREMENT PRIMARY KEY,
+  ma VARCHAR(30) UNIQUE,
   maDanhMuc INT,
   maNhaXuatBan INT,
   tieuDe VARCHAR(500),
-  maIsbn VARCHAR(30),
+  maIsbn VARCHAR(30) UNIQUE,
   loaiTaiLieu VARCHAR(50),
   namXuatBan INT,
   soTrang INT,
@@ -99,50 +85,14 @@ CREATE TABLE taiLieuTacGia (
   FOREIGN KEY (maTacGia) REFERENCES tacGia(maTacGia)
 );
 
-CREATE TABLE viTriLuuTru (
-  maViTri INT AUTO_INCREMENT PRIMARY KEY,
-  toaNha VARCHAR(100),
-  tang VARCHAR(20),
-  phong VARCHAR(30),
-  ke VARCHAR(30)
-);
-
 CREATE TABLE banSaoTaiLieu (
   maBanSao INT AUTO_INCREMENT PRIMARY KEY,
   maTaiLieu INT,
-  maViTri INT,
-  maVach VARCHAR(50) UNIQUE,
+  viTri VARCHAR(150),
   ngayNhap DATE,
   giaNhap DECIMAL(12,2),
   tinhTrang VARCHAR(30),
-  FOREIGN KEY (maTaiLieu) REFERENCES taiLieu(maTaiLieu),
-  FOREIGN KEY (maViTri) REFERENCES viTriLuuTru(maViTri)
-);
-
-CREATE TABLE nhaCungCap (
-  maNhaCungCap INT AUTO_INCREMENT PRIMARY KEY,
-  ten VARCHAR(200),
-  soDienThoai VARCHAR(20),
-  diaChi VARCHAR(255)
-);
-
-CREATE TABLE phieuNhap (
-  maPhieuNhap INT AUTO_INCREMENT PRIMARY KEY,
-  maNhaCungCap INT,
-  maNguoiTao INT,
-  ngayNhap DATETIME,
-  tongTien DECIMAL(12,2),
-  FOREIGN KEY (maNhaCungCap) REFERENCES nhaCungCap(maNhaCungCap),
-  FOREIGN KEY (maNguoiTao) REFERENCES nguoiDung(maNguoiDung)
-);
-
-CREATE TABLE chiTietPhieuNhap (
-  maChiTietPhieuNhap INT AUTO_INCREMENT PRIMARY KEY,
-  maPhieuNhap INT,
-  maTaiLieu INT,
-  soLuong INT,
-  donGia DECIMAL(12,2),
-  FOREIGN KEY (maPhieuNhap) REFERENCES phieuNhap(maPhieuNhap),
+  trangThai VARCHAR(30),
   FOREIGN KEY (maTaiLieu) REFERENCES taiLieu(maTaiLieu)
 );
 
@@ -152,17 +102,44 @@ CREATE TABLE chinhSachMuon (
   soSachToiDa INT,
   soNgayMuon INT,
   soLanGiaHan INT,
-  tienPhatMoiNgay DECIMAL(12,2)
+  tienPhatMoiNgay DECIMAL(12,2),
+  ngayApDung DATE,
+  trangThai VARCHAR(30)
+);
+
+CREATE TABLE yeuCauMuon (
+  maYeuCauMuon INT AUTO_INCREMENT PRIMARY KEY,
+  maDocGia INT,
+  maNguoiXuLy INT,
+  ngayYeuCau DATETIME,
+  ngayXuLy DATETIME,
+  trangThai VARCHAR(30),
+  lyDoTuChoi TEXT,
+  FOREIGN KEY (maDocGia) REFERENCES hoSoDocGia(maDocGia),
+  FOREIGN KEY (maNguoiXuLy) REFERENCES nguoiDung(maNguoiDung)
+);
+
+CREATE TABLE chiTietYeuCauMuon (
+  maChiTietYeuCauMuon INT AUTO_INCREMENT PRIMARY KEY,
+  maYeuCauMuon INT,
+  maTaiLieu INT,
+  trangThai VARCHAR(30),
+  FOREIGN KEY (maYeuCauMuon) REFERENCES yeuCauMuon(maYeuCauMuon),
+  FOREIGN KEY (maTaiLieu) REFERENCES taiLieu(maTaiLieu)
 );
 
 CREATE TABLE phieuMuon (
   maPhieuMuon INT AUTO_INCREMENT PRIMARY KEY,
   maDocGia INT,
   maThuThu INT,
+  maChinhSach INT,
+  maYeuCauMuon INT,
   ngayMuon DATETIME,
   trangThai VARCHAR(30),
   FOREIGN KEY (maDocGia) REFERENCES hoSoDocGia(maDocGia),
-  FOREIGN KEY (maThuThu) REFERENCES nguoiDung(maNguoiDung)
+  FOREIGN KEY (maThuThu) REFERENCES nguoiDung(maNguoiDung),
+  FOREIGN KEY (maChinhSach) REFERENCES chinhSachMuon(maChinhSach),
+  FOREIGN KEY (maYeuCauMuon) REFERENCES yeuCauMuon(maYeuCauMuon)
 );
 
 CREATE TABLE chiTietPhieuMuon (
@@ -185,16 +162,6 @@ CREATE TABLE yeuCauGiaHan (
   FOREIGN KEY (maChiTietPhieuMuon) REFERENCES chiTietPhieuMuon(maChiTietPhieuMuon)
 );
 
-CREATE TABLE yeuCauDatCho (
-  maYeuCauDatCho INT AUTO_INCREMENT PRIMARY KEY,
-  maDocGia INT,
-  maTaiLieu INT,
-  ngayDat DATETIME,
-  trangThai VARCHAR(30),
-  FOREIGN KEY (maDocGia) REFERENCES hoSoDocGia(maDocGia),
-  FOREIGN KEY (maTaiLieu) REFERENCES taiLieu(maTaiLieu)
-);
-
 CREATE TABLE phieuPhat (
   maPhieuPhat INT AUTO_INCREMENT PRIMARY KEY,
   maDocGia INT,
@@ -203,28 +170,11 @@ CREATE TABLE phieuPhat (
   soTien DECIMAL(12,2),
   trangThai VARCHAR(30),
   ngayLap DATETIME,
-  FOREIGN KEY (maDocGia) REFERENCES hoSoDocGia(maDocGia),
-  FOREIGN KEY (maChiTietPhieuMuon) REFERENCES chiTietPhieuMuon(maChiTietPhieuMuon)
-);
-
-CREATE TABLE thanhToanPhat (
-  maThanhToan INT AUTO_INCREMENT PRIMARY KEY,
-  maPhieuPhat INT,
   maNguoiThu INT,
-  soTien DECIMAL(12,2),
   ngayThanhToan DATETIME,
-  FOREIGN KEY (maPhieuPhat) REFERENCES phieuPhat(maPhieuPhat),
+  FOREIGN KEY (maDocGia) REFERENCES hoSoDocGia(maDocGia),
+  FOREIGN KEY (maChiTietPhieuMuon) REFERENCES chiTietPhieuMuon(maChiTietPhieuMuon),
   FOREIGN KEY (maNguoiThu) REFERENCES nguoiDung(maNguoiDung)
-);
-
-CREATE TABLE thongBao (
-  maThongBao INT AUTO_INCREMENT PRIMARY KEY,
-  maNguoiDung INT,
-  tieuDe VARCHAR(200),
-  noiDung TEXT,
-  daDoc VARCHAR(10),
-  ngayTao DATETIME,
-  FOREIGN KEY (maNguoiDung) REFERENCES nguoiDung(maNguoiDung)
 );
 
 CREATE TABLE nhatKyHeThong (

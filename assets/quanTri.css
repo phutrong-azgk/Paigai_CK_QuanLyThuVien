@@ -56,14 +56,14 @@
 .quan-tri-chi-so span {
     color: #7c8581;
     display: block;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 3px
 }
 
 .quan-tri-chi-so small {
     bottom: 12px;
     color: #58906f;
-    font-size: 9px;
+    font-size: 12px;
     position: absolute;
     right: 13px
 }
@@ -95,7 +95,7 @@
     color: #468264;
     display: flex;
     flex: 0 0 22px;
-    font-size: 11px;
+    font-size: 12px;
     font-style: normal;
     height: 22px;
     justify-content: center
@@ -104,7 +104,7 @@
 .nhat-ky-quan-tri p,
 .lich-su-chinh-sach p {
     color: #65706b;
-    font-size: 11px;
+    font-size: 12px;
     margin: 1px 0 0
 }
 
@@ -117,7 +117,7 @@
 .lich-su-chinh-sach span {
     color: #929995;
     display: block;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 4px
 }
 
@@ -136,7 +136,7 @@
     border-radius: 50%;
     color: #ae7627;
     display: flex;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     height: 25px;
     justify-content: center;
@@ -145,7 +145,7 @@
 
 .canh-bao-quan-tri>div p {
     color: #6d7672;
-    font-size: 11px;
+    font-size: 12px;
     margin: 0
 }
 
@@ -185,7 +185,7 @@
     background: #fff;
     border: 0;
     color: #59635f;
-    font: 11px 'DM Sans';
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     height: 38px;
     outline: 0
 }
@@ -212,7 +212,7 @@
 
 .tieu-de-bang-quan-tri span {
     color: #858d89;
-    font-size: 10px
+    font-size: 12px
 }
 
 .quan-tri-bang .table-panel {
@@ -248,7 +248,118 @@
     border: 0;
     color: #c9603e;
     cursor: pointer;
-    font: 600 11px 'DM Sans'
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+}
+
+.hop-tai-khoan-quan-tri {
+    align-items: center;
+    background: rgba(35, 45, 40, .42);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    opacity: 0;
+    padding: 20px;
+    pointer-events: none;
+    position: fixed;
+    transition: opacity .18s ease;
+    z-index: 20
+}
+
+.hop-tai-khoan-quan-tri.mo {
+    opacity: 1;
+    pointer-events: auto
+}
+
+.noi-dung-tai-khoan-quan-tri {
+    background: #fff;
+    border-radius: 13px;
+    box-shadow: 0 18px 52px rgba(29, 42, 35, .2);
+    max-width: 520px;
+    padding: 24px;
+    width: 100%
+}
+
+.dau-hop-tai-khoan {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between
+}
+
+.dau-hop-tai-khoan h2 {
+    color: #2d3935;
+    font: 700 24px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    margin: 4px 0 0
+}
+
+.dong-hop-tai-khoan {
+    background: transparent;
+    border: 0;
+    color: #7c8581;
+    cursor: pointer;
+    font-size: 26px;
+    line-height: 1
+}
+
+#mo-ta-hop-tai-khoan {
+    color: #6b7570;
+    font-size: 12px;
+    line-height: 1.65;
+    margin: 15px 0 18px
+}
+
+.luoi-truong-tai-khoan {
+    display: grid;
+    gap: 13px;
+    grid-template-columns: 1fr 1fr
+}
+
+.luoi-truong-tai-khoan label.rong {
+    grid-column: span 2
+}
+
+.noi-dung-tai-khoan-quan-tri label {
+    color: #66716c;
+    display: block;
+    font-size: 12px;
+    font-weight: 600
+}
+
+.noi-dung-tai-khoan-quan-tri input,
+.noi-dung-tai-khoan-quan-tri select {
+    background: #fff;
+    border: 1px solid #d9e1dc;
+    border-radius: 7px;
+    box-sizing: border-box;
+    color: #35413d;
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    margin-top: 6px;
+    outline: 0;
+    padding: 10px;
+    width: 100%
+}
+
+#truong-mat-khau {
+    margin-top: 13px
+}
+
+.loi-tai-khoan-quan-tri {
+    background: #fff0ef;
+    border-radius: 6px;
+    color: #bd554c;
+    font-size: 12px;
+    margin: 14px 0 0;
+    padding: 9px 10px
+}
+
+.chan-hop-tai-khoan {
+    display: flex;
+    gap: 9px;
+    justify-content: flex-end;
+    margin-top: 20px
+}
+
+.chan-hop-tai-khoan .outline {
+    padding: 10px 15px
 }
 
 .dau-trang-quan-tri {
@@ -289,7 +400,7 @@
 .luoi-danh-muc-quan-tri span {
     color: #8a928e;
     display: block;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 4px
 }
 
@@ -300,6 +411,19 @@
     cursor: pointer;
     font-size: 18px;
     margin-left: auto
+}
+
+.luoi-danh-muc-quan-tri button + button {
+    margin-left: 2px
+}
+
+.luoi-danh-muc-quan-tri .sua-danh-muc,
+.luoi-danh-muc-quan-tri .xoa-danh-muc {
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
+}
+
+.luoi-danh-muc-quan-tri .xoa-danh-muc {
+    color: #b85850
 }
 
 .chinh-sach-quan-tri {
@@ -317,7 +441,7 @@
 
 .luoi-truong-chinh-sach label {
     color: #6f7874;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600
 }
 
@@ -326,7 +450,20 @@
     border-radius: 6px;
     box-sizing: border-box;
     color: #34413c;
-    font: 12px 'DM Sans';
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
+    margin-top: 6px;
+    outline: 0;
+    padding: 10px;
+    width: 100%
+}
+
+.luoi-truong-chinh-sach select {
+    background: #fff;
+    border: 1px solid #dce2dd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: #34413c;
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin-top: 6px;
     outline: 0;
     padding: 10px;
@@ -382,5 +519,13 @@
     .tieu-de-bang-quan-tri span {
         display: block;
         margin-top: 4px
+    }
+
+    .luoi-truong-tai-khoan {
+        grid-template-columns: 1fr
+    }
+
+    .luoi-truong-tai-khoan label.rong {
+        grid-column: auto
     }
 }

@@ -27,7 +27,7 @@
 
 .breadcrumb {
     color: #919795;
-    font-size: 11px;
+    font-size: 12px;
     margin: 0 0 25px
 }
 
@@ -52,12 +52,12 @@
 }
 
 .book-overview h1 {
-    font: 700 39px/1.12 'Playfair Display';
+    font: 700 39px/1.12 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0
 }
 
 .book-overview h2 {
-    font: 400 17px 'DM Sans';
+    font: 400 17px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     color: #727977;
     margin: 7px 0 19px
 }
@@ -66,7 +66,7 @@
     display: inline-block;
     border-radius: 20px;
     padding: 7px 11px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600
 }
 
@@ -96,7 +96,7 @@
     border: 0;
     background: none;
     color: #d26440;
-    font: 600 11px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -115,7 +115,7 @@
 }
 
 .detail-panel h2 {
-    font: 700 20px 'Playfair Display';
+    font: 700 20px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 17px
 }
 

@@ -1,5 +1,5 @@
 .form-hint {
-    font-size: 11px;
+    font-size: 12px;
     color: #7b827f;
     line-height: 1.55;
     margin: -7px 0 14px
@@ -43,7 +43,7 @@
 }
 
 .dau-chon-tai-lieu h2 {
-    font: 700 24px 'Playfair Display';
+    font: 700 24px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0
 }
 
@@ -59,7 +59,7 @@
     border: 1px solid #d9d9d3;
     border-radius: 6px;
     padding: 8px 13px;
-    font: 600 11px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     color: #626966
 }
 
@@ -79,11 +79,11 @@
     border: 0;
     outline: 0;
     width: 100%;
-    font: 12px 'DM Sans'
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
 }
 
 .ghi-chu-chon-tai-lieu {
-    font-size: 10px;
+    font-size: 12px;
     color: #858c89;
     line-height: 1.5;
     margin: 0 25px 12px
@@ -135,13 +135,13 @@
 }
 
 .danh-sach-chon-tai-lieu small {
-    font-size: 10px;
+    font-size: 12px;
     color: #878d8a;
     margin-top: 3px
 }
 
 .danh-sach-chon-tai-lieu em {
-    font-size: 10px;
+    font-size: 12px;
     color: #bd5a4b;
     font-style: normal
 }
@@ -154,7 +154,7 @@
 }
 
 .chan-chon-tai-lieu>span {
-    font-size: 11px;
+    font-size: 12px;
     color: #737a77
 }
 

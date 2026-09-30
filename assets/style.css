@@ -15,7 +15,7 @@ body {
     margin: 0;
     background: var(--cream);
     color: var(--ink);
-    font: 14px 'DM Sans', sans-serif
+    font: 14px 'Playfair Display', 'Segoe UI', Arial, sans-serif
 }
 
 .sidebar {
@@ -52,14 +52,14 @@ body {
     border-radius: 10px;
     background: var(--accent);
     color: white;
-    font: 700 23px Georgia
+    font: 700 23px 'Playfair Display', 'Segoe UI', Arial, serif
 }
 
 .brand small {
     display: block;
     letter-spacing: 1px;
     color: #9a9e9d;
-    font-size: 8px;
+    font-size: 12px;
     margin-top: 1px
 }
 
@@ -77,7 +77,7 @@ body {
     border-radius: 6px;
     background: transparent;
     padding: 7px 1px;
-    font: 600 11px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     color: #737977;
     cursor: pointer
 }
@@ -89,7 +89,7 @@ body {
 }
 
 .nav-group p {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 1.2px;
     color: #a1a5a2;
@@ -142,14 +142,14 @@ body {
     background: #e7b9a5;
     border-radius: 50%;
     color: #72422f;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold
 }
 
 .sidebar-user b,
 .sidebar-user span {
     display: block;
-    font-size: 11px
+    font-size: 12px
 }
 
 .sidebar-user span {
@@ -219,7 +219,7 @@ header {
 }
 
 .date {
-    font-size: 11px;
+    font-size: 12px;
     color: #929794;
     border-left: 1px solid var(--line);
     padding-left: 15px
@@ -252,7 +252,7 @@ header {
 }
 
 .eyebrow {
-    font-size: 10px;
+    font-size: 12px;
     color: #d26440;
     letter-spacing: 1.5px;
     font-weight: 700;
@@ -261,7 +261,7 @@ header {
 
 .welcome h1,
 .page-heading h1 {
-    font: 700 36px/1.12 'Playfair Display', serif;
+    font: 700 36px/1.12 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 12px
 }
 
@@ -283,7 +283,7 @@ header {
     background: var(--accent);
     padding: 11px 17px;
     color: #fff;
-    font: 600 12px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -389,7 +389,7 @@ header {
 
 .stats span,
 .stats small {
-    font-size: 11px;
+    font-size: 12px;
     color: #838987;
     display: block
 }
@@ -421,14 +421,14 @@ header {
 
 .section-head h2,
 .panel h2 {
-    font: 700 20px 'Playfair Display';
+    font: 700 20px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0
 }
 
 .section-head a {
     color: #d26440;
     text-decoration: none;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600
 }
 
@@ -449,14 +449,14 @@ header {
     place-items: center;
     border-radius: 3px;
     box-shadow: 3px 4px 0 #00000010;
-    font: 23px Georgia;
+    font: 23px 'Playfair Display', 'Segoe UI', Arial, serif;
     position: relative
 }
 
 .cover span {
     position: absolute;
     bottom: 5px;
-    font: 7px 'DM Sans'
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
 }
 
 .orange {
@@ -485,14 +485,14 @@ header {
 }
 
 .loan-info span {
-    font-size: 11px;
+    font-size: 12px;
     color: #818785;
     margin: 3px 0 8px
 }
 
 .loan-info small {
     color: #858b88;
-    font-size: 10px
+    font-size: 12px
 }
 
 .loan-info small b {
@@ -520,7 +520,7 @@ header {
     border-radius: 6px;
     color: #616966;
     padding: 7px 10px;
-    font: 600 11px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -543,13 +543,13 @@ header {
 }
 
 .recommend span {
-    font-size: 11px;
+    font-size: 12px;
     color: #818785;
     margin: 3px 0
 }
 
 .recommend p {
-    font-size: 11px;
+    font-size: 12px;
     color: #747a78;
     line-height: 1.55;
     margin: 9px 0
@@ -560,7 +560,7 @@ header {
     padding: 0;
     background: none;
     color: #d26440;
-    font: 600 11px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -598,7 +598,7 @@ header {
     flex: 1;
     border: 0;
     outline: 0;
-    font: 14px 'DM Sans';
+    font: 14px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     min-width: 0
 }
 
@@ -615,7 +615,7 @@ header {
     border-radius: 20px;
     padding: 7px 13px;
     color: #6e7471;
-    font: 500 11px 'DM Sans';
+    font: 500 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -628,7 +628,7 @@ header {
 .filter-row span {
     margin-left: auto;
     color: #8b908e;
-    font-size: 11px
+    font-size: 12px
 }
 
 .book-grid {
@@ -657,7 +657,7 @@ header {
 }
 
 .book-card-body>p {
-    font-size: 10px;
+    font-size: 12px;
     text-transform: uppercase;
     color: #d26440;
     margin: 0 0 6px;
@@ -665,13 +665,13 @@ header {
 }
 
 .book-card h3 {
-    font: 700 16px 'Playfair Display';
+    font: 700 16px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 4px
 }
 
 .book-card-body>span {
     color: #858b88;
-    font-size: 11px
+    font-size: 12px
 }
 
 .book-card footer {
@@ -684,7 +684,7 @@ header {
 }
 
 .book-card footer b {
-    font-size: 10px
+    font-size: 12px
 }
 
 .available {
@@ -698,7 +698,7 @@ header {
 .detail-btn {
     border: 0;
     background: none;
-    font: 600 11px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     color: #d26440;
     cursor: pointer
 }
@@ -714,7 +714,7 @@ header {
     border: 0;
     background: none;
     padding: 0 0 11px;
-    font: 600 12px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     color: #858b87
 }
 
@@ -734,7 +734,7 @@ table {
 }
 
 th {
-    font-size: 10px;
+    font-size: 12px;
     color: #939895;
     letter-spacing: .7px;
     padding: 0 12px 12px
@@ -753,7 +753,7 @@ td span {
 }
 
 td span {
-    font-size: 10px;
+    font-size: 12px;
     color: #919794;
     margin-top: 4px
 }
@@ -761,7 +761,7 @@ td span {
 mark {
     border-radius: 20px;
     padding: 5px 8px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 600
 }
 
@@ -811,7 +811,7 @@ mark {
 }
 
 .profile-card p {
-    font-size: 11px;
+    font-size: 12px;
     color: #858b87
 }
 
@@ -829,7 +829,7 @@ mark {
 
 .profile-card span {
     color: #959a98;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 14px
 }
 
@@ -849,7 +849,7 @@ mark {
 }
 
 .form-grid label {
-    font-size: 11px;
+    font-size: 12px;
     color: #767c79;
     font-weight: 600
 }
@@ -861,7 +861,7 @@ mark {
     border: 1px solid #deded9;
     border-radius: 6px;
     padding: 10px;
-    font: 12px 'DM Sans';
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     color: #4f5754
 }
 
@@ -884,13 +884,13 @@ mark {
 }
 
 .staff-stats b {
-    font: 700 27px 'Playfair Display';
+    font: 700 27px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     display: block;
     color: #253a48
 }
 
 .staff-stats span {
-    font-size: 11px;
+    font-size: 12px;
     color: #848a87
 }
 
@@ -918,7 +918,7 @@ mark {
 }
 
 .modal-card h2 {
-    font: 700 28px 'Playfair Display';
+    font: 700 28px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 12px
 }
 

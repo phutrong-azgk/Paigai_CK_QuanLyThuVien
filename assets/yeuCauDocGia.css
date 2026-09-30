@@ -4,7 +4,7 @@
     border-radius: 10px;
     color: #fff;
     display: inline-flex;
-    font: 700 9px 'DM Sans';
+    font: 700 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     height: 17px;
     justify-content: center;
     margin-left: auto;
@@ -21,7 +21,7 @@
     background: #edf5f0;
     border-radius: 20px;
     color: #4d8067;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     padding: 7px 11px
 }
@@ -51,7 +51,7 @@
     color: #fff;
     display: flex;
     flex: 0 0 17px;
-    font: 700 11px Georgia, serif;
+    font: 700 12px 'Playfair Display', 'Segoe UI', Arial, serif;
     height: 17px;
     justify-content: center
 }
@@ -103,7 +103,7 @@
 
 .thong-tin-yeu-cau-doc-gia>div>b {
     color: #808884;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: .4px
 }
 
@@ -115,14 +115,14 @@
 
 .thong-tin-yeu-cau-doc-gia>p {
     color: #737b77;
-    font-size: 11px;
+    font-size: 12px;
     margin: 0
 }
 
 .thong-tin-yeu-cau-doc-gia small {
     color: #969d99;
     display: block;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 7px
 }
 
@@ -135,7 +135,7 @@
 
 .hanh-dong-yeu-cau-doc-gia span {
     color: #907650;
-    font-size: 10px
+    font-size: 12px
 }
 
 .trang-thai-rong-doc-gia {

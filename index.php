@@ -33,7 +33,7 @@ $danhSachTaiLieu = [
   <title>LIBRA | Quản lý thư viện</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/login.css">
   <link rel="stylesheet" href="assets/tuongTac.css">
@@ -41,7 +41,7 @@ $danhSachTaiLieu = [
   <link rel="stylesheet" href="assets/thuThu.css">
   <link rel="stylesheet" href="assets/yeuCauCho.css?v=20260921-2">
   <link rel="stylesheet" href="assets/chonTaiLieu.css">
-  <link rel="stylesheet" href="assets/quanTri.css?v=20260921-1">
+  <link rel="stylesheet" href="assets/quanTri.css?v=20260930-2">
   <link rel="stylesheet" href="assets/yeuCauDocGia.css?v=20260921-1">
 </head>
 
@@ -73,7 +73,7 @@ $danhSachTaiLieu = [
           <div>
             <p class="eyebrow">XIN CHÀO, THU AN</p>
             <h1>Thư viện luôn<br><em>rộng mở.</em></h1>
-            <p class="sub">Khám phá tri thức mới và quản lý hành trình đọc của bạn tại một nơi.</p><button class="primary" data-go="catalog">Khám phá sách <span>→</span></button>
+            <p class="sub">Khám phá tri thức mới và quản lý hành trình đọc sách của bạn.</p><button class="primary" data-go="catalog">Khám phá sách <span>→</span></button>
           </div>
           <div class="welcome-art">
             <div class="sun"></div>
@@ -169,7 +169,7 @@ $danhSachTaiLieu = [
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="du-lieu-dang-muon">
               <tr>
                 <td><b>Cơ Sở Dữ Liệu</b><span>CNTT-101 · Abraham Silberschatz</span></td>
                 <td>07/09/2026</td>
@@ -203,7 +203,7 @@ $danhSachTaiLieu = [
                 <th>ĐÁNH GIÁ</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="du-lieu-lich-su">
               <tr>
                 <td><b>Muôn Kiếp Nhân Sinh</b><span>Nguyên Phong</span></td>
                 <td>12/08/2026</td>
@@ -227,7 +227,7 @@ $danhSachTaiLieu = [
           <p>Các yêu cầu sẽ được thủ thư kiểm tra trước khi bạn đến thư viện nhận sách.</p>
         </div>
         <div class="luu-y-doc-gia"><i>i</i><p>Bạn có thể hủy yêu cầu khi thủ thư chưa xử lý. Khi yêu cầu được duyệt, hãy đến quầy lưu thông để nhận tài liệu.</p></div>
-        <div class="danh-sach-yeu-cau-doc-gia">
+        <div id="du-lieu-yeu-cau-muon" class="danh-sach-yeu-cau-doc-gia">
           <article data-yeu-cau-doc-gia><div class="bia-yeu-cau-doc-gia blue">◉</div><div class="thong-tin-yeu-cau-doc-gia"><div><b>CNTT-145</b><mark class="yellow">Chờ duyệt</mark></div><h2>Nhập Môn Trí Tuệ Nhân Tạo</h2><p>Stuart Russell & Peter Norvig</p><small>Gửi lúc 09:15 · 21/09/2026 · Mong muốn nhận trước 24/09/2026</small></div><div class="hanh-dong-yeu-cau-doc-gia"><span>Đang chờ thủ thư phản hồi</span><button class="outline huy-yeu-cau-doc-gia">Hủy yêu cầu</button></div></article>
           <article data-yeu-cau-doc-gia><div class="bia-yeu-cau-doc-gia purple">§</div><div class="thong-tin-yeu-cau-doc-gia"><div><b>LUAT-032</b><mark class="yellow">Chờ duyệt</mark></div><h2>Giáo Trình Luật Dân Sự Việt Nam</h2><p>Đại học Luật Hà Nội</p><small>Gửi lúc 14:30 · 20/09/2026 · Mong muốn nhận trước 23/09/2026</small></div><div class="hanh-dong-yeu-cau-doc-gia"><span>Đang chờ thủ thư phản hồi</span><button class="outline huy-yeu-cau-doc-gia">Hủy yêu cầu</button></div></article>
         </div>
@@ -424,6 +424,10 @@ $danhSachTaiLieu = [
   </div>
   <div id="hienThongBao" class="toast">Đã cập nhật thành công</div>
   <script src="assets/app.js?v=20260921-4"></script>
+  <script src="assets/docGiaApi.js?v=20260930-1"></script>
+  <script src="assets/quanTriApi.js?v=20260930-3"></script>
+  <script src="assets/quanTriHeThong.js?v=20260930-1"></script>
+  <script src="assets/thuThuApi.js?v=20260930-1"></script>
 </body>
 
 </html>

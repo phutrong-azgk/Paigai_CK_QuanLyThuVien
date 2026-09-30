@@ -36,7 +36,7 @@
 }
 
 .story-copy h1 {
-    font: 700 48px/1.12 'Playfair Display';
+    font: 700 48px/1.12 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 15px
 }
 
@@ -91,7 +91,7 @@
 }
 
 .login-card h2 {
-    font: 700 30px 'Playfair Display';
+    font: 700 30px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 8px
 }
 
@@ -104,7 +104,7 @@
 .login-card>label {
     display: block;
     color: #5d6662;
-    font: 600 11px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin-bottom: 17px
 }
 
@@ -115,7 +115,7 @@
     border-radius: 7px;
     padding: 12px;
     margin-top: 7px;
-    font: 13px 'DM Sans';
+    font: 13px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     outline: none
 }
 
@@ -151,12 +151,12 @@
 
 .login-options a {
     color: #d26440;
-    font-size: 11px;
+    font-size: 12px;
     text-decoration: none
 }
 
 .remember {
-    font-size: 11px;
+    font-size: 12px;
     color: #717875 !important;
     display: flex !important;
     gap: 5px;
@@ -182,7 +182,7 @@
 }
 
 .demo-accounts>b {
-    font-size: 11px;
+    font-size: 12px;
     color: #626a67;
     display: block;
     margin-bottom: 7px
@@ -195,7 +195,7 @@
     background: transparent;
     padding: 6px 0;
     color: #7a817e;
-    font: 11px 'DM Sans';
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -215,11 +215,11 @@
     background: #fce9e6;
     color: #b6533d;
     padding: 10px 12px;
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 17px
 }
 
-.account-created{border-radius:6px;background:#e5f3eb;color:#387358;padding:10px 12px;font-size:11px;line-height:1.6;margin-bottom:17px}.password-note{font-size:11px;line-height:1.5;color:#737a77;margin:0 0 20px}.login-card select{display:block;width:100%;border:1px solid #deded9;border-radius:7px;padding:12px;margin-top:7px;font:13px 'DM Sans';background:#fff;color:#4f5754}.login-footer{text-align:center;color:#757c79;font-size:11px;margin:15px 0 0}.login-footer a{color:#d26440;text-decoration:none;font-weight:600}
+.account-created{border-radius:6px;background:#e5f3eb;color:#387358;padding:10px 12px;font-size:12px;line-height:1.6;margin-bottom:17px}.password-note{font-size:12px;line-height:1.5;color:#737a77;margin:0 0 20px}.login-card select{display:block;width:100%;border:1px solid #deded9;border-radius:7px;padding:12px;margin-top:7px;font:13px 'Playfair Display', 'Segoe UI', Arial, sans-serif;background:#fff;color:#4f5754}.login-footer{text-align:center;color:#757c79;font-size:12px;margin:15px 0 0}.login-footer a{color:#d26440;text-decoration:none;font-weight:600}
 
 @media(max-width:700px) {
     .login-wrap {

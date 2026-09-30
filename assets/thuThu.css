@@ -52,7 +52,7 @@
 
 .librarian-metrics small,
 .librarian-metrics em {
-    font-size: 10px;
+    font-size: 12px;
     color: #838a87;
     font-style: normal
 }
@@ -108,7 +108,7 @@
 
 .quick-actions span {
     color: #8a908d;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 3px
 }
 
@@ -132,7 +132,7 @@
 .due-date small,
 .due-item small {
     display: block;
-    font-size: 9px;
+    font-size: 12px;
     color: #8c918e;
     font-weight: 400
 }
@@ -154,7 +154,7 @@
 .circulation-form h2,
 .loan-ticket h2,
 .return-result h2 {
-    font: 700 20px 'Playfair Display';
+    font: 700 20px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 0 0 15px
 }
 
@@ -173,7 +173,7 @@
     flex: 1;
     border: 0;
     outline: 0;
-    font: 12px 'DM Sans'
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
 }
 
 .o-nhap-lieu button {
@@ -183,7 +183,7 @@
     color: #fff;
     padding: 0 14px;
     border-radius: 0 6px 6px 0;
-    font: 600 11px 'DM Sans';
+    font: 600 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     cursor: pointer
 }
 
@@ -216,7 +216,7 @@
 .reader-preview p,
 .return-book span,
 .return-book p {
-    font-size: 10px;
+    font-size: 12px;
     color: #848b88;
     margin: 3px 0
 }
@@ -251,7 +251,7 @@
 }
 
 .ticket-book span {
-    font-size: 10px;
+    font-size: 12px;
     color: #848b88;
     margin-top: 3px
 }
@@ -271,7 +271,7 @@
     display: flex;
     justify-content: space-between;
     padding: 5px 0;
-    font-size: 11px;
+    font-size: 12px;
     color: #7b827f
 }
 
@@ -289,7 +289,7 @@
 
 .condition-label {
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     color: #747b78
 }
 
@@ -301,7 +301,7 @@
     border-radius: 6px;
     padding: 9px;
     background: #fff;
-    font: 11px 'DM Sans'
+    font: 12px 'Playfair Display', 'Segoe UI', Arial, sans-serif
 }
 
 .return-result {
@@ -359,13 +359,13 @@
 .fine-stats span,
 .fine-stats small {
     display: block;
-    font-size: 10px;
+    font-size: 12px;
     opacity: .8
 }
 
 .fine-stats b {
     display: block;
-    font: 700 25px 'Playfair Display';
+    font: 700 25px 'Playfair Display', 'Segoe UI', Arial, sans-serif;
     margin: 6px 0
 }
 

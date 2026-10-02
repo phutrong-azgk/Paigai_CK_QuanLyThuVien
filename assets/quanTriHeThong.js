@@ -18,16 +18,22 @@
   const chiSoTaiKhoan = document.querySelector('#chi-so-tai-khoan');
   if (chiSoTaiKhoan) {
     const nhatKy = document.querySelector('#nhat-ky-quan-tri');
+    const canhBao = document.querySelector('#danh-sach-canh-bao-quan-tri');
     goiApi('api/quanTriHeThong.php?loai=tongQuan').then(ketQua => {
       const duLieu = ketQua.duLieu;
       chiSoTaiKhoan.textContent = duLieu.taiKhoan;
+      document.querySelector('#ghi-chu-tai-khoan').textContent = `${duLieu.taiKhoanHoatDong} đang hoạt động`;
       document.querySelector('#chi-so-tai-lieu').textContent = duLieu.taiLieu;
-      document.querySelector('#chi-so-yeu-cau').textContent = duLieu.canXuLy;
-      document.querySelector('#chi-so-can-xu-ly').textContent = duLieu.canXuLy;
-      document.querySelector('#chi-so-danh-muc').textContent = `${duLieu.danhMuc} danh mục`;
+      document.querySelector('#chi-so-yeu-cau').textContent = duLieu.yeuCauChoDuyet;
+      document.querySelector('#ghi-chu-yeu-cau').textContent = duLieu.yeuCauChoDuyet ? 'Thủ thư cần xử lý' : 'Không có yêu cầu mới';
+      document.querySelector('#chi-so-can-xu-ly').textContent = duLieu.taiKhoanTamKhoa;
+      document.querySelector('#ghi-chu-can-xu-ly').textContent = duLieu.taiKhoanTamKhoa ? 'Cần kiểm tra hoặc mở khóa' : 'Không có tài khoản bị khóa';
+      document.querySelector('#chi-so-danh-muc').textContent = `${duLieu.danhMuc} khoa`;
       nhatKy.innerHTML = ketQua.nhatKy.length ? ketQua.nhatKy.map(muc => `<div><i>✓</i><p><b>${anToan(muc.hoTen || 'Hệ thống')}</b> đã ${anToan(muc.hanhDong)}.<small>${anToan(muc.ngayTao)}</small></p></div>`).join('') : '<p>Chưa có nhật ký hoạt động.</p>';
+      canhBao.innerHTML = ketQua.canhBao.length ? ketQua.canhBao.map(muc => `<div><span>${anToan(muc.soLuong)}</span><p>${anToan(muc.noiDung)}</p></div>`).join('') : '<p>Không có việc nào cần lưu ý.</p>';
     }).catch(loi => {
       nhatKy.textContent = loi.message;
+      canhBao.textContent = loi.message;
     });
   }
 
@@ -39,7 +45,7 @@
     async function taiDanhMuc() {
       try {
         const ketQua = await goiApi('api/quanTriHeThong.php?loai=danhMuc');
-        danhSach.innerHTML = ketQua.duLieu.map((danhMuc, chiSo) => `<article><i class="${['xanh','cam','tim','do'][chiSo % 4]}">⌘</i><div><b>${anToan(danhMuc.ten)}</b><span>${anToan(danhMuc.ma)} · ${danhMuc.soTaiLieu} tài liệu</span></div><button class="sua-danh-muc" type="button" data-id="${danhMuc.maDanhMuc}" data-ma="${anToan(danhMuc.ma)}" data-ten="${anToan(danhMuc.ten)}">Sửa</button><button class="xoa-danh-muc" type="button" data-id="${danhMuc.maDanhMuc}" data-ten="${anToan(danhMuc.ten)}">Xóa</button></article>`).join('') || '<p>Chưa có danh mục.</p>';
+      danhSach.innerHTML = ketQua.duLieu.map((danhMuc, chiSo) => `<article><i class="${['xanh','cam','tim','do'][chiSo % 4]}">⌘</i><div><b>${anToan(danhMuc.ten)}</b><span>${anToan(danhMuc.ma)} · ${danhMuc.soTaiLieu} tài liệu</span></div><button class="sua-danh-muc" type="button" data-id="${danhMuc.maDanhMuc}" data-ma="${anToan(danhMuc.ma)}" data-ten="${anToan(danhMuc.ten)}">Sửa</button><button class="xoa-danh-muc" type="button" data-id="${danhMuc.maDanhMuc}" data-ten="${anToan(danhMuc.ten)}">Xóa</button></article>`).join('') || '<p>Chưa có khoa.</p>';
       } catch (loi) {
         danhSach.innerHTML = `<p>${anToan(loi.message)}</p>`;
       }
@@ -58,17 +64,17 @@
           })
         });
         formDanhMuc.reset();
-        tieuDe.textContent = 'Thêm danh mục';
+        tieuDe.textContent = 'Thêm khoa';
         nutHuy.hidden = true;
         await taiDanhMuc();
-        thongBao('Đã lưu danh mục.');
+        thongBao('Đã lưu khoa.');
       } catch (loi) {
         alert(loi.message);
       }
     });
     nutHuy.addEventListener('click', () => {
       formDanhMuc.reset();
-      tieuDe.textContent = 'Thêm danh mục';
+      tieuDe.textContent = 'Thêm khoa';
       nutHuy.hidden = true;
     });
     danhSach.addEventListener('click', async suKien => {
@@ -78,11 +84,11 @@
         formDanhMuc.maDanhMuc.value = nutSua.dataset.id;
         formDanhMuc.ma.value = nutSua.dataset.ma;
         formDanhMuc.ten.value = nutSua.dataset.ten;
-        tieuDe.textContent = 'Sửa danh mục';
+        tieuDe.textContent = 'Sửa khoa';
         nutHuy.hidden = false;
         formDanhMuc.ma.focus();
       }
-      if (nutXoa && confirm(`Xóa danh mục ${nutXoa.dataset.ten}?`)) {
+      if (nutXoa && confirm(`Xóa khoa ${nutXoa.dataset.ten}?`)) {
         try {
           await goiApi('api/quanTriHeThong.php', {
             method: 'POST',
@@ -95,7 +101,7 @@
             })
           });
           await taiDanhMuc();
-          thongBao('Đã xóa danh mục.');
+          thongBao('Đã xóa khoa.');
         } catch (loi) {
           alert(loi.message);
         }

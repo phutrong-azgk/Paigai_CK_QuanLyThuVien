@@ -101,6 +101,32 @@
     display: block
 }
 
+.nut-duyet-yeu-cau,
+.nut-tu-choi-yeu-cau {
+    border-radius: 6px;
+    cursor: pointer;
+    font: 600 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
+    margin-right: 6px;
+    padding: 7px 10px
+}
+
+.nut-duyet-yeu-cau {
+    background: #e8f4ed;
+    border: 1px solid #c7e4d2;
+    color: #3f7a5d
+}
+
+.nut-tu-choi-yeu-cau {
+    background: #fff2ef;
+    border: 1px solid #f2cbc4;
+    color: #bd5d50
+}
+
+.nut-duyet-yeu-cau:disabled {
+    cursor: not-allowed;
+    opacity: .5
+}
+
 .quick-actions b {
     font-size: 12px;
     margin-top: 10px

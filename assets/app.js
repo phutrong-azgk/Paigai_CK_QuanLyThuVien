@@ -11,7 +11,8 @@ function hienThongBao(message) {
 function hienThiTrang(id) {
     $$('.page').forEach(p => p.classList.toggle('active', p.id === id));
     $$('.nav-link').forEach(a => a.classList.toggle('active', a.dataset.page === id));
-    $('#page-title').textContent = $(`[data-page="${id}"]`)?.textContent.trim() || 'Tổng quan';
+    const tieuDeTrang = $('#page-title');
+    if (tieuDeTrang) tieuDeTrang.textContent = $(`[data-page="${id}"]`)?.textContent.trim() || 'Tổng quan';
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -157,7 +158,7 @@ if (hopDanhSachYeuCau) {
     });
 }
 const hopChonTaiLieu = $('#hop-chon-tai-lieu');
-if (hopChonTaiLieu) {
+if (hopChonTaiLieu && document.body.dataset.role !== 'librarian') {
     const oTimTaiLieuTrongHop = $('#tim-tai-lieu-trong-hop');
     const tieuDeChonTaiLieu = $('#tieu-de-chon-tai-lieu');
     const soLuongDaChon = $('#so-luong-da-chon');

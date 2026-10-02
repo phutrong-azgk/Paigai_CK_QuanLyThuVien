@@ -11,17 +11,17 @@ $soDienThoaiHoSo = $nguoiDungHienTai['phone'] ?? '0901 234 567';
 $ngaySinhHoSo = $nguoiDungHienTai['birth_date'] ?? '2003-05-12';
 $maHoSo = $nguoiDungHienTai['username'] ?? 'DG-2026-0145';
 $danhSachTaiLieu = [
-  ['title' => 'Cơ Sở Dữ Liệu', 'author' => 'Abraham Silberschatz', 'category' => 'Công nghệ thông tin', 'code' => 'CNTT-101', 'available' => 8, 'color' => 'blue', 'icon' => '◫'],
-  ['title' => 'Nhập Môn Trí Tuệ Nhân Tạo', 'author' => 'Stuart Russell & Peter Norvig', 'category' => 'Công nghệ thông tin', 'code' => 'CNTT-145', 'available' => 5, 'color' => 'purple', 'icon' => '◉'],
-  ['title' => 'Lập Trình Hướng Đối Tượng Với Java', 'author' => 'Herbert Schildt', 'category' => 'Công nghệ thông tin', 'code' => 'CNTT-128', 'available' => 3, 'color' => 'green', 'icon' => '⌘'],
-  ['title' => 'Nguyên Lý Kế Toán', 'author' => 'Weygandt, Kimmel & Kieso', 'category' => 'Kinh tế', 'code' => 'KT-021', 'available' => 6, 'color' => 'orange', 'icon' => '₫'],
-  ['title' => 'Kinh Tế Vi Mô', 'author' => 'N. Gregory Mankiw', 'category' => 'Kinh tế', 'code' => 'KT-044', 'available' => 2, 'color' => 'green', 'icon' => '↗'],
-  ['title' => 'Giáo Trình Luật Dân Sự Việt Nam', 'author' => 'Đại học Luật Hà Nội', 'category' => 'Luật', 'code' => 'LUAT-032', 'available' => 4, 'color' => 'purple', 'icon' => '§'],
-  ['title' => 'Pháp Luật Đại Cương', 'author' => 'Nguyễn Văn Động', 'category' => 'Luật', 'code' => 'LUAT-008', 'available' => 0, 'color' => 'blue', 'icon' => '⚖'],
-  ['title' => 'Giải Phẫu Người', 'author' => 'Nguyễn Quang Quyền', 'category' => 'Y dược', 'code' => 'YD-015', 'available' => 3, 'color' => 'orange', 'icon' => '✚'],
-  ['title' => 'Sinh Lý Học Y Khoa', 'author' => 'Guyton & Hall', 'category' => 'Y dược', 'code' => 'YD-027', 'available' => 1, 'color' => 'green', 'icon' => '✥'],
-  ['title' => 'English for Academic Purposes', 'author' => 'Edward de Chazal', 'category' => 'Ngôn ngữ Anh', 'code' => 'NNA-019', 'available' => 7, 'color' => 'blue', 'icon' => 'A'],
-  ['title' => 'Academic Writing for Students', 'author' => 'Stephen Bailey', 'category' => 'Ngôn ngữ Anh', 'code' => 'NNA-033', 'available' => 2, 'color' => 'purple', 'icon' => '✎'],
+  ['title' => 'Cơ Sở Dữ Liệu', 'category' => 'Công nghệ thông tin', 'code' => 'CNTT-101', 'available' => 8, 'color' => 'blue', 'icon' => '◫'],
+  ['title' => 'Nhập Môn Trí Tuệ Nhân Tạo', 'category' => 'Công nghệ thông tin', 'code' => 'CNTT-145', 'available' => 5, 'color' => 'purple', 'icon' => '◉'],
+  ['title' => 'Lập Trình Hướng Đối Tượng Với Java', 'category' => 'Công nghệ thông tin', 'code' => 'CNTT-128', 'available' => 3, 'color' => 'green', 'icon' => '⌘'],
+  ['title' => 'Nguyên Lý Kế Toán', 'category' => 'Kinh tế', 'code' => 'KT-021', 'available' => 6, 'color' => 'orange', 'icon' => '₫'],
+  ['title' => 'Kinh Tế Vi Mô', 'category' => 'Kinh tế', 'code' => 'KT-044', 'available' => 2, 'color' => 'green', 'icon' => '↗'],
+  ['title' => 'Giáo Trình Luật Dân Sự Việt Nam', 'category' => 'Luật', 'code' => 'LUAT-032', 'available' => 4, 'color' => 'purple', 'icon' => '§'],
+  ['title' => 'Pháp Luật Đại Cương', 'category' => 'Luật', 'code' => 'LUAT-008', 'available' => 0, 'color' => 'blue', 'icon' => '⚖'],
+  ['title' => 'Giải Phẫu Người', 'category' => 'Y dược', 'code' => 'YD-015', 'available' => 3, 'color' => 'orange', 'icon' => '✚'],
+  ['title' => 'Sinh Lý Học Y Khoa', 'category' => 'Y dược', 'code' => 'YD-027', 'available' => 1, 'color' => 'green', 'icon' => '✥'],
+  ['title' => 'English for Academic Purposes', 'category' => 'Ngoại ngữ', 'code' => 'NNA-019', 'available' => 7, 'color' => 'blue', 'icon' => 'A'],
+  ['title' => 'Academic Writing for Students', 'category' => 'Ngoại ngữ', 'code' => 'NNA-033', 'available' => 2, 'color' => 'purple', 'icon' => '✎'],
 ];
 ?>
 <!doctype html>
@@ -37,11 +37,11 @@ $danhSachTaiLieu = [
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/login.css">
   <link rel="stylesheet" href="assets/tuongTac.css">
-  <link rel="stylesheet" href="assets/quanLySach.css">
-  <link rel="stylesheet" href="assets/thuThu.css">
+  <link rel="stylesheet" href="assets/quanLySach.css?v=20261002-1">
+  <link rel="stylesheet" href="assets/thuThu.css?v=20261002-1">
   <link rel="stylesheet" href="assets/yeuCauCho.css?v=20260921-2">
   <link rel="stylesheet" href="assets/chonTaiLieu.css">
-  <link rel="stylesheet" href="assets/quanTri.css?v=20260930-2">
+  <link rel="stylesheet" href="assets/quanTri.css?v=20261002-1">
   <link rel="stylesheet" href="assets/yeuCauDocGia.css?v=20260921-1">
 </head>
 
@@ -52,10 +52,10 @@ $danhSachTaiLieu = [
         <p>KHÔNG GIAN ĐỘC GIẢ</p><a class="nav-link active" href="#dashboard" data-page="dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#catalog" data-page="catalog"><i>⌕</i> Tìm kiếm sách</a><a class="nav-link" href="#loans" data-page="loans"><i>▣</i> Mượn & trả sách</a><a class="nav-link" href="#history" data-page="history"><i>◷</i> Lịch sử mượn trả</a><a class="nav-link" href="#reader-pending" data-page="reader-pending"><i>◌</i> Yêu cầu chờ duyệt</a><a class="nav-link" href="#profile" data-page="profile"><i>♙</i> Hồ sơ cá nhân</a>
       </nav><?php endif; ?>
     <?php if ($vaiTroHienTai === 'librarian'): ?><nav id="staff-nav" class="nav-group">
-        <p>QUẢN LÝ NGHIỆP VỤ</p><a class="nav-link active" href="#staff-dashboard" data-page="staff-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#book-admin" data-page="book-admin"><i>▤</i> Quản lý sách</a><a class="nav-link" href="#borrow-admin" data-page="borrow-admin"><i>↔</i> Quản lý mượn sách</a><a class="nav-link" href="#return-admin" data-page="return-admin"><i>↵</i> Quản lý trả sách</a><a class="nav-link" href="#reader-admin" data-page="reader-admin"><i>♙</i> Hồ sơ độc giả</a><a class="nav-link" href="#fines" data-page="fines"><i>₫</i> Quản lý phạt</a>
+        <p>QUẢN LÝ NGHIỆP VỤ</p><a class="nav-link active" href="#staff-dashboard" data-page="staff-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#book-admin" data-page="book-admin"><i>▤</i> Quản lý sách</a><a class="nav-link" href="#publishers" data-page="publishers"><i>▦</i> Nhà xuất bản</a><a class="nav-link" href="#borrow-admin" data-page="borrow-admin"><i>↔</i> Quản lý mượn sách</a><a class="nav-link" href="#return-admin" data-page="return-admin"><i>↵</i> Quản lý trả sách</a><a class="nav-link" href="#reader-admin" data-page="reader-admin"><i>♙</i> Hồ sơ độc giả</a><a class="nav-link" href="#fines" data-page="fines"><i>₫</i> Quản lý phạt</a>
       </nav><?php endif; ?>
     <?php if ($vaiTroHienTai === 'admin'): ?><nav id="admin-nav" class="nav-group">
-        <p>QUẢN TRỊ HỆ THỐNG</p><a class="nav-link active" href="#admin-dashboard" data-page="admin-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#accounts" data-page="accounts"><i>♙</i> Quản lý tài khoản</a><a class="nav-link" href="#categories" data-page="categories"><i>▦</i> Quản lý danh mục</a><a class="nav-link" href="#policies" data-page="policies"><i>◈</i> Chính sách thư viện</a>
+        <p>QUẢN TRỊ HỆ THỐNG</p><a class="nav-link active" href="#admin-dashboard" data-page="admin-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#accounts" data-page="accounts"><i>♙</i> Quản lý tài khoản</a><a class="nav-link" href="#categories" data-page="categories"><i>▦</i> Quản lý khoa</a><a class="nav-link" href="#policies" data-page="policies"><i>◈</i> Chính sách thư viện</a>
       </nav><?php endif; ?>
     <div class="sidebar-user">
       <div class="avatar"><?= htmlspecialchars($nguoiDungHienTai['initials']) ?></div>
@@ -63,15 +63,11 @@ $danhSachTaiLieu = [
     </div>
   </aside>
   <main>
-    <header><button class="menu-btn">☰</button>
-      <div class="crumb">Trang chủ <span>/</span> <b id="page-title">Tổng quan</b></div>
-      <div class="header-actions"><button class="icon-btn">⌕</button><button class="notification icon-btn">♧<em></em></button><span class="date">Thứ Ba, 16 tháng 9, 2026</span></div>
-    </header>
     <?php if ($vaiTroHienTai === 'reader'): ?>
       <section id="dashboard" class="page active">
         <div class="welcome">
           <div>
-            <p class="eyebrow">XIN CHÀO, THU AN</p>
+            <p class="eyebrow">XIN CHÀO, <?= htmlspecialchars($nguoiDungHienTai['name'] ?? 'Độc giả') ?></p>
             <h1>Thư viện luôn<br><em>rộng mở.</em></h1>
             <p class="sub">Khám phá tri thức mới và quản lý hành trình đọc sách của bạn.</p><button class="primary" data-go="catalog">Khám phá sách <span>→</span></button>
           </div>
@@ -86,15 +82,15 @@ $danhSachTaiLieu = [
         <div class="stats">
           <article>
             <div class="stat-icon peach">▣</div>
-            <div><b>02</b><span>Sách đang mượn</span></div><small>01 sắp đến hạn</small>
+            <div><b id="chi-so-dang-muon">—</b><span>Sách đang mượn</span></div><small id="ghi-chu-dang-muon">Đang tải dữ liệu</small>
           </article>
           <article>
             <div class="stat-icon lilac">◷</div>
-            <div><b>12</b><span>Sách đã đọc</span></div><small>Trong năm 2026</small>
+            <div><b id="chi-so-cho-duyet">—</b><span>Yêu cầu chờ duyệt</span></div><small id="ghi-chu-cho-duyet">Đang tải dữ liệu</small>
           </article>
           <article>
             <div class="stat-icon mint">♢</div>
-            <div><b>08</b><span>Điểm thưởng</span></div><small>Độc giả tích cực</small>
+            <div><b id="chi-so-da-tra">—</b><span>Tài liệu đã trả</span></div><small id="ghi-chu-da-tra">Đang tải dữ liệu</small>
           </article>
         </div>
         <div class="content-grid">
@@ -105,18 +101,7 @@ $danhSachTaiLieu = [
                 <h2>Sách đang mượn</h2>
               </div><a href="#loans" data-go="loans">Xem tất cả →</a>
             </div>
-            <div class="loan-row">
-              <div class="cover blue">◫</div>
-              <div class="loan-info"><b>Cơ Sở Dữ Liệu</b><span>Abraham Silberschatz</span>
-                <div class="progress"><i style="width:70%"></i></div><small>Còn <b>04 ngày</b> để trả sách</small>
-              </div><button class="outline renew-btn">Gia hạn</button>
-            </div>
-            <div class="loan-row">
-              <div class="cover green">↗</div>
-              <div class="loan-info"><b>Kinh Tế Vi Mô</b><span>N. Gregory Mankiw</span>
-                <div class="progress"><i style="width:35%"></i></div><small>Hạn trả: <b>28/09/2026</b></small>
-              </div><button class="outline renew-btn">Gia hạn</button>
-            </div>
+            <div id="danh-sach-muon-tong-quan"><p>Đang tải dữ liệu...</p></div>
           </section>
           <section class="panel">
             <div class="section-head">
@@ -125,12 +110,7 @@ $danhSachTaiLieu = [
                 <h2>Có thể bạn thích</h2>
               </div><a href="#catalog" data-go="catalog">Khám phá →</a>
             </div>
-            <div class="recommend">
-              <div class="cover purple">◉</div>
-              <div><b>Nhập Môn Trí Tuệ Nhân Tạo</b><span>Stuart Russell & Peter Norvig</span>
-                <p>Học liệu gợi ý cho sinh viên quan tâm đến dữ liệu và trí tuệ nhân tạo.</p><a class="text-btn" href="chiTietTaiLieu.php?id=CNTT-145">Xem chi tiết →</a>
-              </div>
-            </div>
+            <div id="goi-y-tong-quan"><p>Đang tải gợi ý...</p></div>
           </section>
         </div>
       </section>
@@ -138,16 +118,16 @@ $danhSachTaiLieu = [
         <div class="page-heading">
           <p class="eyebrow">KHO SÁCH LIBRA</p>
           <h1>Tìm cuốn sách dành cho bạn</h1>
-          <p>Tra cứu theo tên sách, tác giả, thể loại hoặc mã sách.</p>
+          <p>Tra cứu theo tên sách, khoa, nhà xuất bản hoặc mã sách.</p>
         </div>
-        <div class="search-box"><span>⌕</span><input id="book-search" placeholder="Nhập tên sách, tác giả hoặc từ khóa..."><button class="primary">Tìm kiếm</button></div>
-        <div class="filter-row"><button class="chip active" data-filter="">Tất cả</button><button class="chip" data-filter="công nghệ thông tin">Công nghệ thông tin</button><button class="chip" data-filter="kinh tế">Kinh tế</button><button class="chip" data-filter="luật">Luật</button><button class="chip" data-filter="y dược">Y dược</button><button class="chip" data-filter="ngôn ngữ anh">Ngôn ngữ Anh</button><span id="book-count">11 đầu sách</span></div>
-        <div id="book-grid" class="book-grid"><?php foreach ($danhSachTaiLieu as $taiLieu): ?><article class="book-card" tabindex="0" role="link" data-search="<?= strtolower($taiLieu['title'] . ' ' . $taiLieu['author'] . ' ' . $taiLieu['category']) ?>" data-detail-url="chiTietTaiLieu.php?id=<?= urlencode($taiLieu['code']) ?>">
+        <div class="search-box"><span>⌕</span><input id="book-search" placeholder="Nhập tên sách, nhà xuất bản hoặc từ khóa..."><button class="primary">Tìm kiếm</button></div>
+        <div class="filter-row"><button class="chip active" data-filter="">Tất cả</button><button class="chip" data-filter="công nghệ thông tin">Công nghệ thông tin</button><button class="chip" data-filter="kinh tế">Kinh tế</button><button class="chip" data-filter="luật">Luật</button><button class="chip" data-filter="y dược">Y dược</button><button class="chip" data-filter="ngoại ngữ">Ngoại ngữ</button><span id="book-count">11 đầu sách</span></div>
+        <div id="book-grid" class="book-grid"><?php foreach ($danhSachTaiLieu as $taiLieu): ?><article class="book-card" tabindex="0" role="link" data-search="<?= strtolower($taiLieu['title'] . ' ' . $taiLieu['category']) ?>" data-detail-url="chiTietTaiLieu.php?id=<?= urlencode($taiLieu['code']) ?>">
               <div class="cover large <?= $taiLieu['color'] ?>"><?= $taiLieu['icon'] ?><span><?= htmlspecialchars($taiLieu['code']) ?></span></div>
               <div class="book-card-body">
                 <p><?= htmlspecialchars($taiLieu['category']) ?></p>
-                <h3><?= htmlspecialchars($taiLieu['title']) ?></h3><span><?= htmlspecialchars($taiLieu['author']) ?></span>
-                <footer><b class="<?= $taiLieu['available'] ? 'available' : 'unavailable' ?>">● <?= $taiLieu['available'] ? 'Còn ' . $taiLieu['available'] . ' cuốn' : 'Đã hết sách' ?></b><a class="detail-btn" href="chiTietTaiLieu.php?id=<?= urlencode($taiLieu['code']) ?>">Xem →</a></footer>
+                <h3><?= htmlspecialchars($taiLieu['title']) ?></h3>
+                <footer><b class="<?= $taiLieu['available'] ? 'available' : 'unavailable' ?>">● <?= $taiLieu['available'] ? 'Còn ' . $taiLieu['available'] . ' cuốn' : 'Đã hết sách' ?></b><button class="detail-btn" type="button" disabled><?= $taiLieu['available'] ? 'Mượn →' : 'Hết sách' ?></button></footer>
               </div>
             </article><?php endforeach; ?></div>
       </section>
@@ -157,7 +137,7 @@ $danhSachTaiLieu = [
           <h1>Sách của tôi</h1>
           <p>Đăng ký mượn, theo dõi thời hạn và gia hạn sách trực tuyến.</p>
         </div>
-        <div class="tom-tat-muon-doc-gia"><span>02 tài liệu đang mượn</span><span>01 tài liệu sắp đến hạn</span></div>
+        <div class="tom-tat-muon-doc-gia"><span id="so-tai-lieu-dang-muon">Đang tải...</span><span id="so-tai-lieu-sap-den-han">Đang tải...</span></div>
         <section class="panel table-panel">
           <table>
             <thead>
@@ -226,12 +206,33 @@ $danhSachTaiLieu = [
           <h1>Yêu cầu chờ duyệt</h1>
           <p>Các yêu cầu sẽ được thủ thư kiểm tra trước khi bạn đến thư viện nhận sách.</p>
         </div>
-        <div class="luu-y-doc-gia"><i>i</i><p>Bạn có thể hủy yêu cầu khi thủ thư chưa xử lý. Khi yêu cầu được duyệt, hãy đến quầy lưu thông để nhận tài liệu.</p></div>
-        <div id="du-lieu-yeu-cau-muon" class="danh-sach-yeu-cau-doc-gia">
-          <article data-yeu-cau-doc-gia><div class="bia-yeu-cau-doc-gia blue">◉</div><div class="thong-tin-yeu-cau-doc-gia"><div><b>CNTT-145</b><mark class="yellow">Chờ duyệt</mark></div><h2>Nhập Môn Trí Tuệ Nhân Tạo</h2><p>Stuart Russell & Peter Norvig</p><small>Gửi lúc 09:15 · 21/09/2026 · Mong muốn nhận trước 24/09/2026</small></div><div class="hanh-dong-yeu-cau-doc-gia"><span>Đang chờ thủ thư phản hồi</span><button class="outline huy-yeu-cau-doc-gia">Hủy yêu cầu</button></div></article>
-          <article data-yeu-cau-doc-gia><div class="bia-yeu-cau-doc-gia purple">§</div><div class="thong-tin-yeu-cau-doc-gia"><div><b>LUAT-032</b><mark class="yellow">Chờ duyệt</mark></div><h2>Giáo Trình Luật Dân Sự Việt Nam</h2><p>Đại học Luật Hà Nội</p><small>Gửi lúc 14:30 · 20/09/2026 · Mong muốn nhận trước 23/09/2026</small></div><div class="hanh-dong-yeu-cau-doc-gia"><span>Đang chờ thủ thư phản hồi</span><button class="outline huy-yeu-cau-doc-gia">Hủy yêu cầu</button></div></article>
+        <div class="luu-y-doc-gia"><i>i</i>
+          <p>Bạn có thể hủy yêu cầu khi thủ thư chưa xử lý. Khi yêu cầu được duyệt, hãy đến quầy lưu thông để nhận tài liệu.</p>
         </div>
-        <section class="trang-thai-rong-doc-gia" hidden><i>✓</i><h2>Không có yêu cầu chờ duyệt</h2><p>Bạn có thể tìm tài liệu và gửi đăng ký mượn trực tuyến.</p><button class="primary" data-go="catalog">Tìm tài liệu <span>→</span></button></section>
+        <div id="du-lieu-yeu-cau-muon" class="danh-sach-yeu-cau-doc-gia">
+          <article data-yeu-cau-doc-gia>
+            <div class="bia-yeu-cau-doc-gia blue">◉</div>
+            <div class="thong-tin-yeu-cau-doc-gia">
+              <div><b>CNTT-145</b><mark class="yellow">Chờ duyệt</mark></div>
+              <h2>Nhập Môn Trí Tuệ Nhân Tạo</h2>
+              <p>Stuart Russell & Peter Norvig</p><small>Gửi lúc 09:15 · 21/09/2026 · Mong muốn nhận trước 24/09/2026</small>
+            </div>
+            <div class="hanh-dong-yeu-cau-doc-gia"><span>Đang chờ thủ thư phản hồi</span><button class="outline huy-yeu-cau-doc-gia">Hủy yêu cầu</button></div>
+          </article>
+          <article data-yeu-cau-doc-gia>
+            <div class="bia-yeu-cau-doc-gia purple">§</div>
+            <div class="thong-tin-yeu-cau-doc-gia">
+              <div><b>LUAT-032</b><mark class="yellow">Chờ duyệt</mark></div>
+              <h2>Giáo Trình Luật Dân Sự Việt Nam</h2>
+              <p>Đại học Luật Hà Nội</p><small>Gửi lúc 14:30 · 20/09/2026 · Mong muốn nhận trước 23/09/2026</small>
+            </div>
+            <div class="hanh-dong-yeu-cau-doc-gia"><span>Đang chờ thủ thư phản hồi</span><button class="outline huy-yeu-cau-doc-gia">Hủy yêu cầu</button></div>
+          </article>
+        </div>
+        <section class="trang-thai-rong-doc-gia" hidden><i>✓</i>
+          <h2>Không có yêu cầu chờ duyệt</h2>
+          <p>Bạn có thể tìm tài liệu và gửi đăng ký mượn trực tuyến.</p><button class="primary" data-go="catalog">Tìm tài liệu <span>→</span></button>
+        </section>
       </section>
       <section id="profile" class="page">
         <div class="page-heading">
@@ -240,14 +241,14 @@ $danhSachTaiLieu = [
         </div>
         <div class="profile-layout">
           <section class="panel profile-card">
-            <div class="avatar xl"><?= htmlspecialchars($nguoiDungHienTai['initials']) ?></div>
-            <h2><?= htmlspecialchars($nguoiDungHienTai['name']) ?></h2>
-            <p><?= htmlspecialchars($maHoSo) ?> · <?= htmlspecialchars($nguoiDungHienTai['role_name']) ?></p>
-            <hr><span>Email</span><b><?= htmlspecialchars($thuDienTuHoSo) ?></b><span>Số điện thoại</span><b><?= htmlspecialchars($soDienThoaiHoSo) ?></b>
+            <div id="anh-dai-dien-ho-so" class="avatar xl"><?= htmlspecialchars($nguoiDungHienTai['initials']) ?></div>
+            <h2 id="ten-ho-so"><?= htmlspecialchars($nguoiDungHienTai['name']) ?></h2>
+            <p id="ma-ho-so"><?= htmlspecialchars($maHoSo) ?> · <?= htmlspecialchars($nguoiDungHienTai['role_name']) ?></p>
+            <hr><span>Email</span><b id="email-ho-so"><?= htmlspecialchars($thuDienTuHoSo) ?></b><span>Số điện thoại</span><b id="dien-thoai-ho-so"><?= htmlspecialchars($soDienThoaiHoSo) ?></b>
           </section>
           <section class="panel form-card">
             <h2>Thông tin cá nhân</h2>
-            <div class="form-grid"><label>Họ và tên<input value="<?= htmlspecialchars($nguoiDungHienTai['name']) ?>"></label><label>Email<input value="<?= htmlspecialchars($thuDienTuHoSo) ?>"></label><label>Số điện thoại<input value="<?= htmlspecialchars($soDienThoaiHoSo) ?>"></label><label>Ngày sinh<input type="date" value="<?= htmlspecialchars($ngaySinhHoSo) ?>"></label></div><button class="primary save-btn">Lưu thay đổi</button>
+            <form id="form-ho-so-doc-gia"><div class="form-grid"><label>Họ và tên<input name="hoTen" value="<?= htmlspecialchars($nguoiDungHienTai['name']) ?>"></label><label>Email<input name="thuDienTu" type="email" value="<?= htmlspecialchars($thuDienTuHoSo) ?>"></label><label>Số điện thoại<input name="soDienThoai" value="<?= htmlspecialchars($soDienThoaiHoSo) ?>"></label><label>Ngày sinh<input name="ngaySinh" type="date" value="<?= htmlspecialchars($ngaySinhHoSo) ?>"></label></div><button class="primary" type="submit">Lưu thay đổi</button></form>
           </section>
         </div>
       </section>
@@ -255,14 +256,15 @@ $danhSachTaiLieu = [
     <?php
     $trangTheoVaiTro = [];
     if ($vaiTroHienTai === 'librarian') {
-      $trangTheoVaiTro = ['staff-dashboard' => 'Bảng điều khiển thủ thư', 'book-admin' => 'Quản lý thông tin sách', 'borrow-admin' => 'Quản lý mượn sách', 'return-admin' => 'Quản lý trả sách', 'reader-admin' => 'Quản lý hồ sơ độc giả', 'fines' => 'Quản lý phạt'];
+      $trangTheoVaiTro = ['staff-dashboard' => 'Bảng điều khiển thủ thư', 'book-admin' => 'Quản lý thông tin sách', 'publishers' => 'Quản lý nhà xuất bản', 'borrow-admin' => 'Quản lý mượn sách', 'return-admin' => 'Quản lý trả sách', 'reader-admin' => 'Quản lý hồ sơ độc giả', 'fines' => 'Quản lý phạt'];
     } elseif ($vaiTroHienTai === 'admin') {
-      $trangTheoVaiTro = ['admin-dashboard' => 'Bảng điều khiển quản trị', 'accounts' => 'Quản lý tài khoản', 'categories' => 'Quản lý danh mục', 'policies' => 'Quản lý chính sách'];
+      $trangTheoVaiTro = ['admin-dashboard' => 'Bảng điều khiển quản trị', 'accounts' => 'Quản lý tài khoản', 'categories' => 'Quản lý khoa', 'policies' => 'Quản lý chính sách'];
     }
     foreach ($trangTheoVaiTro as $maTrang => $tieuDeTrang):
       $duLieuMau = [
         'staff-dashboard' => ['code' => '#TT-093', 'title' => '12 phiếu mượn cần xác nhận', 'sub' => 'Ca trực sáng · Quầy lưu thông 01', 'date' => '16/09/2026', 'status' => 'Cần xử lý', 'class' => 'yellow'],
         'book-admin' => ['code' => '#TL-145', 'title' => 'Giáo trình Cơ sở dữ liệu', 'sub' => 'Tồn kho: 18 bản · Kệ CNTT-03', 'date' => '15/09/2026', 'status' => 'Đang lưu hành', 'class' => 'green-mark'],
+        'publishers' => ['code' => '#NXB-021', 'title' => 'Nhà xuất bản Giáo dục Việt Nam', 'sub' => 'Đang phát hành 12 tài liệu', 'date' => '15/09/2026', 'status' => 'Đang sử dụng', 'class' => 'green-mark'],
         'borrow-admin' => ['code' => '#PM-2409', 'title' => 'Phiếu mượn của Nguyễn Minh Anh', 'sub' => 'MSSV 22110432 · 02 tài liệu', 'date' => '16/09/2026', 'status' => 'Chờ duyệt', 'class' => 'yellow'],
         'return-admin' => ['code' => '#PT-1128', 'title' => 'Trả sách: Nhà Giả Kim', 'sub' => 'Độc giả: Phạm Quốc Bảo · Không phát sinh phạt', 'date' => '16/09/2026', 'status' => 'Đã trả', 'class' => 'green-mark'],
         'reader-admin' => ['code' => '#DG-068', 'title' => 'Hồ sơ thẻ độc giả hết hạn', 'sub' => 'Lê Thị Hương · Khoa Kinh tế', 'date' => '14/09/2026', 'status' => 'Cần gia hạn', 'class' => 'yellow'],
@@ -282,48 +284,44 @@ $danhSachTaiLieu = [
         <?php if ($maTrang === 'book-admin'): ?>
           <div class="inventory-stats">
             <article><span class="inventory-icon blue-soft">▤</span>
-              <div><b>1.248</b><small>Tổng đầu sách</small></div>
+              <div><b id="chi-so-tong-sach">—</b><small>Tổng đầu sách</small></div>
             </article>
             <article><span class="inventory-icon green-soft">✓</span>
-              <div><b>1.146</b><small>Bản sẵn sàng</small></div>
+              <div><b id="chi-so-ban-san-sang">—</b><small>Bản sẵn sàng</small></div>
             </article>
             <article><span class="inventory-icon orange-soft">↔</span>
-              <div><b>65</b><small>Đang được mượn</small></div>
+              <div><b id="chi-so-dang-muon-sach">—</b><small>Đang được mượn</small></div>
             </article>
             <article><span class="inventory-icon red-soft">!</span>
-              <div><b>37</b><small>Cần kiểm tra</small></div>
+              <div><b id="chi-so-can-kiem-tra-sach">—</b><small>Đã hết sách</small></div>
             </article>
           </div>
           <section class="panel inventory-panel">
             <div class="inventory-toolbar">
-              <div class="inventory-search"><span>⌕</span><input id="inventory-search" placeholder="Tìm theo mã, tên tài liệu hoặc tác giả..."></div>
-              <select class="inventory-filter">
-                <option>Tất cả danh mục</option>
-                <option>Công nghệ thông tin</option>
-                <option>Kinh tế</option>
-                <option>Luật</option>
-                <option>Y dược</option>
+              <div class="inventory-search"><span>⌕</span><input id="inventory-search" placeholder="Tìm theo mã, tên tài liệu hoặc nhà xuất bản..."></div>
+              <select id="loc-danh-muc-sach" class="inventory-filter">
+                <option value="">Tất cả khoa</option>
               </select>
-              <button class="primary book-action" data-message="Mở biểu mẫu thêm tài liệu mới.">+ Thêm sách</button>
+              <button id="mo-form-sach" class="primary" type="button">+ Thêm sách</button>
             </div>
-            <div class="inventory-caption"><b>Danh mục tài liệu</b><span>Hiển thị 5 trên 1.248 đầu sách</span></div>
+            <div class="inventory-caption"><b>Học liệu theo khoa</b><span id="tong-sach-hien-thi">Đang tải dữ liệu...</span></div>
             <div class="table-panel inventory-table">
               <table>
                 <thead>
                   <tr>
                     <th>TÀI LIỆU</th>
                     <th>MÃ / ISBN</th>
-                    <th>VỊ TRÍ</th>
+                    <th>KHOA</th>
                     <th>TỒN KHO</th>
                     <th>TRẠNG THÁI</th>
                     <th>THAO TÁC</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="du-lieu-sach">
                   <tr data-book-row="cơ sở dữ liệu abraham silberschatz cntt-101">
                     <td>
                       <div class="table-book"><i class="blue">◫</i>
-                        <div><b>Cơ Sở Dữ Liệu</b><span>Abraham Silberschatz</span></div>
+                        <div><b>Cơ Sở Dữ Liệu</b><span>Pearson Education</span></div>
                       </div>
                     </td>
                     <td>CNTT-101<span>ISBN 978-604-0-12345-6</span></td>
@@ -335,7 +333,7 @@ $danhSachTaiLieu = [
                   <tr data-book-row="nhập môn trí tuệ nhân tạo stuart russell cntt-145">
                     <td>
                       <div class="table-book"><i class="purple">◉</i>
-                        <div><b>Nhập Môn Trí Tuệ Nhân Tạo</b><span>Stuart Russell & Peter Norvig</span></div>
+                        <div><b>Nhập Môn Trí Tuệ Nhân Tạo</b><span>Pearson Education</span></div>
                       </div>
                     </td>
                     <td>CNTT-145<span>ISBN 978-013-604259-4</span></td>
@@ -347,7 +345,7 @@ $danhSachTaiLieu = [
                   <tr data-book-row="giáo trình luật dân sự việt nam đại học luật luat-032">
                     <td>
                       <div class="table-book"><i class="purple">§</i>
-                        <div><b>Giáo Trình Luật Dân Sự Việt Nam</b><span>Đại học Luật Hà Nội</span></div>
+                        <div><b>Giáo Trình Luật Dân Sự Việt Nam</b><span>Nhà xuất bản Giáo dục Việt Nam</span></div>
                       </div>
                     </td>
                     <td>LUAT-032<span>ISBN 978-604-72-9876-2</span></td>
@@ -359,7 +357,7 @@ $danhSachTaiLieu = [
                   <tr data-book-row="sinh lý học y khoa guyton hall yd-027">
                     <td>
                       <div class="table-book"><i class="green">✥</i>
-                        <div><b>Sinh Lý Học Y Khoa</b><span>Guyton & Hall</span></div>
+                        <div><b>Sinh Lý Học Y Khoa</b><span>Nhà xuất bản Giáo dục Việt Nam</span></div>
                       </div>
                     </td>
                     <td>YD-027<span>ISBN 978-032-359712-8</span></td>
@@ -371,7 +369,7 @@ $danhSachTaiLieu = [
                   <tr data-book-row="pháp luật đại cương nguyễn văn động luat-008">
                     <td>
                       <div class="table-book"><i class="blue">⚖</i>
-                        <div><b>Pháp Luật Đại Cương</b><span>Nguyễn Văn Động</span></div>
+                        <div><b>Pháp Luật Đại Cương</b><span>Nhà xuất bản Giáo dục Việt Nam</span></div>
                       </div>
                     </td>
                     <td>LUAT-008<span>ISBN 978-604-73-6241-8</span></td>
@@ -383,10 +381,10 @@ $danhSachTaiLieu = [
                 </tbody>
               </table>
             </div>
-            <div class="inventory-footer"><span>Trang 1 / 250</span>
-              <div><button class="page-button">←</button><button class="page-button active">1</button><button class="page-button">2</button><button class="page-button">3</button><button class="page-button">→</button></div>
-            </div>
+            <div class="inventory-footer"><span id="phan-trang-sach">Đang tải dữ liệu...</span><div id="nut-phan-trang-sach" class="nut-phan-trang"></div><button id="mo-form-tom-tat" class="outline" type="button">Cập nhật tóm tắt</button></div>
           </section>
+        <?php elseif ($maTrang === 'publishers'): ?>
+          <section class="panel nxb-panel"><div class="inventory-toolbar"><div class="inventory-search"><span>⌕</span><input id="tim-nxb" placeholder="Tìm theo mã hoặc tên nhà xuất bản..."></div><button id="mo-form-nxb" class="primary" type="button">+ Thêm nhà xuất bản</button></div><div class="inventory-caption"><b>Danh sách nhà xuất bản</b><span id="tong-nxb">Đang tải dữ liệu...</span></div><div class="table-panel inventory-table"><table><thead><tr><th>MÃ</th><th>TÊN NHÀ XUẤT BẢN</th><th>ĐỊA CHỈ</th><th>SỐ TÀI LIỆU</th><th>THAO TÁC</th></tr></thead><tbody id="du-lieu-nxb"></tbody></table></div><div class="inventory-footer"><span id="phan-trang-nxb">Đang tải dữ liệu...</span><div id="nut-phan-trang-nxb" class="nut-phan-trang"></div></div></section>
         <?php elseif ($vaiTroHienTai === 'librarian'): ?>
           <?php include __DIR__ . '/partials/giaoDienThuThu.php'; ?>
         <?php elseif ($vaiTroHienTai === 'admin'): ?>
@@ -402,9 +400,9 @@ $danhSachTaiLieu = [
           <h2 id="tieu-de-chon-tai-lieu">Chọn tài liệu</h2>
         </div><button class="dong-chon-tai-lieu" aria-label="Đóng">×</button>
       </div>
-      <div class="o-tim-tai-lieu"><span>⌕</span><input id="tim-tai-lieu-trong-hop" placeholder="Tìm theo tên, mã tài liệu hoặc tác giả..."></div>
+      <div class="o-tim-tai-lieu"><span>⌕</span><input id="tim-tai-lieu-trong-hop" placeholder="Tìm theo tên, mã tài liệu hoặc nhà xuất bản..."></div>
       <p class="ghi-chu-chon-tai-lieu">Chọn các tài liệu cần thêm vào phiếu. Hệ thống sẽ kiểm tra số lượng còn lại trước khi xác nhận.</p>
-      <div class="danh-sach-chon-tai-lieu">
+      <div id="danh-sach-chon-tai-lieu" class="danh-sach-chon-tai-lieu">
         <label data-muc-chon-tai-lieu="cơ sở dữ liệu abraham silberschatz cntt-101"><input type="checkbox" checked><i class="blue">◫</i><span><b>Cơ Sở Dữ Liệu</b><small>CNTT-101 · Còn 08 bản</small></span></label>
         <label data-muc-chon-tai-lieu="nhập môn trí tuệ nhân tạo stuart russell cntt-145"><input type="checkbox"><i class="purple">◉</i><span><b>Nhập Môn Trí Tuệ Nhân Tạo</b><small>CNTT-145 · Còn 05 bản</small></span></label>
         <label data-muc-chon-tai-lieu="nguyên lý kế toán weygandt kt-021"><input type="checkbox"><i class="orange">₫</i><span><b>Nguyên Lý Kế Toán</b><small>KT-021 · Còn 06 bản</small></span></label>
@@ -422,12 +420,50 @@ $danhSachTaiLieu = [
       <p>Cuốn sách hiện có trong kho. Bạn có thể gửi yêu cầu mượn và theo dõi trạng thái xử lý tại mục Sách của tôi.</p><button class="primary borrow-btn">Đăng ký mượn sách</button>
     </div>
   </div>
+  <div id="hop-sach-thu-thu" class="hop-tai-khoan-quan-tri" aria-hidden="true">
+    <section class="noi-dung-tai-khoan-quan-tri" role="dialog" aria-modal="true">
+      <div class="dau-hop-tai-khoan">
+        <div>
+          <p class="eyebrow">QUẢN LÝ SÁCH</p>
+          <h2 id="tieu-de-form-sach">Thêm tài liệu</h2>
+        </div><button class="dong-hop-sach" type="button">×</button>
+      </div>
+      <form id="form-sach-thu-thu" enctype="multipart/form-data"><input name="maTaiLieu" type="hidden"><input name="anhBiaHienTai" type="hidden">
+        <div class="luoi-truong-tai-khoan">
+          <label>Mã tài liệu<input name="ma" placeholder="Ví dụ: CNTT-200" required></label>
+          <label>Khoa<select name="maDanhMuc" id="danh-muc-sach" required></select></label>
+          <label class="rong">Tên tài liệu<input name="tieuDe" required></label>
+          <label class="rong">Nhà xuất bản<div class="truong-nxb"><select name="maNhaXuatBan" id="nha-xuat-ban-sach" required></select><button id="mo-form-nxb-nhanh" class="outline" type="button">+ Thêm NXB</button></div></label>
+          <label>Năm xuất bản<input name="namXuatBan" type="number" min="1900"></label>
+          <label>Số lượng tổng<input name="soLuongTong" type="number" min="0" value="1" required></label>
+          <label class="rong">ISBN<input name="maIsbn"></label>
+          <label class="rong">Ảnh bìa<input name="anhBia" type="file" accept="image/jpeg,image/png,image/webp"><small>Chọn ảnh JPG, PNG hoặc WEBP, tối đa 5 MB.</small></label>
+        </div>
+        <p id="loi-form-sach" class="loi-tai-khoan-quan-tri" hidden></p>
+        <div class="chan-hop-tai-khoan"><button class="outline dong-hop-sach" type="button">Hủy</button><button class="primary" type="submit">Lưu tài liệu <span>→</span></button></div>
+      </form>
+    </section>
+  </div>
+  <div id="hop-nxb-thu-thu" class="hop-tai-khoan-quan-tri" aria-hidden="true">
+    <section class="noi-dung-tai-khoan-quan-tri" role="dialog" aria-modal="true">
+      <div class="dau-hop-tai-khoan"><div><p class="eyebrow">NHÀ XUẤT BẢN</p><h2 id="tieu-de-form-nxb">Thêm nhà xuất bản</h2></div><button class="dong-hop-nxb" type="button">×</button></div>
+      <form id="form-nxb-thu-thu"><input name="maNhaXuatBan" type="hidden"><div class="luoi-truong-tai-khoan"><label>Mã NXB<input name="ma" placeholder="Ví dụ: NXBGD" required></label><label>Tên nhà xuất bản<input name="ten" required></label><label class="rong">Địa chỉ<input name="diaChi"></label><label>Số điện thoại<input name="soDienThoai"></label></div><p id="loi-form-nxb" class="loi-tai-khoan-quan-tri" hidden></p><div class="chan-hop-tai-khoan"><button class="outline dong-hop-nxb" type="button">Hủy</button><button class="primary" type="submit">Lưu nhà xuất bản <span>→</span></button></div></form>
+    </section>
+  </div>
+  <div id="hop-tom-tat-thu-thu" class="hop-tai-khoan-quan-tri" aria-hidden="true">
+    <section class="noi-dung-tai-khoan-quan-tri" role="dialog" aria-modal="true">
+      <div class="dau-hop-tai-khoan"><div><p class="eyebrow">NỘI DUNG TÀI LIỆU</p><h2>Cập nhật tóm tắt</h2></div><button class="dong-hop-tai-khoan dong-hop-tom-tat" type="button" aria-label="Đóng">×</button></div>
+      <form id="form-tom-tat-thu-thu"><input name="maTaiLieu" type="hidden"><div class="o-loc-tom-tat"><input id="tim-sach-tom-tat" placeholder="Tìm tên sách, mã sách hoặc nhà xuất bản..."><select id="loc-khoa-tom-tat"><option value="">Tất cả khoa</option></select></div><div id="danh-sach-sach-tom-tat" class="danh-sach-sach-tom-tat"></div><label class="truong-tom-tat">Tóm tắt<textarea name="tomTat" rows="8" maxlength="3000" placeholder="Nhập nội dung tóm tắt cho tài liệu đã chọn..."></textarea></label><p id="loi-form-tom-tat" class="loi-tai-khoan-quan-tri" hidden></p><div class="chan-hop-tai-khoan"><button class="outline dong-hop-tom-tat" type="button">Hủy</button><button class="primary" type="submit">Lưu tóm tắt <span>→</span></button></div></form>
+    </section>
+  </div>
   <div id="hienThongBao" class="toast">Đã cập nhật thành công</div>
-  <script src="assets/app.js?v=20260921-4"></script>
-  <script src="assets/docGiaApi.js?v=20260930-1"></script>
+  <script src="assets/app.js?v=20261002-2"></script>
+  <script src="assets/docGiaApi.js?v=20261002-4"></script>
   <script src="assets/quanTriApi.js?v=20260930-3"></script>
-  <script src="assets/quanTriHeThong.js?v=20260930-1"></script>
-  <script src="assets/thuThuApi.js?v=20260930-1"></script>
+  <script src="assets/quanTriHeThong.js?v=20261002-1"></script>
+  <script src="assets/thuThuApi.js?v=20261002-5"></script>
+  <script src="assets/thuThuSach.js?v=20261002-4"></script>
+  <script src="assets/thuThuSachThongKe.js?v=20261002-2"></script>
 </body>
 
 </html>

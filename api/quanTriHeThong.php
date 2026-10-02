@@ -11,7 +11,7 @@ function ghiNhatKyQuanTri($csdl, $maNguoiDung, $hanhDong, $doiTuong, $maDoiTuong
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $loai = $_GET['loai'] ?? '';
     if ($loai === 'danhMuc') {
-        $lenh = $csdl->query('SELECT dm.maDanhMuc, dm.ma, dm.ten, COUNT(tl.maTaiLieu) AS soTaiLieu FROM danhMucTaiLieu dm LEFT JOIN taiLieu tl ON tl.maDanhMuc = dm.maDanhMuc GROUP BY dm.maDanhMuc ORDER BY dm.ten');
+        $lenh = $csdl->query('SELECT k.maKhoa AS maDanhMuc, k.ma, k.ten, COUNT(tl.maTaiLieu) AS soTaiLieu FROM khoa k LEFT JOIN taiLieu tl ON tl.maKhoa = k.maKhoa GROUP BY k.maKhoa ORDER BY k.ten');
         traVeJson(['duLieu' => $lenh->fetchAll(PDO::FETCH_ASSOC)]);
     }
     if ($loai === 'chinhSach') {
@@ -20,11 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     }
     if ($loai === 'tongQuan') {
         $taiKhoan = $csdl->query('SELECT COUNT(*) FROM nguoiDung')->fetchColumn();
+        $taiKhoanHoatDong = $csdl->query("SELECT COUNT(*) FROM nguoiDung WHERE trangThai = 'hoatDong'")->fetchColumn();
         $taiLieu = $csdl->query('SELECT COUNT(*) FROM taiLieu')->fetchColumn();
-        $danhMuc = $csdl->query('SELECT COUNT(*) FROM danhMucTaiLieu')->fetchColumn();
-        $canXuLy = $csdl->query("SELECT COUNT(*) FROM yeuCauMuon WHERE trangThai = 'choDuyet'")->fetchColumn();
+        $danhMuc = $csdl->query('SELECT COUNT(*) FROM khoa')->fetchColumn();
+        $yeuCauChoDuyet = $csdl->query("SELECT COUNT(*) FROM yeuCauMuon WHERE trangThai = 'choDuyet'")->fetchColumn();
+        $taiKhoanTamKhoa = $csdl->query("SELECT COUNT(*) FROM nguoiDung WHERE trangThai = 'tamKhoa'")->fetchColumn();
+        $taiLieuHet = $csdl->query('SELECT COUNT(*) FROM taiLieu WHERE soLuongCon <= 0')->fetchColumn();
+        $chinhSachDangApDung = $csdl->query("SELECT loaiDocGia FROM chinhSachMuon WHERE trangThai = 'dangApDung'")->fetchAll(PDO::FETCH_COLUMN);
+        $canhBao = [];
+        if ($yeuCauChoDuyet) $canhBao[] = ['soLuong' => $yeuCauChoDuyet, 'noiDung' => 'yêu cầu mượn đang chờ thủ thư duyệt.'];
+        if ($taiKhoanTamKhoa) $canhBao[] = ['soLuong' => $taiKhoanTamKhoa, 'noiDung' => 'tài khoản đang tạm khóa và cần kiểm tra.'];
+        if ($taiLieuHet) $canhBao[] = ['soLuong' => $taiLieuHet, 'noiDung' => 'đầu tài liệu hiện đã hết bản có thể mượn.'];
+        foreach (['sinhVien' => 'sinh viên', 'giangVien' => 'giảng viên'] as $maLoai => $tenLoai) if (!in_array($maLoai, $chinhSachDangApDung, true)) $canhBao[] = ['soLuong' => '!', 'noiDung' => "chưa có chính sách mượn đang áp dụng cho $tenLoai."];
+        $canXuLy = $taiKhoanTamKhoa;
         $lenh = $csdl->query('SELECT nk.hanhDong, nk.doiTuong, nk.ngayTao, nd.hoTen FROM nhatKyHeThong nk LEFT JOIN nguoiDung nd ON nd.maNguoiDung = nk.maNguoiDung ORDER BY nk.ngayTao DESC LIMIT 5');
-        traVeJson(['duLieu' => compact('taiKhoan', 'taiLieu', 'danhMuc', 'canXuLy'), 'nhatKy' => $lenh->fetchAll(PDO::FETCH_ASSOC)]);
+        traVeJson(['duLieu' => compact('taiKhoan', 'taiKhoanHoatDong', 'taiLieu', 'danhMuc', 'yeuCauChoDuyet', 'taiKhoanTamKhoa', 'canXuLy'), 'nhatKy' => $lenh->fetchAll(PDO::FETCH_ASSOC), 'canhBao' => $canhBao]);
     }
     traVeJson(['loi' => 'Dữ liệu không hợp lệ.'], 404);
 }
@@ -35,17 +45,17 @@ if ($hanhDong === 'luuDanhMuc') {
     $maDanhMuc = (int)($duLieu['maDanhMuc'] ?? 0);
     $ma = strtoupper(trim($duLieu['ma'] ?? ''));
     $ten = trim($duLieu['ten'] ?? '');
-    if (!preg_match('/^[A-Z0-9-]{2,30}$/', $ma) || strlen($ten) < 2) traVeJson(['loi' => 'Mã và tên danh mục chưa hợp lệ.'], 422);
+    if (!preg_match('/^[A-Z0-9-]{2,30}$/', $ma) || strlen($ten) < 2) traVeJson(['loi' => 'Mã và tên khoa chưa hợp lệ.'], 422);
     try {
-        if ($maDanhMuc) { $lenh = $csdl->prepare('UPDATE danhMucTaiLieu SET ma = ?, ten = ? WHERE maDanhMuc = ?'); $lenh->execute([$ma, $ten, $maDanhMuc]); }
-        else { $lenh = $csdl->prepare('INSERT INTO danhMucTaiLieu (ma, ten) VALUES (?, ?)'); $lenh->execute([$ma, $ten]); $maDanhMuc = $csdl->lastInsertId(); }
-        ghiNhatKyQuanTri($csdl, $nguoiDung['id'], 'capNhatDanhMuc', 'danhMucTaiLieu', $maDanhMuc);
+        if ($maDanhMuc) { $lenh = $csdl->prepare('UPDATE khoa SET ma = ?, ten = ? WHERE maKhoa = ?'); $lenh->execute([$ma, $ten, $maDanhMuc]); }
+        else { $lenh = $csdl->prepare('INSERT INTO khoa (ma, ten) VALUES (?, ?)'); $lenh->execute([$ma, $ten]); $maDanhMuc = $csdl->lastInsertId(); }
+        ghiNhatKyQuanTri($csdl, $nguoiDung['id'], 'capNhatKhoa', 'khoa', $maDanhMuc);
         traVeJson(['thanhCong' => true]);
-    } catch (PDOException $loi) { traVeJson(['loi' => 'Mã danh mục đã tồn tại.'], 409); }
+    } catch (PDOException $loi) { traVeJson(['loi' => 'Mã khoa đã tồn tại.'], 409); }
 }
 if ($hanhDong === 'xoaDanhMuc') {
-    try { $lenh = $csdl->prepare('DELETE FROM danhMucTaiLieu WHERE maDanhMuc = ?'); $lenh->execute([(int)($duLieu['maDanhMuc'] ?? 0)]); if (!$lenh->rowCount()) traVeJson(['loi' => 'Không tìm thấy danh mục.'], 404); traVeJson(['thanhCong' => true]); }
-    catch (PDOException $loi) { traVeJson(['loi' => 'Danh mục đang có tài liệu hoặc danh mục con nên không thể xóa.'], 409); }
+    try { $lenh = $csdl->prepare('DELETE FROM khoa WHERE maKhoa = ?'); $lenh->execute([(int)($duLieu['maDanhMuc'] ?? 0)]); if (!$lenh->rowCount()) traVeJson(['loi' => 'Không tìm thấy khoa.'], 404); traVeJson(['thanhCong' => true]); }
+    catch (PDOException $loi) { traVeJson(['loi' => 'Khoa đang có tài liệu hoặc hồ sơ độc giả nên không thể xóa.'], 409); }
 }
 if ($hanhDong === 'luuChinhSach') {
     $loaiDocGia = $duLieu['loaiDocGia'] ?? '';

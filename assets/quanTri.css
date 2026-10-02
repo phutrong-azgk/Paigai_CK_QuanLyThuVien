@@ -6,7 +6,7 @@
 }
 
 .quan-tri-chi-so article {
-    align-items: center;
+    align-items: flex-start;
     background: #fff;
     border: 1px solid var(--line);
     border-radius: 11px;
@@ -14,6 +14,10 @@
     gap: 11px;
     padding: 16px;
     position: relative
+}
+
+.quan-tri-chi-so article>div {
+    min-width: 0
 }
 
 .quan-tri-chi-so i,
@@ -61,11 +65,11 @@
 }
 
 .quan-tri-chi-so small {
-    bottom: 12px;
     color: #58906f;
+    display: block;
     font-size: 12px;
-    position: absolute;
-    right: 13px
+    line-height: 1.45;
+    margin-top: 7px
 }
 
 .quan-tri-luoi {
@@ -147,6 +151,28 @@
     color: #6d7672;
     font-size: 12px;
     margin: 0
+}
+
+.canh-bao-quan-tri>#danh-sach-canh-bao-quan-tri {
+    border-top: 0;
+    display: block;
+    margin-top: 0;
+    padding-top: 0
+}
+
+.canh-bao-quan-tri>#danh-sach-canh-bao-quan-tri>div {
+    align-items: center;
+    border-top: 1px solid var(--line);
+    display: flex;
+    gap: 11px;
+    margin-top: 13px;
+    padding-top: 13px
+}
+
+.canh-bao-quan-tri>#danh-sach-canh-bao-quan-tri>p {
+    color: #6d7672;
+    font-size: 12px;
+    margin: 15px 0 0
 }
 
 .canh-bao-quan-tri .outline {

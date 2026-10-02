@@ -135,6 +135,14 @@
     font: 16px 'Merriweather', 'Segoe UI', Arial, serif
 }
 
+.table-book img {
+    width: 29px;
+    height: 38px;
+    border-radius: 3px;
+    object-fit: cover;
+    background: #eef0ed
+}
+
 .table-book b,
 .table-book span {
     display: block
@@ -156,6 +164,113 @@
     margin-right: 7px
 }
 
+.truong-nxb {
+    display: flex;
+    gap: 8px;
+    align-items: center
+}
+
+.truong-nxb select {
+    flex: 1
+}
+
+.truong-nxb button {
+    flex: none;
+    white-space: nowrap
+}
+
+.nxb-panel .inventory-table td {
+    white-space: normal
+}
+
+.o-loc-tom-tat {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px
+}
+
+#hop-tom-tat-thu-thu .noi-dung-tai-khoan-quan-tri {
+    max-width: 760px
+}
+
+.o-loc-tom-tat input,
+.o-loc-tom-tat select,
+.truong-tom-tat textarea {
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    box-sizing: border-box;
+    font: 12px 'Merriweather', 'Segoe UI', Arial, sans-serif;
+    padding: 10px;
+    width: 100%
+}
+
+.o-loc-tom-tat input {
+    flex: 1
+}
+
+.o-loc-tom-tat select {
+    max-width: 180px
+}
+
+.danh-sach-sach-tom-tat {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    height: 260px;
+    overflow-y: auto
+}
+
+.muc-sach-tom-tat {
+    background: #fff;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    color: #31403b;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font: inherit;
+    padding: 13px 14px;
+    text-align: left;
+    width: 100%
+}
+
+.muc-sach-tom-tat:last-child {
+    border-bottom: 0
+}
+
+.muc-sach-tom-tat:hover {
+    background: #f8f5ef
+}
+
+.muc-sach-tom-tat.duoc-chon {
+    background: #eaf4ee;
+    box-shadow: inset 4px 0 #5a9275
+}
+
+.danh-sach-sach-tom-tat b,
+.danh-sach-sach-tom-tat small {
+    display: block
+}
+
+.danh-sach-sach-tom-tat small {
+    color: #858b88;
+    margin-top: 3px
+}
+
+.danh-sach-sach-tom-tat p {
+    padding: 10px
+}
+
+.truong-tom-tat {
+    display: block
+}
+
+.truong-tom-tat textarea {
+    display: block;
+    margin-top: 6px;
+    resize: vertical
+}
+
 .red-mark {
     background: #fde9e7;
     color: #bf5d56
@@ -169,6 +284,22 @@
     align-items: center;
     color: #858b88;
     font-size: 12px
+}
+
+.nut-phan-trang {
+    align-items: center;
+    display: flex;
+    gap: 8px
+}
+
+.nut-phan-trang button {
+    font-size: 12px;
+    padding: 7px 10px
+}
+
+.nut-phan-trang button:disabled {
+    cursor: not-allowed;
+    opacity: .45
 }
 
 .page-button {

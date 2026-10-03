@@ -132,8 +132,21 @@
   const napLichSu = async () => {
     const tbody = document.querySelector('#du-lieu-lich-su');
     if (!tbody) return;
-    const ds = await goiApi('api/docGia.php?hanhDong=phieuMuon&loai=lichSu');
-    tbody.innerHTML = ds.map(x => `<tr><td><b>${anToan(x.tieuDe)}</b><span>${anToan(x.ma)}</span></td><td>${dinhDangNgay(x.ngayMuon)}</td><td>${dinhDangNgay(x.ngayTra)}</td><td class="stars">★★★★★</td></tr>`).join('') || '<tr><td colspan="4">Chưa có lịch sử mượn trả.</td></tr>';
+    const ds = await goiApi('api/docGia.php?hanhDong=lichSuHoatDong');
+    const tinhTrang = {
+      nguyenven: 'Nguyên vẹn',
+      huhongnhe: 'Hư hỏng nhẹ',
+      huhongnang: 'Hư hỏng nặng',
+      'nguyên vẹn': 'Nguyên vẹn',
+      'hư hỏng nhẹ': 'Hư hỏng nhẹ',
+      'hư hỏng nặng': 'Hư hỏng nặng'
+    };
+    tbody.innerHTML = ds.map(x => {
+      const biTuChoi = x.trangThaiHoatDong === 'tuChoi';
+      const maTinhTrang = String(x.ghiChu || '').trim().toLowerCase();
+      const ghiChu = biTuChoi ? (x.ghiChu || 'Không nêu lý do.') : (tinhTrang[maTinhTrang] || 'Chưa ghi nhận');
+      return `<tr><td><b>${anToan(x.tieuDe)}</b><span>${anToan(x.ma)}</span></td><td>${dinhDangNgay(x.ngayHoatDong)}</td><td>${dinhDangNgay(x.ngayTra) || '—'}</td><td><mark class="${biTuChoi ? 'red-mark' : 'green-mark'}">${biTuChoi ? 'Từ chối' : 'Đã trả'}</mark></td><td>${anToan(ghiChu)}</td></tr>`;
+    }).join('') || '<tr><td colspan="5">Chưa có lịch sử hoạt động mượn.</td></tr>';
   };
   const napYeuCau = async () => {
     const khung = document.querySelector('#du-lieu-yeu-cau-muon');

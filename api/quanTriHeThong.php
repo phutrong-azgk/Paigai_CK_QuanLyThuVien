@@ -59,13 +59,14 @@ if ($hanhDong === 'xoaDanhMuc') {
 }
 if ($hanhDong === 'luuChinhSach') {
     $loaiDocGia = $duLieu['loaiDocGia'] ?? '';
-    $soSach = (int)($duLieu['soSachToiDa'] ?? 0); $soNgay = (int)($duLieu['soNgayMuon'] ?? 0); $soLan = (int)($duLieu['soLanGiaHan'] ?? 0); $tienPhat = (float)($duLieu['tienPhatMoiNgay'] ?? 0);
-    if (!in_array($loaiDocGia, ['sinhVien', 'giangVien'], true) || $soSach < 1 || $soNgay < 1 || $soLan < 0 || $tienPhat < 0) traVeJson(['loi' => 'Thông số chính sách chưa hợp lệ.'], 422);
+    $docTien = function ($giaTri) { $chuoi = trim((string)$giaTri); return preg_match('/^\d+\.\d{1,2}$/', $chuoi) ? (int)round((float)$chuoi) : (int)str_replace('.', '', $chuoi); };
+    $soSach = (int)($duLieu['soSachToiDa'] ?? 0); $soNgay = (int)($duLieu['soNgayMuon'] ?? 0); $soLan = (int)($duLieu['soLanGiaHan'] ?? 0); $soNgayGiaHan = (int)($duLieu['soNgayGiaHan'] ?? 0); $tienPhat = $docTien($duLieu['tienPhatMoiNgay'] ?? 0); $phatHuHongNhe = $docTien($duLieu['tienPhatHuHongNhe'] ?? 0); $phatHuHongNang = $docTien($duLieu['tienPhatHuHongNang'] ?? 0);
+    if (!in_array($loaiDocGia, ['sinhVien', 'giangVien'], true) || $soSach < 1 || $soNgay < 1 || $soLan < 0 || $soNgayGiaHan < 1 || $tienPhat < 0 || $phatHuHongNhe < 0 || $phatHuHongNang < 0) traVeJson(['loi' => 'Thông số chính sách chưa hợp lệ.'], 422);
     $csdl->beginTransaction();
     try {
         $lenh = $csdl->prepare("UPDATE chinhSachMuon SET trangThai = 'ngungApDung' WHERE loaiDocGia = ? AND trangThai = 'dangApDung'"); $lenh->execute([$loaiDocGia]);
-        $lenh = $csdl->prepare("INSERT INTO chinhSachMuon (loaiDocGia, soSachToiDa, soNgayMuon, soLanGiaHan, tienPhatMoiNgay, ngayApDung, trangThai) VALUES (?, ?, ?, ?, ?, CURDATE(), 'dangApDung')");
-        $lenh->execute([$loaiDocGia, $soSach, $soNgay, $soLan, $tienPhat]); $maChinhSach = $csdl->lastInsertId();
+        $lenh = $csdl->prepare("INSERT INTO chinhSachMuon (loaiDocGia, soSachToiDa, soNgayMuon, soLanGiaHan, soNgayGiaHan, tienPhatMoiNgay, tienPhatHuHongNhe, tienPhatHuHongNang, ngayApDung, trangThai) VALUES (?, ?, ?, ?, ?, ?, ?, ?, CURDATE(), 'dangApDung')");
+        $lenh->execute([$loaiDocGia, $soSach, $soNgay, $soLan, $soNgayGiaHan, $tienPhat, $phatHuHongNhe, $phatHuHongNang]); $maChinhSach = $csdl->lastInsertId();
         ghiNhatKyQuanTri($csdl, $nguoiDung['id'], 'capNhatChinhSach', 'chinhSachMuon', $maChinhSach);
         $csdl->commit(); traVeJson(['thanhCong' => true]);
     } catch (PDOException $loi) { if ($csdl->inTransaction()) $csdl->rollBack(); traVeJson(['loi' => 'Không thể lưu chính sách.'], 500); }

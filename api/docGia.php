@@ -48,6 +48,11 @@ if ($hanhDong === 'phieuMuon') {
     $lenh->execute([$maDocGia]);
     traVeJson(['duLieu' => $lenh->fetchAll(PDO::FETCH_ASSOC)]);
 }
+if ($hanhDong === 'lichSuHoatDong') {
+    $lenh = $csdl->prepare("SELECT tl.ma, tl.tieuDe, pm.ngayMuon AS ngayHoatDong, ct.ngayTra, 'daTra' AS trangThaiHoatDong, ct.tinhTrangKhiTra AS ghiChu FROM chiTietPhieuMuon ct JOIN phieuMuon pm ON pm.maPhieuMuon = ct.maPhieuMuon JOIN taiLieu tl ON tl.maTaiLieu = ct.maTaiLieu WHERE pm.maDocGia = ? AND ct.ngayTra IS NOT NULL UNION ALL SELECT GROUP_CONCAT(tl.ma SEPARATOR ', ') AS ma, GROUP_CONCAT(tl.tieuDe SEPARATOR ', ') AS tieuDe, yc.ngayYeuCau AS ngayHoatDong, NULL AS ngayTra, 'tuChoi' AS trangThaiHoatDong, yc.lyDoTuChoi AS ghiChu FROM yeuCauMuon yc JOIN chiTietYeuCauMuon ct ON ct.maYeuCauMuon = yc.maYeuCauMuon JOIN taiLieu tl ON tl.maTaiLieu = ct.maTaiLieu WHERE yc.maDocGia = ? AND yc.trangThai = 'tuChoi' GROUP BY yc.maYeuCauMuon, yc.ngayYeuCau, yc.lyDoTuChoi ORDER BY ngayHoatDong DESC");
+    $lenh->execute([$maDocGia, $maDocGia]);
+    traVeJson(['duLieu' => $lenh->fetchAll(PDO::FETCH_ASSOC)]);
+}
 if ($hanhDong === 'hoSo' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $duLieu = duLieuGuiLen();
     $hoTen = trim($duLieu['hoTen'] ?? '');
@@ -108,7 +113,7 @@ if ($hanhDong === 'huyYeuCau' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 if ($hanhDong === 'giaHan' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $duLieu = duLieuGuiLen();
-    $lenh = $csdl->prepare('INSERT INTO yeuCauGiaHan (maChiTietPhieuMuon, ngayYeuCau, hanTraMoi, trangThai) SELECT ct.maChiTietPhieuMuon, NOW(), DATE_ADD(ct.hanTra, INTERVAL 7 DAY), "choDuyet" FROM chiTietPhieuMuon ct JOIN phieuMuon pm ON pm.maPhieuMuon = ct.maPhieuMuon WHERE ct.maChiTietPhieuMuon = ? AND pm.maDocGia = ? AND ct.ngayTra IS NULL AND NOT EXISTS (SELECT 1 FROM yeuCauGiaHan yg WHERE yg.maChiTietPhieuMuon = ct.maChiTietPhieuMuon AND yg.trangThai = "choDuyet")');
+    $lenh = $csdl->prepare('INSERT INTO yeuCauGiaHan (maChiTietPhieuMuon, ngayYeuCau, hanTraMoi, trangThai) SELECT ct.maChiTietPhieuMuon, NOW(), DATE_ADD(ct.hanTra, INTERVAL cs.soNgayGiaHan DAY), "choDuyet" FROM chiTietPhieuMuon ct JOIN phieuMuon pm ON pm.maPhieuMuon = ct.maPhieuMuon JOIN chinhSachMuon cs ON cs.maChinhSach = pm.maChinhSach WHERE ct.maChiTietPhieuMuon = ? AND pm.maDocGia = ? AND ct.ngayTra IS NULL AND cs.soLanGiaHan > 0 AND (SELECT COUNT(*) FROM yeuCauGiaHan yg WHERE yg.maChiTietPhieuMuon = ct.maChiTietPhieuMuon AND yg.trangThai = "daDuyet") < cs.soLanGiaHan AND NOT EXISTS (SELECT 1 FROM yeuCauGiaHan yg WHERE yg.maChiTietPhieuMuon = ct.maChiTietPhieuMuon AND yg.trangThai = "choDuyet")');
     $lenh->execute([(int)($duLieu['maChiTietPhieuMuon'] ?? 0), $maDocGia]);
     if (!$lenh->rowCount()) traVeJson(['loi' => 'Không thể gửi yêu cầu; có thể bạn đã gửi yêu cầu gia hạn trước đó.'], 422);
     traVeJson(['thanhCong' => true]);

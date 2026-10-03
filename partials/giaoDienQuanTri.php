@@ -120,7 +120,11 @@ if ($maTrang === 'admin-dashboard'):
         <div class="luoi-truong-chinh-sach"><label>Nhóm độc giả<select name="loaiDocGia">
               <option value="sinhVien">Sinh viên</option>
               <option value="giangVien">Giảng viên</option>
-            </select></label><label>Số sách tối đa<input name="soSachToiDa" type="number" min="1"></label><label>Thời hạn mượn (ngày)<input name="soNgayMuon" type="number" min="1"></label><label>Số lần gia hạn<input name="soLanGiaHan" type="number" min="0"></label><label>Mức phạt quá hạn / ngày<input name="tienPhatMoiNgay" type="number" min="0"></label></div><button class="primary" type="submit">Lưu chính sách <span>→</span></button>
+            </select></label><label>Số sách tối đa<input name="soSachToiDa" type="number" min="1"></label><label>Thời hạn mượn (ngày)<input name="soNgayMuon" type="number" min="1"></label><label>Số lần gia hạn<input name="soLanGiaHan" type="number" min="0"></label><label>Số ngày mỗi lần gia hạn<input name="soNgayGiaHan" type="number" min="1"></label><label>Mức phạt quá hạn / ngày<input name="tienPhatMoiNgay" type="text" inputmode="numeric" data-tien placeholder="0"></label></div>
+        <div class="khung-phat-hu-hong">
+          <div><p class="eyebrow">PHẠT HƯ HỎNG TÀI LIỆU</p><h3>Mức phạt khi tiếp nhận trả</h3><p>Hệ thống lập phiếu phạt tự động khi thủ thư ghi nhận tài liệu hư hỏng.</p></div>
+          <div class="luoi-truong-chinh-sach"><label>Hư hỏng nhẹ<input name="tienPhatHuHongNhe" type="text" inputmode="numeric" data-tien placeholder="0"></label><label>Hư hỏng nặng<input name="tienPhatHuHongNang" type="text" inputmode="numeric" data-tien placeholder="0"></label></div>
+        </div><button class="primary" type="submit">Lưu chính sách <span>→</span></button>
       </form>
     </section>
     <section class="panel lich-su-chinh-sach">

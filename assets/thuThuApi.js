@@ -93,7 +93,7 @@
             const daChon = (loaiChon === 'muon' ? taiLieuDaChon : taiLieuTraDaChon).some(muc => String((loaiChon === 'muon' ? muc.maTaiLieu : muc.maChiTietPhieuMuon)) === String(ma));
             const phu = loaiChon === 'muon' ? `${sach.ma} · Còn ${sach.soLuongCon} bản` : `${sach.ma} · ${sach.hoTen} · Hạn ${dinhDangNgay(sach.hanTra)}`;
             return `<label><input type="checkbox" value="${ma}" ${daChon ? 'checked' : ''}><i class="${['blue','purple','green','orange'][chiSo % 4]}">${loaiChon === 'muon' ? '◫' : '↗'}</i><span><b>${a(sach.tieuDe)}</b><small>${a(phu)}</small></span></label>`;
-        }).join('') || '<p>Không tìm thấy tài liệu phù hợp.</p>';
+        }).join('') || '<p align="center">Không tìm thấy tài liệu phù hợp.</p>';
         document.querySelector('#so-luong-da-chon').textContent = `${String(danhSachChon.querySelectorAll('input:checked').length).padStart(2, '0')} tài liệu đã chọn`;
     };
     const moChonTaiLieu = async loai => {
@@ -106,6 +106,10 @@
     };
     document.querySelector('#mo-chon-tai-lieu-muon')?.addEventListener('click', () => moChonTaiLieu('muon'));
     document.querySelector('#mo-chon-tai-lieu-tra')?.addEventListener('click', () => moChonTaiLieu('tra'));
+    document.querySelectorAll('.dong-chon-tai-lieu').forEach(nut => nut.addEventListener('click', () => {
+        hopChon.classList.remove('mo');
+        hopChon.setAttribute('aria-hidden', 'true');
+    }));
     document.querySelector('#tim-tai-lieu-trong-hop')?.addEventListener('input', () => taiDuLieuChon());
     danhSachChon?.addEventListener('change', () => document.querySelector('#so-luong-da-chon').textContent = `${String(danhSachChon.querySelectorAll('input:checked').length).padStart(2, '0')} tài liệu đã chọn`);
     document.querySelector('.xac-nhan-chon-tai-lieu')?.addEventListener('click', () => {
@@ -128,7 +132,7 @@
     document.querySelector('#nut-tra-cuu-doc-gia-muon')?.addEventListener('click', traCuuDocGia);
     document.querySelector('#tra-cuu-doc-gia-muon')?.addEventListener('keydown', e => { if (e.key === 'Enter') traCuuDocGia(); });
     document.querySelector('#xac-nhan-cho-muon')?.addEventListener('click', async () => { try { const d = await p('lapPhieuMuon', {maDocGia: docGiaMuon.maDocGia, maTaiLieu: taiLieuDaChon.map(sach => sach.maTaiLieu)}); window.hienThongBao?.(`Đã lập phiếu mượn PM-${d.maPhieuMuon}.`); taiLieuDaChon = []; await traCuuDocGia(); } catch (e) { alert(e.message); } });
-    document.querySelector('#xac-nhan-tra-sach')?.addEventListener('click', async () => { try { const d = await p('xacNhanTra', {maChiTietPhieuMuon: taiLieuTraDaChon.map(sach => sach.maChiTietPhieuMuon)}); window.hienThongBao?.(`Đã xác nhận trả sách${d.phi ? `, phát sinh ${Number(d.phi).toLocaleString('vi-VN')}đ` : ''}.`); taiLieuTraDaChon = []; veTaiLieuTraTam(); } catch (e) { alert(e.message); } });
+    document.querySelector('#xac-nhan-tra-sach')?.addEventListener('click', async () => { try { const d = await p('xacNhanTra', {maChiTietPhieuMuon: taiLieuTraDaChon.map(sach => sach.maChiTietPhieuMuon), tinhTrangKhiTra: document.querySelector('#tinh-trang-khi-tra')?.value}); window.hienThongBao?.(`Đã xác nhận trả sách${d.phi ? `, phát sinh ${Number(d.phi).toLocaleString('vi-VN')}đ` : ''}.`); taiLieuTraDaChon = []; veTaiLieuTraTam(); } catch (e) { alert(e.message); } });
     const b = document.querySelector('#du-lieu-yeu-cau-thu-thu');
     if (b) {
         const t = async () => {

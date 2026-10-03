@@ -182,9 +182,9 @@ if ($maTrang === 'staff-dashboard'):
       <h2>Tiếp nhận trả sách</h2>
       <p class="form-hint">Tìm và chọn một hoặc nhiều tài liệu đang được độc giả mượn để tiếp nhận trả cùng lúc.</p><button id="mo-chon-tai-lieu-tra" class="outline" type="button">⌕ Tìm tài liệu cần trả</button>
       <div id="danh-sach-tai-lieu-tra-tam"><p>Chưa chọn tài liệu cần trả.</p></div><label class="condition-label">Tình trạng khi nhận<select id="tinh-trang-khi-tra">
-          <option>Nguyên vẹn</option>
-          <option>Hư hỏng nhẹ</option>
-          <option>Hư hỏng nặng</option>
+          <option value="nguyenVen">Nguyên vẹn</option>
+          <option value="huHongNhe">Hư hỏng nhẹ</option>
+          <option value="huHongNang">Hư hỏng nặng</option>
         </select></label>
     </section>
     <section class="panel return-result">

@@ -41,7 +41,7 @@ $danhSachTaiLieu = [
   <link rel="stylesheet" href="assets/thuThu.css?v=20261002-1">
   <link rel="stylesheet" href="assets/yeuCauCho.css?v=20260921-2">
   <link rel="stylesheet" href="assets/chonTaiLieu.css">
-  <link rel="stylesheet" href="assets/quanTri.css?v=20261002-1">
+  <link rel="stylesheet" href="assets/quanTri.css?v=20261003-3">
   <link rel="stylesheet" href="assets/yeuCauDocGia.css?v=20260921-1">
 </head>
 
@@ -49,7 +49,7 @@ $danhSachTaiLieu = [
   <aside class="sidebar">
     <a class="brand" href="#"><span class="brand-mark">L</span><span>LIBRA<small>THƯ VIỆN SỐ</small></span></a>
     <?php if ($vaiTroHienTai === 'reader'): ?><nav id="reader-nav" class="nav-group">
-        <p>KHÔNG GIAN ĐỘC GIẢ</p><a class="nav-link active" href="#dashboard" data-page="dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#catalog" data-page="catalog"><i>⌕</i> Tìm kiếm sách</a><a class="nav-link" href="#loans" data-page="loans"><i>▣</i> Mượn & trả sách</a><a class="nav-link" href="#history" data-page="history"><i>◷</i> Lịch sử mượn trả</a><a class="nav-link" href="#reader-pending" data-page="reader-pending"><i>◌</i> Yêu cầu chờ duyệt</a><a class="nav-link" href="#profile" data-page="profile"><i>♙</i> Hồ sơ cá nhân</a>
+        <p>KHÔNG GIAN ĐỘC GIẢ</p><a class="nav-link active" href="#dashboard" data-page="dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#catalog" data-page="catalog"><i>⌕</i> Tìm kiếm sách</a><a class="nav-link" href="#loans" data-page="loans"><i>▣</i> Mượn & trả sách</a><a class="nav-link" href="#history" data-page="history"><i>◷</i> Lịch sử hoạt động</a><a class="nav-link" href="#reader-pending" data-page="reader-pending"><i>◌</i> Yêu cầu chờ duyệt</a><a class="nav-link" href="#profile" data-page="profile"><i>♙</i> Hồ sơ cá nhân</a>
       </nav><?php endif; ?>
     <?php if ($vaiTroHienTai === 'librarian'): ?><nav id="staff-nav" class="nav-group">
         <p>QUẢN LÝ NGHIỆP VỤ</p><a class="nav-link active" href="#staff-dashboard" data-page="staff-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#book-admin" data-page="book-admin"><i>▤</i> Quản lý sách</a><a class="nav-link" href="#publishers" data-page="publishers"><i>▦</i> Nhà xuất bản</a><a class="nav-link" href="#borrow-admin" data-page="borrow-admin"><i>↔</i> Quản lý mượn sách</a><a class="nav-link" href="#return-admin" data-page="return-admin"><i>↵</i> Quản lý trả sách</a><a class="nav-link" href="#reader-admin" data-page="reader-admin"><i>♙</i> Hồ sơ độc giả</a><a class="nav-link" href="#fines" data-page="fines"><i>₫</i> Quản lý phạt</a>
@@ -171,16 +171,17 @@ $danhSachTaiLieu = [
       <section id="history" class="page">
         <div class="page-heading">
           <p class="eyebrow">HÀNH TRÌNH ĐỌC</p>
-          <h1>Lịch sử mượn & trả</h1>
+          <h1>Lịch sử hoạt động mượn</h1>
         </div>
         <section class="panel table-panel">
           <table>
             <thead>
               <tr>
                 <th>SÁCH</th>
-                <th>MƯỢN</th>
-                <th>ĐÃ TRẢ</th>
-                <th>ĐÁNH GIÁ</th>
+                <th>NGÀY MƯỢN / GỬI YÊU CẦU</th>
+                <th>NGÀY TRẢ</th>
+                <th>TRẠNG THÁI</th>
+                <th>GHI CHÚ</th>
               </tr>
             </thead>
             <tbody id="du-lieu-lich-su">
@@ -188,13 +189,15 @@ $danhSachTaiLieu = [
                 <td><b>Muôn Kiếp Nhân Sinh</b><span>Nguyên Phong</span></td>
                 <td>12/08/2026</td>
                 <td>25/08/2026</td>
-                <td class="stars">★★★★★</td>
+                <td><mark class="green-mark">Đã trả</mark></td>
+                <td>Nguyên vẹn</td>
               </tr>
               <tr>
                 <td><b>Tuổi Trẻ Đáng Giá Bao Nhiêu</b><span>Rosie Nguyễn</span></td>
                 <td>02/07/2026</td>
                 <td>16/07/2026</td>
-                <td class="stars">★★★★☆</td>
+                <td><mark class="red-mark">Từ chối</mark></td>
+                <td>Không đủ số bản sẵn sàng.</td>
               </tr>
             </tbody>
           </table>
@@ -458,10 +461,10 @@ $danhSachTaiLieu = [
   </div>
   <div id="hienThongBao" class="toast">Đã cập nhật thành công</div>
   <script src="assets/app.js?v=20261002-2"></script>
-  <script src="assets/docGiaApi.js?v=20261002-4"></script>
+  <script src="assets/docGiaApi.js?v=20261003-3"></script>
   <script src="assets/quanTriApi.js?v=20260930-3"></script>
-  <script src="assets/quanTriHeThong.js?v=20261002-1"></script>
-  <script src="assets/thuThuApi.js?v=20261002-5"></script>
+  <script src="assets/quanTriHeThong.js?v=20261003-5"></script>
+  <script src="assets/thuThuApi.js?v=20261003-2"></script>
   <script src="assets/thuThuSach.js?v=20261002-4"></script>
   <script src="assets/thuThuSachThongKe.js?v=20261002-2"></script>
 </body>

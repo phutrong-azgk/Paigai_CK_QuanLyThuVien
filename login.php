@@ -1,6 +1,9 @@
 <?php
 session_start();
-if (!empty($_SESSION['library_user'])) { header('Location: index.php'); exit; }
+if (!empty($_SESSION['library_user'])) {
+    header('Location: index.php');
+    exit;
+}
 ?>
 <!doctype html>
 <html lang="vi">
@@ -37,7 +40,9 @@ if (!empty($_SESSION['library_user'])) { header('Location: index.php'); exit; }
             <form id="form-dang-nhap" class="login-card">
                 <p class="eyebrow">CHÀO MỪNG BẠN TRỞ LẠI</p>
                 <h2>Đăng nhập hệ thống</h2>
-                <p class="form-intro">Sử dụng MSSV, MSGV hoặc tài khoản quản trị để tiếp tục.</p><div id="loi-dang-nhap" class="login-error" hidden></div><div id="tao-tai-khoan-thanh-cong" class="account-created" hidden>Tạo tài khoản thành công. Hãy đăng nhập bằng mã số và mật khẩu bạn vừa đặt.</div><label>Mã đăng nhập<input name="username" autocomplete="username" placeholder="Ví dụ: 22110456" required autofocus></label><label>Mật khẩu<div class="password-wrap"><input name="password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" required><button type="button" id="toggle-password">◉</button></div></label>
+                <p class="form-intro">Sử dụng MSSV, MSGV hoặc tài khoản quản trị để tiếp tục.</p>
+                <div id="loi-dang-nhap" class="login-error" hidden></div>
+                <div id="tao-tai-khoan-thanh-cong" class="account-created" hidden>Tạo tài khoản thành công. Hãy đăng nhập bằng mã số và mật khẩu bạn vừa đặt.</div><label>Mã đăng nhập<input name="username" autocomplete="username" placeholder="Ví dụ: 22110456" required autofocus></label><label>Mật khẩu<div class="password-wrap"><input name="password" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" required><button type="button" id="toggle-password">◉</button></div></label>
                 <div class="login-options"><label class="remember"><input type="checkbox"> Ghi nhớ đăng nhập</label><a href="#">Quên mật khẩu?</a></div><button class="primary login-submit" type="submit">Đăng nhập <span>→</span></button>
                 <p class="login-footer">Chưa có tài khoản? <a href="dangKy.php">Đăng ký độc giả</a></p>
                 <a href="dangNhapNhanh.php" class="login-quick">Đăng nhập nhanh</a>
@@ -46,7 +51,28 @@ if (!empty($_SESSION['library_user'])) { header('Location: index.php'); exit; }
     </main>
     <script>
         if (new URLSearchParams(location.search).has('registered')) document.querySelector('#tao-tai-khoan-thanh-cong').hidden = false;
-        document.querySelector('#form-dang-nhap').onsubmit = async e => { e.preventDefault(); const f = e.currentTarget, loi = document.querySelector('#loi-dang-nhap'); const r = await fetch('api/dangNhap.php', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({username:f.username.value,password:f.password.value})}); const d = await r.json(); if (!r.ok) { loi.textContent=d.loi; loi.hidden=false; return; } location.href=d.chuyenTrang; };
+        document.querySelector('#form-dang-nhap').onsubmit = async e => {
+            e.preventDefault();
+            const f = e.currentTarget,
+                loi = document.querySelector('#loi-dang-nhap');
+            const r = await fetch('api/dangNhap.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: f.username.value,
+                    password: f.password.value
+                })
+            });
+            const d = await r.json();
+            if (!r.ok) {
+                loi.textContent = d.loi;
+                loi.hidden = false;
+                return;
+            }
+            location.href = d.chuyenTrang;
+        };
         document.querySelector('#toggle-password').onclick = () => {
             const i = document.querySelector('[name=password]');
             i.type = i.type === 'password' ? 'text' : 'password'

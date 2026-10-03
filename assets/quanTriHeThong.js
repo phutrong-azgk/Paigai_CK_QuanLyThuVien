@@ -114,18 +114,29 @@
   if (formChinhSach) {
     const danhSach = document.querySelector('#danh-sach-chinh-sach');
     let chinhSach = [];
+    const dinhDangTien = giaTri => {
+      const chuoi = String(giaTri ?? '').trim();
+      const laSoThapPhanTuCSDL = /^\d+\.\d{1,2}$/.test(chuoi);
+      const so = laSoThapPhanTuCSDL ? Math.round(Number(chuoi)) : Number(chuoi.replace(/\D/g, ''));
+      return Number.isFinite(so) && so > 0 ? so.toLocaleString('vi-VN') : '';
+    };
+
+    formChinhSach.querySelectorAll('[data-tien]').forEach(oNhap => oNhap.addEventListener('input', () => {
+      oNhap.value = dinhDangTien(oNhap.value);
+    }));
 
     function apDungChinhSach() {
       const hienTai = chinhSach.find(muc => muc.loaiDocGia === formChinhSach.loaiDocGia.value && muc.trangThai === 'dangApDung');
       if (!hienTai) return formChinhSach.reset();
-      ['soSachToiDa', 'soNgayMuon', 'soLanGiaHan', 'tienPhatMoiNgay'].forEach(ten => formChinhSach[ten].value = hienTai[ten]);
+      ['soSachToiDa', 'soNgayMuon', 'soLanGiaHan', 'soNgayGiaHan'].forEach(ten => formChinhSach[ten].value = hienTai[ten]);
+      ['tienPhatMoiNgay', 'tienPhatHuHongNhe', 'tienPhatHuHongNang'].forEach(ten => formChinhSach[ten].value = dinhDangTien(hienTai[ten] ?? 0));
     }
     async function taiChinhSach() {
       try {
         const ketQua = await goiApi('api/quanTriHeThong.php?loai=chinhSach');
         chinhSach = ketQua.duLieu;
         apDungChinhSach();
-        danhSach.innerHTML = chinhSach.map(muc => `<div><i>◈</i><p><b>${muc.loaiDocGia === 'sinhVien' ? 'Sinh viên' : 'Giảng viên'} · ${muc.soSachToiDa} sách / ${muc.soNgayMuon} ngày</b><span>${muc.trangThai === 'dangApDung' ? 'Đang áp dụng' : 'Ngừng áp dụng'} · ${muc.ngayApDung}</span></p></div>`).join('');
+        danhSach.innerHTML = chinhSach.map(muc => `<div class="the-lich-su-chinh-sach"><i>◈</i><p><b>${muc.loaiDocGia === 'sinhVien' ? 'Sinh viên' : 'Giảng viên'} · ${muc.soSachToiDa} sách / ${muc.soNgayMuon} ngày</b><span>${muc.soLanGiaHan} lần gia hạn · ${muc.soNgayGiaHan} ngày/lần · Hư nhẹ: ${Number(muc.tienPhatHuHongNhe || 0).toLocaleString('vi-VN')}đ · Hư nặng: ${Number(muc.tienPhatHuHongNang || 0).toLocaleString('vi-VN')}đ</span></p><small>${muc.trangThai === 'dangApDung' ? 'Đang áp dụng' : 'Ngừng áp dụng'}<br>${muc.ngayApDung}</small></div>`).join('');
       } catch (loi) {
         danhSach.textContent = loi.message;
       }
@@ -134,6 +145,8 @@
     formChinhSach.addEventListener('submit', async suKien => {
       suKien.preventDefault();
       try {
+        const duLieu = Object.fromEntries(new FormData(formChinhSach));
+        ['tienPhatMoiNgay', 'tienPhatHuHongNhe', 'tienPhatHuHongNang'].forEach(ten => duLieu[ten] = String(duLieu[ten] ?? '').replace(/\./g, ''));
         await goiApi('api/quanTriHeThong.php', {
           method: 'POST',
           headers: {
@@ -141,7 +154,7 @@
           },
           body: JSON.stringify({
             hanhDong: 'luuChinhSach',
-            ...Object.fromEntries(new FormData(formChinhSach))
+            ...duLieu
           })
         });
         await taiChinhSach();

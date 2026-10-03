@@ -18,7 +18,8 @@ if ($hanhDong === 'tao') {
     if (!in_array($maVaiTro, ['THUTHU', 'DOCGIA'], true) || !in_array($loaiDocGia, ['sinhVien', 'giangVien'], true) || !preg_match('/^[A-Z0-9]{5,30}$/', $tenDangNhap) || strlen($hoTen) < 3 || !filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($matKhau) < 8) traVeJson(['loi' => 'Thông tin tài khoản chưa hợp lệ.'], 422);
     try {
         $csdl->beginTransaction();
-        $vaiTro = $csdl->prepare('SELECT maVaiTro FROM vaiTro WHERE ma = ?'); $vaiTro->execute([$maVaiTro]);
+        $vaiTro = $csdl->prepare('SELECT maVaiTro FROM vaiTro WHERE ma = ?');
+        $vaiTro->execute([$maVaiTro]);
         $lenh = $csdl->prepare('INSERT INTO nguoiDung (maVaiTro, tenDangNhap, matKhau, hoTen, thuDienTu, trangThai, ngayTao) VALUES (?, ?, ?, ?, ?, "hoatDong", NOW())');
         $lenh->execute([$vaiTro->fetchColumn(), $tenDangNhap, password_hash($matKhau, PASSWORD_DEFAULT), $hoTen, $email]);
         if ($maVaiTro === 'DOCGIA') {
@@ -33,15 +34,19 @@ if ($hanhDong === 'tao') {
     }
 }
 if ($hanhDong === 'capLaiMatKhau') {
-    $maNguoiDung = (int)($duLieu['maNguoiDung'] ?? 0); $matKhau = $duLieu['matKhau'] ?? '';
+    $maNguoiDung = (int)($duLieu['maNguoiDung'] ?? 0);
+    $matKhau = $duLieu['matKhau'] ?? '';
     if (!$maNguoiDung || strlen($matKhau) < 8) traVeJson(['loi' => 'Mật khẩu cần ít nhất 8 ký tự.'], 422);
-    $lenh = $csdl->prepare('UPDATE nguoiDung SET matKhau = ? WHERE maNguoiDung = ?'); $lenh->execute([password_hash($matKhau, PASSWORD_DEFAULT), $maNguoiDung]);
+    $lenh = $csdl->prepare('UPDATE nguoiDung SET matKhau = ? WHERE maNguoiDung = ?');
+    $lenh->execute([password_hash($matKhau, PASSWORD_DEFAULT), $maNguoiDung]);
     traVeJson(['thanhCong' => $lenh->rowCount() > 0]);
 }
 if ($hanhDong === 'capNhatTrangThai') {
-    $maNguoiDung = (int)($duLieu['maNguoiDung'] ?? 0); $trangThai = $duLieu['trangThai'] ?? '';
+    $maNguoiDung = (int)($duLieu['maNguoiDung'] ?? 0);
+    $trangThai = $duLieu['trangThai'] ?? '';
     if (!in_array($trangThai, ['hoatDong', 'tamKhoa'], true)) traVeJson(['loi' => 'Trạng thái không hợp lệ.'], 422);
-    $lenh = $csdl->prepare('UPDATE nguoiDung SET trangThai = ? WHERE maNguoiDung = ?'); $lenh->execute([$trangThai, $maNguoiDung]);
+    $lenh = $csdl->prepare('UPDATE nguoiDung SET trangThai = ? WHERE maNguoiDung = ?');
+    $lenh->execute([$trangThai, $maNguoiDung]);
     traVeJson(['thanhCong' => $lenh->rowCount() > 0]);
 }
 if ($hanhDong === 'xoa') {

@@ -25,7 +25,7 @@ Nếu MySQL của bạn khác các giá trị trên, tạo hoặc sửa biến m
 1. Chép thư mục dự án vào thư mục của Laragon.
 2. Khởi động Laragon.
 3. Chạy file `cauTrucCSDL.sql`.
-4. Mở `http://localhost:8080/login.php`. Dùng nút đăng nhập nhanh.
+4. Mở `http://localhost:8080/`. Dùng nút đăng nhập nhanh.
 
 Optional: Nếu chưa có mật khẩu quản trị viên, mở `khoiTaoAdmin.php`, nhập `APP_SETUP_TOKEN`, mã đăng nhập và mật khẩu mới.
 

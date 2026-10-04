@@ -133,4 +133,18 @@ if ($maTrang === 'admin-dashboard'):
       <div id="danh-sach-chinh-sach">Đang tải chính sách...</div>
     </section>
   </div>
+<?php elseif ($maTrang === 'admin-password'): ?>
+  <section class="panel bieu-mau-chinh-sach form-doi-mat-khau">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">BẢO MẬT TÀI KHOẢN</p>
+        <h2>Đổi mật khẩu của tôi</h2>
+        <p>Nhập mật khẩu hiện tại trước khi đặt mật khẩu mới cho tài khoản quản trị.</p>
+      </div>
+    </div>
+    <form id="form-doi-mat-khau-admin">
+      <div class="luoi-truong-chinh-sach"><label>Mật khẩu hiện tại<input name="matKhauHienTai" type="password" minlength="8" required autocomplete="current-password"></label><label>Mật khẩu mới<input name="matKhauMoi" type="password" minlength="8" required autocomplete="new-password"></label><label>Xác nhận mật khẩu mới<input name="xacNhanMatKhau" type="password" minlength="8" required autocomplete="new-password"></label></div>
+      <p id="loi-doi-mat-khau-admin" class="loi-tai-khoan-quan-tri" hidden></p><button class="primary" type="submit">Lưu mật khẩu mới <span>→</span></button>
+    </form>
+  </section>
 <?php endif; ?>

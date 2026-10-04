@@ -518,6 +518,17 @@
     margin-bottom: 0
 }
 
+.form-doi-mat-khau {
+    max-width: 720px
+}
+
+.form-doi-mat-khau .section-head p:not(.eyebrow) {
+    color: #7a8580;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 7px 0 0
+}
+
 .lich-su-chinh-sach .the-lich-su-chinh-sach {
     align-items: center;
     background: #fbfcfa;

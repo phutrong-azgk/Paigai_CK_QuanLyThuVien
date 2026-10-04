@@ -3,11 +3,24 @@ require __DIR__ . '/khoiTao.php';
 nguoiDungHienTai('admin');
 $csdl = ketNoiCSDL();
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $lenh = $csdl->query('SELECT nd.maNguoiDung, nd.tenDangNhap, nd.hoTen, nd.thuDienTu, nd.trangThai, vt.ma AS maVaiTro, vt.ten AS vaiTro FROM nguoiDung nd JOIN vaiTro vt ON vt.maVaiTro = nd.maVaiTro ORDER BY nd.maNguoiDung DESC');
+    $lenh = $csdl->query("SELECT nd.maNguoiDung, nd.tenDangNhap, nd.hoTen, nd.thuDienTu, nd.trangThai, vt.ma AS maVaiTro, vt.ten AS vaiTro FROM nguoiDung nd JOIN vaiTro vt ON vt.maVaiTro = nd.maVaiTro WHERE vt.ma <> 'ADMIN' ORDER BY nd.maNguoiDung DESC");
     traVeJson(['duLieu' => $lenh->fetchAll(PDO::FETCH_ASSOC)]);
 }
 $duLieu = duLieuGuiLen();
 $hanhDong = $duLieu['hanhDong'] ?? '';
+if ($hanhDong === 'doiMatKhauCuaToi') {
+    $matKhauHienTai = $duLieu['matKhauHienTai'] ?? '';
+    $matKhauMoi = $duLieu['matKhauMoi'] ?? '';
+    if (strlen($matKhauMoi) < 8) traVeJson(['loi' => 'Mật khẩu mới cần ít nhất 8 ký tự.'], 422);
+    $nguoiDung = nguoiDungHienTai('admin');
+    $lenh = $csdl->prepare('SELECT matKhau FROM nguoiDung WHERE maNguoiDung = ?');
+    $lenh->execute([$nguoiDung['id']]);
+    $matKhauCu = $lenh->fetchColumn();
+    if (!$matKhauCu || !password_verify($matKhauHienTai, $matKhauCu)) traVeJson(['loi' => 'Mật khẩu hiện tại chưa đúng.'], 422);
+    $lenh = $csdl->prepare('UPDATE nguoiDung SET matKhau = ? WHERE maNguoiDung = ?');
+    $lenh->execute([password_hash($matKhauMoi, PASSWORD_DEFAULT), $nguoiDung['id']]);
+    traVeJson(['thanhCong' => true]);
+}
 if ($hanhDong === 'tao') {
     $maVaiTro = strtoupper($duLieu['maVaiTro'] ?? '');
     $tenDangNhap = strtoupper(trim($duLieu['tenDangNhap'] ?? ''));
@@ -37,6 +50,9 @@ if ($hanhDong === 'capLaiMatKhau') {
     $maNguoiDung = (int)($duLieu['maNguoiDung'] ?? 0);
     $matKhau = $duLieu['matKhau'] ?? '';
     if (!$maNguoiDung || strlen($matKhau) < 8) traVeJson(['loi' => 'Mật khẩu cần ít nhất 8 ký tự.'], 422);
+    $lenh = $csdl->prepare('SELECT vt.ma FROM nguoiDung nd JOIN vaiTro vt ON vt.maVaiTro = nd.maVaiTro WHERE nd.maNguoiDung = ?');
+    $lenh->execute([$maNguoiDung]);
+    if ($lenh->fetchColumn() === 'ADMIN') traVeJson(['loi' => 'Quản trị viên phải tự đổi mật khẩu bằng mật khẩu hiện tại.'], 403);
     $lenh = $csdl->prepare('UPDATE nguoiDung SET matKhau = ? WHERE maNguoiDung = ?');
     $lenh->execute([password_hash($matKhau, PASSWORD_DEFAULT), $maNguoiDung]);
     traVeJson(['thanhCong' => $lenh->rowCount() > 0]);
@@ -45,6 +61,9 @@ if ($hanhDong === 'capNhatTrangThai') {
     $maNguoiDung = (int)($duLieu['maNguoiDung'] ?? 0);
     $trangThai = $duLieu['trangThai'] ?? '';
     if (!in_array($trangThai, ['hoatDong', 'tamKhoa'], true)) traVeJson(['loi' => 'Trạng thái không hợp lệ.'], 422);
+    $lenh = $csdl->prepare('SELECT vt.ma FROM nguoiDung nd JOIN vaiTro vt ON vt.maVaiTro = nd.maVaiTro WHERE nd.maNguoiDung = ?');
+    $lenh->execute([$maNguoiDung]);
+    if ($lenh->fetchColumn() === 'ADMIN') traVeJson(['loi' => 'Không thể thay đổi trạng thái tài khoản Quản trị viên.'], 403);
     $lenh = $csdl->prepare('UPDATE nguoiDung SET trangThai = ? WHERE maNguoiDung = ?');
     $lenh->execute([$trangThai, $maNguoiDung]);
     traVeJson(['thanhCong' => $lenh->rowCount() > 0]);

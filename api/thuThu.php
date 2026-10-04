@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         traVeJson(['duLieu' => $lenh->fetchAll(PDO::FETCH_ASSOC)]);
     }
     if ($hanhDong === 'docGia') {
-        $lenh = $csdl->query("SELECT dg.maDocGia, dg.maSo, dg.loaiDocGia, dg.trangThaiThe, nd.hoTen, nd.thuDienTu, nd.trangThai, k.ten AS khoa, (SELECT COUNT(*) FROM phieuMuon pm JOIN chiTietPhieuMuon ct ON ct.maPhieuMuon = pm.maPhieuMuon WHERE pm.maDocGia = dg.maDocGia AND ct.ngayTra IS NULL) AS dangMuon, (SELECT COALESCE(SUM(soTien),0) FROM phieuPhat pp WHERE pp.maDocGia = dg.maDocGia AND pp.trangThai = 'chuaThanhToan') AS tienPhat FROM hoSoDocGia dg JOIN nguoiDung nd ON nd.maNguoiDung = dg.maNguoiDung LEFT JOIN khoa k ON k.maKhoa = dg.maKhoa ORDER BY nd.hoTen");
+        $lenh = $csdl->query("SELECT dg.maDocGia, dg.maSo, dg.loaiDocGia, dg.trangThaiThe, nd.hoTen, nd.thuDienTu, nd.trangThai, k.ten AS khoa, (SELECT COUNT(*) FROM phieuMuon pm JOIN chiTietPhieuMuon ct ON ct.maPhieuMuon = pm.maPhieuMuon WHERE pm.maDocGia = dg.maDocGia AND ct.ngayTra IS NULL) AS dangMuon, (SELECT COALESCE(SUM(soTien),0) FROM phieuPhat pp WHERE pp.maDocGia = dg.maDocGia) AS tienPhat FROM hoSoDocGia dg JOIN nguoiDung nd ON nd.maNguoiDung = dg.maNguoiDung LEFT JOIN khoa k ON k.maKhoa = dg.maKhoa ORDER BY nd.hoTen");
         traVeJson(['duLieu' => $lenh->fetchAll(PDO::FETCH_ASSOC)]);
     }
     if ($hanhDong === 'phat') {
@@ -45,6 +45,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $lenh->execute(['%' . $tuKhoa . '%']);
         }
         traVeJson(['duLieu' => $lenh->fetchAll(PDO::FETCH_ASSOC)]);
+    }
+    if ($hanhDong === 'uocTinhPhatTra') {
+        $chiTiet = array_values(array_unique(array_filter(array_map('intval', explode(',', $_GET['maChiTietPhieuMuon'] ?? '')))));
+        $tinhTrangKhiTra = $_GET['tinhTrangKhiTra'] ?? 'nguyenVen';
+        if (!in_array($tinhTrangKhiTra, ['nguyenVen', 'huHongNhe', 'huHongNang'], true)) traVeJson(['loi' => 'Tình trạng tài liệu không hợp lệ.'], 422);
+        if (!$chiTiet) traVeJson(['duLieu' => ['phi' => 0, 'phiQuaHan' => 0, 'phiHuHong' => 0]]);
+        $layChiTiet = $csdl->prepare('SELECT ct.hanTra, GREATEST(0, DATEDIFF(CURDATE(), ct.hanTra)) AS soNgayQuaHan, pm.maChinhSach FROM chiTietPhieuMuon ct JOIN phieuMuon pm ON pm.maPhieuMuon = ct.maPhieuMuon WHERE ct.maChiTietPhieuMuon = ? AND ct.ngayTra IS NULL');
+        $layPhat = $csdl->prepare('SELECT tienPhatMoiNgay, tienPhatHuHongNhe, tienPhatHuHongNang FROM chinhSachMuon WHERE maChinhSach = ?');
+        $phiQuaHan = 0; $phiHuHong = 0;
+        foreach ($chiTiet as $maChiTiet) {
+            $layChiTiet->execute([$maChiTiet]);
+            $muc = $layChiTiet->fetch(PDO::FETCH_ASSOC);
+            if (!$muc) continue;
+            $layPhat->execute([$muc['maChinhSach']]);
+            $mucPhat = $layPhat->fetch(PDO::FETCH_ASSOC) ?: [];
+            $phiQuaHan += (int)$muc['soNgayQuaHan'] * (float)($mucPhat['tienPhatMoiNgay'] ?? 0);
+            if ($tinhTrangKhiTra === 'huHongNhe') $phiHuHong += (float)($mucPhat['tienPhatHuHongNhe'] ?? 0);
+            if ($tinhTrangKhiTra === 'huHongNang') $phiHuHong += (float)($mucPhat['tienPhatHuHongNang'] ?? 0);
+        }
+        traVeJson(['duLieu' => ['phi' => $phiQuaHan + $phiHuHong, 'phiQuaHan' => $phiQuaHan, 'phiHuHong' => $phiHuHong]]);
     }
     if ($hanhDong === 'yeuCauGiaHan') {
         $lenh = $csdl->query('SELECT yg.maYeuCauGiaHan, ct.maChiTietPhieuMuon, tl.tieuDe, tl.ma, dg.maSo, nd.hoTen, ct.hanTra, yg.hanTraMoi FROM yeuCauGiaHan yg JOIN chiTietPhieuMuon ct ON ct.maChiTietPhieuMuon = yg.maChiTietPhieuMuon JOIN phieuMuon pm ON pm.maPhieuMuon = ct.maPhieuMuon JOIN taiLieu tl ON tl.maTaiLieu = ct.maTaiLieu JOIN hoSoDocGia dg ON dg.maDocGia = pm.maDocGia JOIN nguoiDung nd ON nd.maNguoiDung = dg.maNguoiDung WHERE yg.trangThai = "choDuyet" ORDER BY yg.ngayYeuCau');

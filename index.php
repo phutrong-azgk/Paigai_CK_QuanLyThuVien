@@ -41,7 +41,7 @@ $danhSachTaiLieu = [
   <link rel="stylesheet" href="assets/thuThu.css?v=20261002-1">
   <link rel="stylesheet" href="assets/yeuCauCho.css?v=20260921-2">
   <link rel="stylesheet" href="assets/chonTaiLieu.css">
-  <link rel="stylesheet" href="assets/quanTri.css?v=20261004-1">
+  <link rel="stylesheet" href="assets/quanTri.css?v=20261004-3">
   <link rel="stylesheet" href="assets/yeuCauDocGia.css?v=20260921-1">
 </head>
 
@@ -52,10 +52,10 @@ $danhSachTaiLieu = [
         <p>KHÔNG GIAN ĐỘC GIẢ</p><a class="nav-link active" href="#dashboard" data-page="dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#catalog" data-page="catalog"><i>⌕</i> Tìm kiếm sách</a><a class="nav-link" href="#loans" data-page="loans"><i>▣</i> Mượn & trả sách</a><a class="nav-link" href="#history" data-page="history"><i>◷</i> Lịch sử hoạt động</a><a class="nav-link" href="#reader-pending" data-page="reader-pending"><i>◌</i> Yêu cầu chờ duyệt</a><a class="nav-link" href="#profile" data-page="profile"><i>♙</i> Hồ sơ cá nhân</a>
       </nav><?php endif; ?>
     <?php if ($vaiTroHienTai === 'librarian'): ?><nav id="staff-nav" class="nav-group">
-        <p>QUẢN LÝ NGHIỆP VỤ</p><a class="nav-link active" href="#staff-dashboard" data-page="staff-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#book-admin" data-page="book-admin"><i>▤</i> Quản lý sách</a><a class="nav-link" href="#publishers" data-page="publishers"><i>▦</i> Nhà xuất bản</a><a class="nav-link" href="#borrow-admin" data-page="borrow-admin"><i>↔</i> Quản lý mượn sách</a><a class="nav-link" href="#return-admin" data-page="return-admin"><i>↵</i> Quản lý trả sách</a><a class="nav-link" href="#reader-admin" data-page="reader-admin"><i>♙</i> Hồ sơ độc giả</a><a class="nav-link" href="#fines" data-page="fines"><i>₫</i> Quản lý phạt</a>
+        <p>QUẢN LÝ NGHIỆP VỤ</p><a class="nav-link active" href="#staff-dashboard" data-page="staff-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#book-admin" data-page="book-admin"><i>▤</i> Quản lý sách</a><a class="nav-link" href="#publishers" data-page="publishers"><i>▦</i> Nhà xuất bản</a><a class="nav-link" href="#borrow-admin" data-page="borrow-admin"><i>↔</i> Quản lý mượn sách</a><a class="nav-link" href="#return-admin" data-page="return-admin"><i>↵</i> Quản lý trả sách</a><a class="nav-link" href="#reader-admin" data-page="reader-admin"><i>♙</i> Hồ sơ độc giả</a><a class="nav-link" href="#renewal-admin" data-page="renewal-admin"><i>◷</i> Yêu cầu gia hạn</a><a class="nav-link" href="#fines" data-page="fines"><i>₫</i> Quản lý phạt</a>
       </nav><?php endif; ?>
     <?php if ($vaiTroHienTai === 'admin'): ?><nav id="admin-nav" class="nav-group">
-        <p>QUẢN TRỊ HỆ THỐNG</p><a class="nav-link active" href="#admin-dashboard" data-page="admin-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#accounts" data-page="accounts"><i>♙</i> Quản lý tài khoản</a><a class="nav-link" href="#categories" data-page="categories"><i>▦</i> Quản lý khoa</a><a class="nav-link" href="#policies" data-page="policies"><i>◈</i> Chính sách thư viện</a>
+        <p>QUẢN TRỊ HỆ THỐNG</p><a class="nav-link active" href="#admin-dashboard" data-page="admin-dashboard"><i>⌂</i> Tổng quan</a><a class="nav-link" href="#accounts" data-page="accounts"><i>♙</i> Quản lý tài khoản</a><a class="nav-link" href="#categories" data-page="categories"><i>▦</i> Quản lý khoa</a><a class="nav-link" href="#policies" data-page="policies"><i>◈</i> Chính sách thư viện</a><a class="nav-link" href="#admin-password" data-page="admin-password"><i>◉</i> Đổi mật khẩu</a>
       </nav><?php endif; ?>
     <div class="sidebar-user">
       <div class="avatar"><?= htmlspecialchars($nguoiDungHienTai['initials']) ?></div>
@@ -259,9 +259,9 @@ $danhSachTaiLieu = [
     <?php
     $trangTheoVaiTro = [];
     if ($vaiTroHienTai === 'librarian') {
-      $trangTheoVaiTro = ['staff-dashboard' => 'Bảng điều khiển thủ thư', 'book-admin' => 'Quản lý thông tin sách', 'publishers' => 'Quản lý nhà xuất bản', 'borrow-admin' => 'Quản lý mượn sách', 'return-admin' => 'Quản lý trả sách', 'reader-admin' => 'Quản lý hồ sơ độc giả', 'fines' => 'Quản lý phạt'];
+      $trangTheoVaiTro = ['staff-dashboard' => 'Bảng điều khiển thủ thư', 'book-admin' => 'Quản lý thông tin sách', 'publishers' => 'Quản lý nhà xuất bản', 'borrow-admin' => 'Quản lý mượn sách', 'return-admin' => 'Quản lý trả sách', 'reader-admin' => 'Quản lý hồ sơ độc giả', 'renewal-admin' => 'Yêu cầu gia hạn', 'fines' => 'Quản lý phạt'];
     } elseif ($vaiTroHienTai === 'admin') {
-      $trangTheoVaiTro = ['admin-dashboard' => 'Bảng điều khiển quản trị', 'accounts' => 'Quản lý tài khoản', 'categories' => 'Quản lý khoa', 'policies' => 'Quản lý chính sách'];
+      $trangTheoVaiTro = ['admin-dashboard' => 'Bảng điều khiển quản trị', 'accounts' => 'Quản lý tài khoản', 'categories' => 'Quản lý khoa', 'policies' => 'Quản lý chính sách', 'admin-password' => 'Đổi mật khẩu'];
     }
     foreach ($trangTheoVaiTro as $maTrang => $tieuDeTrang):
       $duLieuMau = [
@@ -271,11 +271,13 @@ $danhSachTaiLieu = [
         'borrow-admin' => ['code' => '#PM-2409', 'title' => 'Phiếu mượn của Nguyễn Minh Anh', 'sub' => 'MSSV 22110432 · 02 tài liệu', 'date' => '16/09/2026', 'status' => 'Chờ duyệt', 'class' => 'yellow'],
         'return-admin' => ['code' => '#PT-1128', 'title' => 'Trả sách: Nhà Giả Kim', 'sub' => 'Độc giả: Phạm Quốc Bảo · Không phát sinh phạt', 'date' => '16/09/2026', 'status' => 'Đã trả', 'class' => 'green-mark'],
         'reader-admin' => ['code' => '#DG-068', 'title' => 'Hồ sơ thẻ độc giả hết hạn', 'sub' => 'Lê Thị Hương · Khoa Kinh tế', 'date' => '14/09/2026', 'status' => 'Cần gia hạn', 'class' => 'yellow'],
+        'renewal-admin' => ['code' => '#GH-018', 'title' => 'Yêu cầu gia hạn đang chờ duyệt', 'sub' => 'Kiểm tra và quyết định thời hạn mượn', 'date' => '', 'status' => '', 'class' => ''],
         'fines' => ['code' => '#VP-031', 'title' => 'Quá hạn 03 ngày', 'sub' => 'Trần Gia Huy · Phí tạm tính 15.000 đ', 'date' => '16/09/2026', 'status' => 'Chưa thu', 'class' => 'yellow'],
         'admin-dashboard' => ['code' => '#HT-047', 'title' => 'Nhật ký đăng nhập hệ thống', 'sub' => '42 phiên truy cập trong ngày', 'date' => '16/09/2026', 'status' => 'Bình thường', 'class' => 'green-mark'],
         'accounts' => ['code' => '#TK-019', 'title' => 'Tài khoản thủ thư mới', 'sub' => 'Phạm Khánh Linh · Chờ cấp quyền', 'date' => '15/09/2026', 'status' => 'Chờ duyệt', 'class' => 'yellow'],
         'categories' => ['code' => '#DM-072', 'title' => 'Danh mục Khoa học dữ liệu', 'sub' => 'Thuộc Khoa Công nghệ thông tin', 'date' => '12/09/2026', 'status' => 'Đang sử dụng', 'class' => 'green-mark'],
         'policies' => ['code' => '#CS-014', 'title' => 'Quy định mượn dành cho sinh viên', 'sub' => 'Tối đa 03 sách · 14 ngày · Gia hạn 01 lần', 'date' => '01/09/2026', 'status' => 'Đang áp dụng', 'class' => 'green-mark'],
+        'admin-password' => ['code' => '#BM-001', 'title' => 'Cập nhật mật khẩu quản trị', 'sub' => 'Yêu cầu xác thực bằng mật khẩu hiện tại', 'date' => '', 'status' => '', 'class' => ''],
       ];
       $banGhi = $duLieuMau[$maTrang];
     ?><section id="<?= $maTrang ?>" class="page admin-page">
@@ -462,9 +464,9 @@ $danhSachTaiLieu = [
   <div id="hienThongBao" class="toast">Đã cập nhật thành công</div>
   <script src="assets/app.js?v=20261002-2"></script>
   <script src="assets/docGiaApi.js?v=20261003-3"></script>
-  <script src="assets/quanTriApi.js?v=20260930-3"></script>
+  <script src="assets/quanTriApi.js?v=20261004-3"></script>
   <script src="assets/quanTriHeThong.js?v=20261003-5"></script>
-  <script src="assets/thuThuApi.js?v=20261003-2"></script>
+  <script src="assets/thuThuApi.js?v=20261004-4"></script>
   <script src="assets/thuThuSach.js?v=20261002-4"></script>
   <script src="assets/thuThuSachThongKe.js?v=20261002-2"></script>
 </body>

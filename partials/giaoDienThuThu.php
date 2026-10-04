@@ -222,6 +222,7 @@ if ($maTrang === 'staff-dashboard'):
       </table>
     </div>
   </section>
+<?php elseif ($maTrang === 'renewal-admin'): ?>
   <section class="panel pending-panel">
     <div class="section-head"><div><p class="eyebrow">GIA HẠN</p><h2>Yêu cầu gia hạn chờ duyệt</h2></div></div>
     <div class="table-panel inventory-table"><table><thead><tr><th>ĐỘC GIẢ</th><th>TÀI LIỆU</th><th>HẠN HIỆN TẠI</th><th>HẠN ĐỀ NGHỊ</th><th></th></tr></thead><tbody id="du-lieu-gia-han-thu-thu"><tr><td colspan="5">Đang tải dữ liệu...</td></tr></tbody></table></div>

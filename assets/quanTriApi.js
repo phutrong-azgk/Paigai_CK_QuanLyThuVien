@@ -186,3 +186,34 @@
   });
   taiDanhSach();
 })();
+
+(() => {
+  if (document.body.dataset.role !== 'admin') return;
+  const form = document.querySelector('#form-doi-mat-khau-admin');
+  if (!form) return;
+  const loi = document.querySelector('#loi-doi-mat-khau-admin');
+  form.addEventListener('submit', async suKien => {
+    suKien.preventDefault();
+    loi.hidden = true;
+    const duLieu = Object.fromEntries(new FormData(form));
+    if (duLieu.matKhauMoi !== duLieu.xacNhanMatKhau) {
+      loi.textContent = 'Xác nhận mật khẩu mới chưa khớp.';
+      loi.hidden = false;
+      return;
+    }
+    const nut = form.querySelector('button[type="submit"]');
+    nut.disabled = true;
+    try {
+      const phanHoi = await fetch('api/quanTriTaiKhoan.php', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({hanhDong: 'doiMatKhauCuaToi', ...duLieu})});
+      const ketQua = await phanHoi.json();
+      if (!phanHoi.ok) throw new Error(ketQua.loi || 'Không thể đổi mật khẩu.');
+      form.reset();
+      window.hienThongBao?.('Đã đổi mật khẩu.');
+    } catch (loiApi) {
+      loi.textContent = loiApi.message;
+      loi.hidden = false;
+    } finally {
+      nut.disabled = false;
+    }
+  });
+})();

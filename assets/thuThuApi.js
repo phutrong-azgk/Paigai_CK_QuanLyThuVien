@@ -73,6 +73,23 @@
         document.querySelector('#xac-nhan-cho-muon').disabled = !docGiaMuon || !taiLieuDaChon.length;
         khung.innerHTML = taiLieuDaChon.map(sach => `<div class="ticket-book"><i class="blue">◫</i><div><b>${a(sach.tieuDe)}</b><span>${a(sach.ma)} · Còn ${sach.soLuongCon} bản</span></div><button class="bo-tai-lieu-muon" type="button" data-id="${sach.maTaiLieu}">×</button></div>`).join('') || '<p>Chưa chọn tài liệu.</p>';
     };
+    const capNhatPhiTraTam = async () => {
+        const hienThiPhi = document.querySelector('#phi-tra-tam');
+        if (!hienThiPhi) return;
+        if (!taiLieuTraDaChon.length) {
+            hienThiPhi.textContent = '0đ';
+            return;
+        }
+        hienThiPhi.textContent = 'Đang tính...';
+        try {
+            const maChiTiet = taiLieuTraDaChon.map(sach => sach.maChiTietPhieuMuon).join(',');
+            const tinhTrang = document.querySelector('#tinh-trang-khi-tra')?.value || 'nguyenVen';
+            const phanHoi = await g(`api/thuThu.php?hanhDong=uocTinhPhatTra&maChiTietPhieuMuon=${encodeURIComponent(maChiTiet)}&tinhTrangKhiTra=${encodeURIComponent(tinhTrang)}`);
+            hienThiPhi.textContent = `${Number(phanHoi.duLieu?.phi || 0).toLocaleString('vi-VN')}đ`;
+        } catch (loi) {
+            hienThiPhi.textContent = 'Không tính được';
+        }
+    };
     const veTaiLieuTraTam = () => {
         const khung = document.querySelector('#danh-sach-tai-lieu-tra-tam');
         if (!khung) return;
@@ -83,6 +100,7 @@
         document.querySelector('#ngay-tra-tra-tam').textContent = taiLieuTraDaChon.length ? dinhDangNgay(new Date()) : '—';
         document.querySelector('#qua-han-tra-tam').textContent = taiLieuTraDaChon.length ? (quaHan ? 'Có' : 'Không') : '—';
         document.querySelector('#xac-nhan-tra-sach').disabled = !taiLieuTraDaChon.length;
+        capNhatPhiTraTam();
     };
     const taiDuLieuChon = async () => {
         const tuKhoa = document.querySelector('#tim-tai-lieu-trong-hop').value;
@@ -120,6 +138,7 @@
     });
     document.querySelector('#danh-sach-tai-lieu-muon-tam')?.addEventListener('click', e => { const nut = e.target.closest('.bo-tai-lieu-muon'); if (!nut) return; taiLieuDaChon = taiLieuDaChon.filter(sach => String(sach.maTaiLieu) !== nut.dataset.id); vePhieuMuonTam(); });
     document.querySelector('#danh-sach-tai-lieu-tra-tam')?.addEventListener('click', e => { const nut = e.target.closest('.bo-tai-lieu-tra'); if (!nut) return; taiLieuTraDaChon = taiLieuTraDaChon.filter(sach => String(sach.maChiTietPhieuMuon) !== nut.dataset.id); veTaiLieuTraTam(); });
+    document.querySelector('#tinh-trang-khi-tra')?.addEventListener('change', capNhatPhiTraTam);
     const traCuuDocGia = async () => {
         const tuKhoa = document.querySelector('#tra-cuu-doc-gia-muon').value.trim(), khung = document.querySelector('#ket-qua-doc-gia-muon');
         try {
@@ -177,8 +196,9 @@
     }
     const r = document.querySelector('#du-lieu-doc-gia-thu-thu');
     if (r) {
-        const taiDocGia = () => g('api/thuThu.php?hanhDong=docGia').then(d => r.innerHTML = d.duLieu.map(x => '<tr><td><b>' + a(x.hoTen) + '</b><span>' + a(x.thuDienTu) + '</span></td><td>' + a(x.maSo) + '</td><td>' + a(x.khoa || '') + '</td><td>' + x.dangMuon + '</td><td>' + Number(x.tienPhat).toLocaleString('vi-VN') + 'đ</td><td><mark class="' + (x.trangThaiThe === 'hoatDong' ? 'green-mark' : 'red-mark') + '">' + (x.trangThaiThe === 'hoatDong' ? 'Hoạt động' : 'Tạm khóa') + '</mark></td><td><button class="table-action cap-nhat-the" data-id="' + x.maDocGia + '" data-trang-thai="' + x.trangThaiThe + '">' + (x.trangThaiThe === 'hoatDong' ? 'Tạm khóa thẻ' : 'Mở khóa thẻ') + '</button></td></tr>').join('') || '<tr><td colspan="7">Chưa có độc giả.</td></tr>');
+        const taiDocGia = () => g(`api/thuThu.php?hanhDong=docGia&thoiGian=${Date.now()}`, {cache: 'no-store'}).then(d => r.innerHTML = d.duLieu.map(x => '<tr><td><b>' + a(x.hoTen) + '</b><span>' + a(x.thuDienTu) + '</span></td><td>' + a(x.maSo) + '</td><td>' + a(x.khoa || '') + '</td><td>' + x.dangMuon + '</td><td>' + Number(x.tienPhat).toLocaleString('vi-VN') + 'đ</td><td><mark class="' + (x.trangThaiThe === 'hoatDong' ? 'green-mark' : 'red-mark') + '">' + (x.trangThaiThe === 'hoatDong' ? 'Hoạt động' : 'Tạm khóa') + '</mark></td><td><button class="table-action cap-nhat-the" data-id="' + x.maDocGia + '" data-trang-thai="' + x.trangThaiThe + '">' + (x.trangThaiThe === 'hoatDong' ? 'Tạm khóa thẻ' : 'Mở khóa thẻ') + '</button></td></tr>').join('') || '<tr><td colspan="7">Chưa có độc giả.</td></tr>');
         r.onclick = async e => { const nut = e.target.closest('.cap-nhat-the'); if (!nut) return; try { await p('capNhatThe', {maDocGia: nut.dataset.id, trangThaiThe: nut.dataset.trangThai === 'hoatDong' ? 'tamKhoa' : 'hoatDong'}); await taiDocGia(); window.hienThongBao?.('Đã cập nhật trạng thái thẻ.'); } catch (loi) { alert(loi.message); } };
+        document.querySelectorAll('[data-page="reader-admin"]').forEach(nut => nut.addEventListener('click', taiDocGia));
         taiDocGia();
     }
     const bangGiaHan = document.querySelector('#du-lieu-gia-han-thu-thu');
@@ -187,14 +207,40 @@
         bangGiaHan.onclick = async e => { const nut = e.target.closest('.duyet-gia-han,.tu-choi-gia-han'); if (!nut) return; try { await p('xuLyGiaHan', {maYeuCauGiaHan: nut.dataset.id, trangThai: nut.classList.contains('duyet-gia-han') ? 'daDuyet' : 'tuChoi'}); await taiGiaHan(); window.hienThongBao?.('Đã xử lý yêu cầu gia hạn.'); } catch (loi) { alert(loi.message); } };
         taiGiaHan();
     }
-    const f = document.querySelector('#du-lieu-phat-thu-thu');
-    if (f) g('api/thuThu.php?hanhDong=phat').then(d => f.innerHTML = d.duLieu.map(x => '<tr><td>VP-' + x.maPhieuPhat + '</td><td>' + a(x.hoTen) + '</td><td>' + a(x.loaiPhat) + '</td><td>' + Number(x.soTien).toLocaleString('vi-VN') + 'đ</td><td>' + a(x.ngayLap) + '</td><td>' + a(x.trangThai) + '</td><td>' + (x.trangThai === 'chuaThanhToan' ? '<button class=thu-phat data-id=' + x.maPhieuPhat + '>Thu tiền</button>' : '') + '</td></tr>').join(''));
-    f && (f.onclick = async e => {
-        const n = e.target.closest('.thu-phat');
-        if (!n) return;
-        await p('thuPhat', {
-            maPhieuPhat: n.dataset.id
-        });
-        location.reload()
-    })
+})();
+
+/* Tách riêng để trang Quản lý phạt luôn tải được, kể cả khi một phần nghiệp vụ khác không có trên trang. */
+(() => {
+    if (document.body.dataset.role !== 'librarian') return;
+    const bang = document.querySelector('#du-lieu-phat-thu-thu');
+    if (!bang) return;
+    const anToan = giaTri => String(giaTri ?? '').replace(/[&<>]/g, kyTu => ({'&': '&amp;', '<': '&lt;', '>': '&gt;'}[kyTu]));
+    const nhanLoaiPhat = { quaHan: 'Quá hạn', huHongNhe: 'Hư hỏng nhẹ', huHongNang: 'Hư hỏng nặng' };
+    const nhanTrangThai = { chuaThanhToan: 'Chưa thanh toán', daThanhToan: 'Đã thanh toán' };
+    const layPhat = async () => {
+        try {
+            const phanHoi = await fetch(`api/thuThu.php?hanhDong=phat&thoiGian=${Date.now()}`, {cache: 'no-store'});
+            const duLieu = await phanHoi.json();
+            if (!phanHoi.ok) throw Error(duLieu.loi || 'Không thể tải danh sách phạt.');
+            const danhSach = duLieu.duLieu || [];
+            bang.innerHTML = danhSach.map(phat => `<tr><td>VP-${anToan(phat.maPhieuPhat)}</td><td><b>${anToan(phat.hoTen)}</b><span>${anToan(phat.maSo)}</span></td><td>${anToan(nhanLoaiPhat[phat.loaiPhat] || phat.loaiPhat)}</td><td>${Number(phat.soTien || 0).toLocaleString('vi-VN')}đ</td><td>${anToan(phat.ngayLap)}</td><td>${anToan(nhanTrangThai[phat.trangThai] || phat.trangThai)}</td><td>${phat.trangThai === 'chuaThanhToan' ? `<button class="table-action thu-phat" data-id="${anToan(phat.maPhieuPhat)}">Thu tiền</button>` : ''}</td></tr>`).join('') || '<tr><td colspan="7">Chưa có phiếu phạt.</td></tr>';
+        } catch (loi) {
+            bang.innerHTML = `<tr><td colspan="7">${anToan(loi.message)}</td></tr>`;
+        }
+    };
+    bang.addEventListener('click', async suKien => {
+        const nut = suKien.target.closest('.thu-phat');
+        if (!nut) return;
+        try {
+            const phanHoi = await fetch('api/thuThu.php', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({hanhDong: 'thuPhat', maPhieuPhat: nut.dataset.id}) });
+            const duLieu = await phanHoi.json();
+            if (!phanHoi.ok) throw Error(duLieu.loi || 'Không thể thu tiền phạt.');
+            await layPhat();
+            window.hienThongBao?.('Đã xác nhận thu tiền phạt.');
+        } catch (loi) {
+            alert(loi.message);
+        }
+    });
+    document.querySelectorAll('[data-page="fines"]').forEach(nut => nut.addEventListener('click', layPhat));
+    layPhat();
 })();

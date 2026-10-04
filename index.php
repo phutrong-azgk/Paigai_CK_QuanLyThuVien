@@ -41,7 +41,7 @@ $danhSachTaiLieu = [
   <link rel="stylesheet" href="assets/thuThu.css?v=20261002-1">
   <link rel="stylesheet" href="assets/yeuCauCho.css?v=20260921-2">
   <link rel="stylesheet" href="assets/chonTaiLieu.css">
-  <link rel="stylesheet" href="assets/quanTri.css?v=20261003-3">
+  <link rel="stylesheet" href="assets/quanTri.css?v=20261004-1">
   <link rel="stylesheet" href="assets/yeuCauDocGia.css?v=20260921-1">
 </head>
 

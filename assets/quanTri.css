@@ -532,7 +532,21 @@
 
 #danh-sach-chinh-sach {
     display: block;
-    margin-top: 16px
+    margin-top: 16px;
+    max-height: 520px;
+    overflow-y: auto;
+    padding-right: 6px;
+    scrollbar-color: #b9c7be transparent;
+    scrollbar-width: thin
+}
+
+#danh-sach-chinh-sach::-webkit-scrollbar {
+    width: 7px
+}
+
+#danh-sach-chinh-sach::-webkit-scrollbar-thumb {
+    background: #b9c7be;
+    border-radius: 10px
 }
 
 .lich-su-chinh-sach .the-lich-su-chinh-sach:first-child {

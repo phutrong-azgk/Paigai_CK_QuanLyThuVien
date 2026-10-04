@@ -1,188 +1,326 @@
-CREATE DATABASE IF NOT EXISTS thuVienLibra;
-USE thuVienLibra;
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               8.4.3 - MySQL Community Server - GPL
+-- Server OS:                    Win64
+-- HeidiSQL Version:             12.8.0.6908
+-- --------------------------------------------------------
 
-CREATE TABLE vaiTro (
-  maVaiTro INT AUTO_INCREMENT PRIMARY KEY,
-  ma VARCHAR(30) UNIQUE,
-  ten VARCHAR(100)
-);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE TABLE nguoiDung (
-  maNguoiDung INT AUTO_INCREMENT PRIMARY KEY,
-  maVaiTro INT,
-  tenDangNhap VARCHAR(50) UNIQUE,
-  matKhau VARCHAR(255),
-  hoTen VARCHAR(150),
-  thuDienTu VARCHAR(150),
-  soDienThoai VARCHAR(20),
-  ngaySinh DATE,
-  trangThai VARCHAR(30),
-  ngayTao DATETIME,
-  FOREIGN KEY (maVaiTro) REFERENCES vaiTro(maVaiTro)
-);
 
-CREATE TABLE khoa (
-  maKhoa INT AUTO_INCREMENT PRIMARY KEY,
-  ma VARCHAR(30) UNIQUE,
-  ten VARCHAR(150)
-);
+-- Dumping database structure for thuvienlibra
+CREATE DATABASE IF NOT EXISTS `thuvienlibra` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `thuvienlibra`;
 
-CREATE TABLE hoSoDocGia (
-  maDocGia INT AUTO_INCREMENT PRIMARY KEY,
-  maNguoiDung INT UNIQUE,
-  maSo VARCHAR(30) UNIQUE,
-  maKhoa INT,
-  loaiDocGia VARCHAR(50),
-  trangThaiThe VARCHAR(30),
-  FOREIGN KEY (maNguoiDung) REFERENCES nguoiDung(maNguoiDung),
-  FOREIGN KEY (maKhoa) REFERENCES khoa(maKhoa)
-);
+-- Dumping structure for table thuvienlibra.chinhsachmuon
+CREATE TABLE IF NOT EXISTS `chinhsachmuon` (
+  `maChinhSach` int NOT NULL AUTO_INCREMENT,
+  `loaiDocGia` varchar(50) DEFAULT NULL,
+  `soSachToiDa` int DEFAULT NULL,
+  `soNgayMuon` int DEFAULT NULL,
+  `soLanGiaHan` int DEFAULT NULL,
+  `soNgayGiaHan` int NOT NULL DEFAULT '7',
+  `tienPhatMoiNgay` decimal(12,2) DEFAULT NULL,
+  `tienPhatHuHongNhe` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `tienPhatHuHongNang` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `ngayApDung` date DEFAULT NULL,
+  `trangThai` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`maChinhSach`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE danhMucTaiLieu (
-  maDanhMuc INT AUTO_INCREMENT PRIMARY KEY,
-  maDanhMucCha INT,
-  ma VARCHAR(30) UNIQUE,
-  ten VARCHAR(150),
-  FOREIGN KEY (maDanhMucCha) REFERENCES danhMucTaiLieu(maDanhMuc)
-);
+-- Dumping data for table thuvienlibra.chinhsachmuon: ~6 rows (approximately)
+INSERT INTO `chinhsachmuon` (`maChinhSach`, `loaiDocGia`, `soSachToiDa`, `soNgayMuon`, `soLanGiaHan`, `soNgayGiaHan`, `tienPhatMoiNgay`, `tienPhatHuHongNhe`, `tienPhatHuHongNang`, `ngayApDung`, `trangThai`) VALUES
+	(1, 'sinhVien', 3, 14, 1, 7, 5000.00, 0.00, 0.00, '2026-09-01', 'ngungApDung'),
+	(2, 'giangVien', 5, 30, 2, 7, 5000.00, 0.00, 0.00, '2026-09-01', 'ngungApDung'),
+	(3, 'sinhVien', 2, 10, 1, 7, 3000.00, 0.00, 0.00, '2026-01-01', 'ngungApDung'),
+	(4, 'giangVien', 5, 30, 2, 14, 5000.00, 0.00, 0.00, '2026-10-03', 'dangApDung'),
+	(5, 'sinhVien', 3, 14, 1, 7, 500000.00, 50000.00, 100000.00, '2026-10-03', 'ngungApDung'),
+	(6, 'sinhVien', 3, 14, 1, 7, 5000.00, 50000.00, 100000.00, '2026-10-03', 'dangApDung');
 
-CREATE TABLE nhaXuatBan (
-  maNhaXuatBan INT AUTO_INCREMENT PRIMARY KEY,
-  ma VARCHAR(30) UNIQUE,
-  ten VARCHAR(200),
-  diaChi VARCHAR(255),
-  soDienThoai VARCHAR(20)
-);
+-- Dumping structure for table thuvienlibra.chitietphieumuon
+CREATE TABLE IF NOT EXISTS `chitietphieumuon` (
+  `maChiTietPhieuMuon` int NOT NULL AUTO_INCREMENT,
+  `maPhieuMuon` int DEFAULT NULL,
+  `maTaiLieu` int NOT NULL,
+  `hanTra` date DEFAULT NULL,
+  `ngayTra` datetime DEFAULT NULL,
+  `tinhTrangKhiTra` varchar(30) DEFAULT NULL,
+  `trangThai` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`maChiTietPhieuMuon`),
+  KEY `maPhieuMuon` (`maPhieuMuon`),
+  KEY `fkChiTietPhieuMuonTaiLieu` (`maTaiLieu`),
+  CONSTRAINT `chitietphieumuon_ibfk_1` FOREIGN KEY (`maPhieuMuon`) REFERENCES `phieumuon` (`maPhieuMuon`),
+  CONSTRAINT `fkChiTietPhieuMuonTaiLieu` FOREIGN KEY (`maTaiLieu`) REFERENCES `tailieu` (`maTaiLieu`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE tacGia (
-  maTacGia INT AUTO_INCREMENT PRIMARY KEY,
-  hoTen VARCHAR(200)
-);
+-- Dumping data for table thuvienlibra.chitietphieumuon: ~2 rows (approximately)
+INSERT INTO `chitietphieumuon` (`maChiTietPhieuMuon`, `maPhieuMuon`, `maTaiLieu`, `hanTra`, `ngayTra`, `tinhTrangKhiTra`, `trangThai`) VALUES
+	(1, 1, 1, '2026-10-23', '2026-10-03 15:53:13', 'nguyenVen', 'daTra'),
+	(2, 2, 6, '2026-10-17', '2026-10-03 16:08:38', 'huHongNhe', 'daTra');
 
-CREATE TABLE taiLieu (
-  maTaiLieu INT AUTO_INCREMENT PRIMARY KEY,
-  ma VARCHAR(30) UNIQUE,
-  maDanhMuc INT,
-  maNhaXuatBan INT,
-  tieuDe VARCHAR(500),
-  maIsbn VARCHAR(30) UNIQUE,
-  loaiTaiLieu VARCHAR(50),
-  namXuatBan INT,
-  soTrang INT,
-  ngonNgu VARCHAR(50),
-  anhBia VARCHAR(255),
-  tomTat TEXT,
-  duocMuon VARCHAR(10),
-  FOREIGN KEY (maDanhMuc) REFERENCES danhMucTaiLieu(maDanhMuc),
-  FOREIGN KEY (maNhaXuatBan) REFERENCES nhaXuatBan(maNhaXuatBan)
-);
+-- Dumping structure for table thuvienlibra.chitietyeucaumuon
+CREATE TABLE IF NOT EXISTS `chitietyeucaumuon` (
+  `maChiTietYeuCauMuon` int NOT NULL AUTO_INCREMENT,
+  `maYeuCauMuon` int DEFAULT NULL,
+  `maTaiLieu` int DEFAULT NULL,
+  `trangThai` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`maChiTietYeuCauMuon`),
+  KEY `maYeuCauMuon` (`maYeuCauMuon`),
+  KEY `maTaiLieu` (`maTaiLieu`),
+  CONSTRAINT `chitietyeucaumuon_ibfk_1` FOREIGN KEY (`maYeuCauMuon`) REFERENCES `yeucaumuon` (`maYeuCauMuon`),
+  CONSTRAINT `chitietyeucaumuon_ibfk_2` FOREIGN KEY (`maTaiLieu`) REFERENCES `tailieu` (`maTaiLieu`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE taiLieuTacGia (
-  maTaiLieu INT,
-  maTacGia INT,
-  PRIMARY KEY (maTaiLieu, maTacGia),
-  FOREIGN KEY (maTaiLieu) REFERENCES taiLieu(maTaiLieu),
-  FOREIGN KEY (maTacGia) REFERENCES tacGia(maTacGia)
-);
+-- Dumping data for table thuvienlibra.chitietyeucaumuon: ~2 rows (approximately)
+INSERT INTO `chitietyeucaumuon` (`maChiTietYeuCauMuon`, `maYeuCauMuon`, `maTaiLieu`, `trangThai`) VALUES
+	(2, 2, 1, 'choDuyet'),
+	(3, 3, 6, 'choDuyet');
 
-CREATE TABLE banSaoTaiLieu (
-  maBanSao INT AUTO_INCREMENT PRIMARY KEY,
-  maTaiLieu INT,
-  viTri VARCHAR(150),
-  ngayNhap DATE,
-  giaNhap DECIMAL(12,2),
-  tinhTrang VARCHAR(30),
-  trangThai VARCHAR(30),
-  FOREIGN KEY (maTaiLieu) REFERENCES taiLieu(maTaiLieu)
-);
+-- Dumping structure for table thuvienlibra.hosodocgia
+CREATE TABLE IF NOT EXISTS `hosodocgia` (
+  `maDocGia` int NOT NULL AUTO_INCREMENT,
+  `maNguoiDung` int DEFAULT NULL,
+  `maSo` varchar(30) DEFAULT NULL,
+  `maKhoa` int DEFAULT NULL,
+  `loaiDocGia` varchar(50) DEFAULT NULL,
+  `trangThaiThe` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`maDocGia`),
+  UNIQUE KEY `maNguoiDung` (`maNguoiDung`),
+  UNIQUE KEY `maSo` (`maSo`),
+  KEY `maKhoa` (`maKhoa`),
+  CONSTRAINT `hosodocgia_ibfk_1` FOREIGN KEY (`maNguoiDung`) REFERENCES `nguoidung` (`maNguoiDung`),
+  CONSTRAINT `hosodocgia_ibfk_2` FOREIGN KEY (`maKhoa`) REFERENCES `khoa` (`maKhoa`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE chinhSachMuon (
-  maChinhSach INT AUTO_INCREMENT PRIMARY KEY,
-  loaiDocGia VARCHAR(50),
-  soSachToiDa INT,
-  soNgayMuon INT,
-  soLanGiaHan INT,
-  tienPhatMoiNgay DECIMAL(12,2),
-  ngayApDung DATE,
-  trangThai VARCHAR(30)
-);
+-- Dumping data for table thuvienlibra.hosodocgia: ~3 rows (approximately)
+INSERT INTO `hosodocgia` (`maDocGia`, `maNguoiDung`, `maSo`, `maKhoa`, `loaiDocGia`, `trangThaiThe`) VALUES
+	(1, 4, '22110432', 1, 'sinhVien', 'hoatDong'),
+	(2, 5, '22110820', 2, 'sinhVien', 'hoatDong'),
+	(3, 6, '22110615', 3, 'sinhVien', 'tamKhoa');
 
-CREATE TABLE yeuCauMuon (
-  maYeuCauMuon INT AUTO_INCREMENT PRIMARY KEY,
-  maDocGia INT,
-  maNguoiXuLy INT,
-  ngayYeuCau DATETIME,
-  ngayXuLy DATETIME,
-  trangThai VARCHAR(30),
-  lyDoTuChoi TEXT,
-  FOREIGN KEY (maDocGia) REFERENCES hoSoDocGia(maDocGia),
-  FOREIGN KEY (maNguoiXuLy) REFERENCES nguoiDung(maNguoiDung)
-);
+-- Dumping structure for table thuvienlibra.khoa
+CREATE TABLE IF NOT EXISTS `khoa` (
+  `maKhoa` int NOT NULL AUTO_INCREMENT,
+  `ma` varchar(30) DEFAULT NULL,
+  `ten` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`maKhoa`),
+  UNIQUE KEY `ma` (`ma`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE chiTietYeuCauMuon (
-  maChiTietYeuCauMuon INT AUTO_INCREMENT PRIMARY KEY,
-  maYeuCauMuon INT,
-  maTaiLieu INT,
-  trangThai VARCHAR(30),
-  FOREIGN KEY (maYeuCauMuon) REFERENCES yeuCauMuon(maYeuCauMuon),
-  FOREIGN KEY (maTaiLieu) REFERENCES taiLieu(maTaiLieu)
-);
+-- Dumping data for table thuvienlibra.khoa: ~5 rows (approximately)
+INSERT INTO `khoa` (`maKhoa`, `ma`, `ten`) VALUES
+	(1, 'CNTT', 'Công nghệ thông tin'),
+	(2, 'KT', 'Kinh tế'),
+	(3, 'LUAT', 'Luật'),
+	(4, 'NN', 'Ngoại ngữ'),
+	(5, 'YD', 'Y dược');
 
-CREATE TABLE phieuMuon (
-  maPhieuMuon INT AUTO_INCREMENT PRIMARY KEY,
-  maDocGia INT,
-  maThuThu INT,
-  maChinhSach INT,
-  maYeuCauMuon INT,
-  ngayMuon DATETIME,
-  trangThai VARCHAR(30),
-  FOREIGN KEY (maDocGia) REFERENCES hoSoDocGia(maDocGia),
-  FOREIGN KEY (maThuThu) REFERENCES nguoiDung(maNguoiDung),
-  FOREIGN KEY (maChinhSach) REFERENCES chinhSachMuon(maChinhSach),
-  FOREIGN KEY (maYeuCauMuon) REFERENCES yeuCauMuon(maYeuCauMuon)
-);
+-- Dumping structure for table thuvienlibra.nguoidung
+CREATE TABLE IF NOT EXISTS `nguoidung` (
+  `maNguoiDung` int NOT NULL AUTO_INCREMENT,
+  `maVaiTro` int DEFAULT NULL,
+  `tenDangNhap` varchar(50) DEFAULT NULL,
+  `matKhau` varchar(255) DEFAULT NULL,
+  `hoTen` varchar(150) DEFAULT NULL,
+  `thuDienTu` varchar(150) DEFAULT NULL,
+  `soDienThoai` varchar(20) DEFAULT NULL,
+  `ngaySinh` date DEFAULT NULL,
+  `trangThai` varchar(30) DEFAULT NULL,
+  `ngayTao` datetime DEFAULT NULL,
+  PRIMARY KEY (`maNguoiDung`),
+  UNIQUE KEY `tenDangNhap` (`tenDangNhap`),
+  KEY `maVaiTro` (`maVaiTro`),
+  CONSTRAINT `nguoidung_ibfk_1` FOREIGN KEY (`maVaiTro`) REFERENCES `vaitro` (`maVaiTro`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE chiTietPhieuMuon (
-  maChiTietPhieuMuon INT AUTO_INCREMENT PRIMARY KEY,
-  maPhieuMuon INT,
-  maBanSao INT,
-  hanTra DATE,
-  ngayTra DATETIME,
-  trangThai VARCHAR(30),
-  FOREIGN KEY (maPhieuMuon) REFERENCES phieuMuon(maPhieuMuon),
-  FOREIGN KEY (maBanSao) REFERENCES banSaoTaiLieu(maBanSao)
-);
+-- Dumping data for table thuvienlibra.nguoidung: ~5 rows (approximately)
+INSERT INTO `nguoidung` (`maNguoiDung`, `maVaiTro`, `tenDangNhap`, `matKhau`, `hoTen`, `thuDienTu`, `soDienThoai`, `ngaySinh`, `trangThai`, `ngayTao`) VALUES
+	(1, 1, 'ADMIN', '$2y$10$FlLg6PiJW6AmNFvlCUI9meV38/MMVLiP/RekJAl5kxeIfyyB8Xi5q', 'Nguyễn Phú Trọng', 'trong@example.com', '0901000001', '1990-01-15', 'hoatDong', '2026-09-01 08:00:00'),
+	(2, 2, 'thuthu01', '$2y$10$iIlxmP2fy3ZEJh8JVJsW/eBIJ.mwmvqnez0JcnRY9qjZxWTltDWem', 'Phạm Khánh Linh', 'linh@libra.edu.vn', '0901000002', '1994-06-12', 'hoatDong', '2026-09-01 08:05:00'),
+	(4, 3, '22110432', '$2y$10$UXJxYN/j3u6QvGIJtC1xXuWXZgMJpSvQQ.IY2ebxut/tFk8.410Jq', 'Nguyễn Minh Anh', 'minhanh@student.edu.vn', '0901234567', '2003-05-12', 'hoatDong', '2026-09-02 08:00:00'),
+	(5, 3, '22110820', NULL, 'Lê Thị Hương', 'huong@student.edu.vn', '0902345678', '2003-08-20', 'hoatDong', '2026-09-02 08:10:00'),
+	(6, 3, '22110615', '$2y$10$QAwDQDw72KZq0ntyiqbKEudYy4i64xO.ahO.GcrlTSFejDgLLRaZO', 'Phạm Quốc Bảo', 'quocbao@student.edu.vn', '0903456789', '2003-06-15', 'tamKhoa', '2026-09-02 08:20:00');
 
-CREATE TABLE yeuCauGiaHan (
-  maYeuCauGiaHan INT AUTO_INCREMENT PRIMARY KEY,
-  maChiTietPhieuMuon INT,
-  ngayYeuCau DATETIME,
-  hanTraMoi DATE,
-  trangThai VARCHAR(30),
-  FOREIGN KEY (maChiTietPhieuMuon) REFERENCES chiTietPhieuMuon(maChiTietPhieuMuon)
-);
+-- Dumping structure for table thuvienlibra.nhatkyhethong
+CREATE TABLE IF NOT EXISTS `nhatkyhethong` (
+  `maNhatKy` int NOT NULL AUTO_INCREMENT,
+  `maNguoiDung` int DEFAULT NULL,
+  `hanhDong` varchar(100) DEFAULT NULL,
+  `doiTuong` varchar(100) DEFAULT NULL,
+  `maDoiTuong` int DEFAULT NULL,
+  `ngayTao` datetime DEFAULT NULL,
+  PRIMARY KEY (`maNhatKy`),
+  KEY `maNguoiDung` (`maNguoiDung`),
+  CONSTRAINT `nhatkyhethong_ibfk_1` FOREIGN KEY (`maNguoiDung`) REFERENCES `nguoidung` (`maNguoiDung`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE phieuPhat (
-  maPhieuPhat INT AUTO_INCREMENT PRIMARY KEY,
-  maDocGia INT,
-  maChiTietPhieuMuon INT,
-  loaiPhat VARCHAR(30),
-  soTien DECIMAL(12,2),
-  trangThai VARCHAR(30),
-  ngayLap DATETIME,
-  maNguoiThu INT,
-  ngayThanhToan DATETIME,
-  FOREIGN KEY (maDocGia) REFERENCES hoSoDocGia(maDocGia),
-  FOREIGN KEY (maChiTietPhieuMuon) REFERENCES chiTietPhieuMuon(maChiTietPhieuMuon),
-  FOREIGN KEY (maNguoiThu) REFERENCES nguoiDung(maNguoiDung)
-);
+-- Dumping data for table thuvienlibra.nhatkyhethong: ~3 rows (approximately)
+INSERT INTO `nhatkyhethong` (`maNhatKy`, `maNguoiDung`, `hanhDong`, `doiTuong`, `maDoiTuong`, `ngayTao`) VALUES
+	(1, 1, 'capNhatChinhSach', 'chinhSachMuon', 4, '2026-10-03 15:52:17'),
+	(2, 1, 'capNhatChinhSach', 'chinhSachMuon', 5, '2026-10-03 16:27:12'),
+	(3, 1, 'capNhatChinhSach', 'chinhSachMuon', 6, '2026-10-03 16:30:18');
 
-CREATE TABLE nhatKyHeThong (
-  maNhatKy INT AUTO_INCREMENT PRIMARY KEY,
-  maNguoiDung INT,
-  hanhDong VARCHAR(100),
-  doiTuong VARCHAR(100),
-  maDoiTuong INT,
-  ngayTao DATETIME,
-  FOREIGN KEY (maNguoiDung) REFERENCES nguoiDung(maNguoiDung)
-);
+-- Dumping structure for table thuvienlibra.nhaxuatban
+CREATE TABLE IF NOT EXISTS `nhaxuatban` (
+  `maNhaXuatBan` int NOT NULL AUTO_INCREMENT,
+  `ma` varchar(30) DEFAULT NULL,
+  `ten` varchar(200) DEFAULT NULL,
+  `diaChi` varchar(255) DEFAULT NULL,
+  `soDienThoai` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`maNhaXuatBan`),
+  UNIQUE KEY `ma` (`ma`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table thuvienlibra.nhaxuatban: ~4 rows (approximately)
+INSERT INTO `nhaxuatban` (`maNhaXuatBan`, `ma`, `ten`, `diaChi`, `soDienThoai`) VALUES
+	(1, 'NXBGD', 'Nhà xuất bản Giáo dục Việt Nam', 'Hà Nội', '02438220801'),
+	(2, 'NXBLD', 'Nhà xuất bản Lao động', 'Hà Nội', '02438515380'),
+	(3, 'PEARSON', 'Pearson Education', 'London', '442070100000'),
+	(4, 'NXBDHQGHCM', 'Nhà xuất bản Đại học Quốc gia TP Hồ Chí Minh', NULL, NULL);
+
+-- Dumping structure for table thuvienlibra.phieumuon
+CREATE TABLE IF NOT EXISTS `phieumuon` (
+  `maPhieuMuon` int NOT NULL AUTO_INCREMENT,
+  `maDocGia` int DEFAULT NULL,
+  `maThuThu` int DEFAULT NULL,
+  `maChinhSach` int DEFAULT NULL,
+  `maYeuCauMuon` int DEFAULT NULL,
+  `ngayMuon` datetime DEFAULT NULL,
+  `trangThai` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`maPhieuMuon`),
+  KEY `maDocGia` (`maDocGia`),
+  KEY `maThuThu` (`maThuThu`),
+  KEY `maChinhSach` (`maChinhSach`),
+  KEY `maYeuCauMuon` (`maYeuCauMuon`),
+  CONSTRAINT `phieumuon_ibfk_1` FOREIGN KEY (`maDocGia`) REFERENCES `hosodocgia` (`maDocGia`),
+  CONSTRAINT `phieumuon_ibfk_2` FOREIGN KEY (`maThuThu`) REFERENCES `nguoidung` (`maNguoiDung`),
+  CONSTRAINT `phieumuon_ibfk_3` FOREIGN KEY (`maChinhSach`) REFERENCES `chinhsachmuon` (`maChinhSach`),
+  CONSTRAINT `phieumuon_ibfk_4` FOREIGN KEY (`maYeuCauMuon`) REFERENCES `yeucaumuon` (`maYeuCauMuon`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table thuvienlibra.phieumuon: ~2 rows (approximately)
+INSERT INTO `phieumuon` (`maPhieuMuon`, `maDocGia`, `maThuThu`, `maChinhSach`, `maYeuCauMuon`, `ngayMuon`, `trangThai`) VALUES
+	(1, 1, 2, 1, 2, '2026-10-02 23:01:33', 'daTra'),
+	(2, 1, 2, 1, 3, '2026-10-03 16:08:04', 'daTra');
+
+-- Dumping structure for table thuvienlibra.phieuphat
+CREATE TABLE IF NOT EXISTS `phieuphat` (
+  `maPhieuPhat` int NOT NULL AUTO_INCREMENT,
+  `maDocGia` int DEFAULT NULL,
+  `maChiTietPhieuMuon` int DEFAULT NULL,
+  `loaiPhat` varchar(30) DEFAULT NULL,
+  `soTien` decimal(12,2) DEFAULT NULL,
+  `trangThai` varchar(30) DEFAULT NULL,
+  `ngayLap` datetime DEFAULT NULL,
+  `maNguoiThu` int DEFAULT NULL,
+  `ngayThanhToan` datetime DEFAULT NULL,
+  PRIMARY KEY (`maPhieuPhat`),
+  KEY `maDocGia` (`maDocGia`),
+  KEY `maChiTietPhieuMuon` (`maChiTietPhieuMuon`),
+  KEY `maNguoiThu` (`maNguoiThu`),
+  CONSTRAINT `phieuphat_ibfk_1` FOREIGN KEY (`maDocGia`) REFERENCES `hosodocgia` (`maDocGia`),
+  CONSTRAINT `phieuphat_ibfk_2` FOREIGN KEY (`maChiTietPhieuMuon`) REFERENCES `chitietphieumuon` (`maChiTietPhieuMuon`),
+  CONSTRAINT `phieuphat_ibfk_3` FOREIGN KEY (`maNguoiThu`) REFERENCES `nguoidung` (`maNguoiDung`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table thuvienlibra.phieuphat: ~0 rows (approximately)
+
+-- Dumping structure for table thuvienlibra.tailieu
+CREATE TABLE IF NOT EXISTS `tailieu` (
+  `maTaiLieu` int NOT NULL AUTO_INCREMENT,
+  `ma` varchar(30) DEFAULT NULL,
+  `maKhoa` int NOT NULL,
+  `maNhaXuatBan` int DEFAULT NULL,
+  `tieuDe` varchar(500) DEFAULT NULL,
+  `maIsbn` varchar(30) DEFAULT NULL,
+  `loaiTaiLieu` varchar(50) DEFAULT NULL,
+  `namXuatBan` int DEFAULT NULL,
+  `anhBia` varchar(255) DEFAULT NULL,
+  `soLuongTong` int NOT NULL DEFAULT '0',
+  `soLuongCon` int NOT NULL DEFAULT '0',
+  `tomTat` text,
+  `duocMuon` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`maTaiLieu`),
+  UNIQUE KEY `ma` (`ma`),
+  UNIQUE KEY `maIsbn` (`maIsbn`),
+  KEY `maNhaXuatBan` (`maNhaXuatBan`),
+  KEY `fkTaiLieuKhoa` (`maKhoa`),
+  CONSTRAINT `fkTaiLieuKhoa` FOREIGN KEY (`maKhoa`) REFERENCES `khoa` (`maKhoa`),
+  CONSTRAINT `tailieu_ibfk_2` FOREIGN KEY (`maNhaXuatBan`) REFERENCES `nhaxuatban` (`maNhaXuatBan`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table thuvienlibra.tailieu: ~8 rows (approximately)
+INSERT INTO `tailieu` (`maTaiLieu`, `ma`, `maKhoa`, `maNhaXuatBan`, `tieuDe`, `maIsbn`, `loaiTaiLieu`, `namXuatBan`, `anhBia`, `soLuongTong`, `soLuongCon`, `tomTat`, `duocMuon`) VALUES
+	(1, 'CNTT-101', 1, 4, 'Cơ Sở Dữ Liệu', '9780073523323', 'giaoTrinh', 2019, 'assets/images/sach/843adc6ff01423144b04ccc7934689ac.jpg', 2, 2, 'Giáo trình nền tảng về hệ quản trị cơ sở dữ liệu.', 'co'),
+	(2, 'CNTT-145', 1, 3, 'Nhập Môn Trí Tuệ Nhân Tạo', '9780136042594', 'giaoTrinh', 2021, '', 1, 1, 'Giáo trình về trí tuệ nhân tạo hiện đại.', 'co'),
+	(3, 'CNTT-128', 1, 3, 'Lập Trình Hướng Đối Tượng Với Java', '9781260440232', 'giaoTrinh', 2021, '', 1, 1, 'Tài liệu học lập trình Java hướng đối tượng.', 'co'),
+	(4, 'KT-021', 2, 1, 'Nguyên Lý Kế Toán', '9786040301234', 'giaoTrinh', 2022, '', 1, 1, 'Kiến thức nền tảng về kế toán.', 'co'),
+	(5, 'KT-044', 2, 3, 'Kinh Tế Vi Mô', '9781305585126', 'giaoTrinh', 2020, '', 1, 1, 'Các nguyên lý kinh tế vi mô.', 'co'),
+	(6, 'LUAT-032', 3, 1, 'Giáo Trình Luật Dân Sự Việt Nam', '9786047269872', 'giaoTrinh', 2023, '', 1, 1, 'Giáo trình luật dân sự.', 'co'),
+	(7, 'YD-027', 5, 1, 'Sinh Lý Học Y Khoa', '9780323597128', 'giaoTrinh', 2021, '', 1, 1, 'Tài liệu sinh lý học cơ bản.', 'co'),
+	(8, 'NNA-019', 4, 3, 'English for Academic Purposes', '9780194001780', 'giaoTrinh', 2020, '', 1, 1, 'Tiếng Anh học thuật cho sinh viên.', 'co');
+
+-- Dumping structure for table thuvienlibra.vaitro
+CREATE TABLE IF NOT EXISTS `vaitro` (
+  `maVaiTro` int NOT NULL AUTO_INCREMENT,
+  `ma` varchar(30) DEFAULT NULL,
+  `ten` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`maVaiTro`),
+  UNIQUE KEY `ma` (`ma`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table thuvienlibra.vaitro: ~3 rows (approximately)
+INSERT INTO `vaitro` (`maVaiTro`, `ma`, `ten`) VALUES
+	(1, 'ADMIN', 'Quản trị viên'),
+	(2, 'THUTHU', 'Thủ thư'),
+	(3, 'DOCGIA', 'Độc giả');
+
+-- Dumping structure for table thuvienlibra.yeucaugiahan
+CREATE TABLE IF NOT EXISTS `yeucaugiahan` (
+  `maYeuCauGiaHan` int NOT NULL AUTO_INCREMENT,
+  `maChiTietPhieuMuon` int DEFAULT NULL,
+  `ngayYeuCau` datetime DEFAULT NULL,
+  `hanTraMoi` date DEFAULT NULL,
+  `trangThai` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`maYeuCauGiaHan`),
+  KEY `maChiTietPhieuMuon` (`maChiTietPhieuMuon`),
+  CONSTRAINT `yeucaugiahan_ibfk_1` FOREIGN KEY (`maChiTietPhieuMuon`) REFERENCES `chitietphieumuon` (`maChiTietPhieuMuon`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table thuvienlibra.yeucaugiahan: ~1 rows (approximately)
+INSERT INTO `yeucaugiahan` (`maYeuCauGiaHan`, `maChiTietPhieuMuon`, `ngayYeuCau`, `hanTraMoi`, `trangThai`) VALUES
+	(1, 1, '2026-10-02 23:03:03', '2026-10-23', 'daDuyet');
+
+-- Dumping structure for table thuvienlibra.yeucaumuon
+CREATE TABLE IF NOT EXISTS `yeucaumuon` (
+  `maYeuCauMuon` int NOT NULL AUTO_INCREMENT,
+  `maDocGia` int DEFAULT NULL,
+  `maNguoiXuLy` int DEFAULT NULL,
+  `ngayYeuCau` datetime DEFAULT NULL,
+  `ngayXuLy` datetime DEFAULT NULL,
+  `trangThai` varchar(30) DEFAULT NULL,
+  `lyDoTuChoi` text,
+  PRIMARY KEY (`maYeuCauMuon`),
+  KEY `maDocGia` (`maDocGia`),
+  KEY `maNguoiXuLy` (`maNguoiXuLy`),
+  CONSTRAINT `yeucaumuon_ibfk_1` FOREIGN KEY (`maDocGia`) REFERENCES `hosodocgia` (`maDocGia`),
+  CONSTRAINT `yeucaumuon_ibfk_2` FOREIGN KEY (`maNguoiXuLy`) REFERENCES `nguoidung` (`maNguoiDung`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table thuvienlibra.yeucaumuon: ~2 rows (approximately)
+INSERT INTO `yeucaumuon` (`maYeuCauMuon`, `maDocGia`, `maNguoiXuLy`, `ngayYeuCau`, `ngayXuLy`, `trangThai`, `lyDoTuChoi`) VALUES
+	(2, 1, 2, '2026-10-02 22:58:02', '2026-10-02 23:01:33', 'daDuyet', NULL),
+	(3, 1, 2, '2026-10-03 16:07:55', '2026-10-03 16:08:04', 'daDuyet', NULL);
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

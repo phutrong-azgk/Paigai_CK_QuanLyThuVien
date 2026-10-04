@@ -22,38 +22,15 @@ Nếu MySQL của bạn khác các giá trị trên, tạo hoặc sửa biến m
 
 ## Cài đặt
 
-1. Chép thư mục dự án vào thư mục web của Apache.
-2. Khởi động Apache và MySQL.
-3. Trong MySQL Workbench, mở và chạy toàn bộ file `cauTrucCSDL.sql`.
-4. Mở `http://localhost:8080/login.php` hoặc địa chỉ Apache đang dùng.
-5. Nếu chưa có mật khẩu quản trị viên, mở `khoiTaoAdmin.php`, nhập `APP_SETUP_TOKEN`, mã đăng nhập và mật khẩu mới.
+1. Chép thư mục dự án vào thư mục của Laragon.
+2. Khởi động Laragon.
+3. Chạy file `cauTrucCSDL.sql`.
+4. Mở `http://localhost:8080/login.php`. Dùng nút đăng nhập nhanh.
+
+Optional: Nếu chưa có mật khẩu quản trị viên, mở `khoiTaoAdmin.php`, nhập `APP_SETUP_TOKEN`, mã đăng nhập và mật khẩu mới.
 
 File `cauTrucCSDL.sql` là bản sao cơ sở dữ liệu hiện tại, đã có cấu trúc và dữ liệu thử nghiệm. Không chạy thêm `duLieuMau.sql` trên cùng cơ sở dữ liệu này vì có thể tạo dữ liệu trùng hoặc không còn khớp cấu trúc mới.
 
-## Cập nhật cơ sở dữ liệu đang có
-
-Nếu cơ sở dữ liệu được tạo từ phiên bản cũ, chạy các câu lệnh sau một lần:
-
-```sql
-ALTER TABLE chinhSachMuon
-ADD COLUMN soNgayGiaHan INT NOT NULL DEFAULT 7 AFTER soLanGiaHan;
-
-ALTER TABLE chiTietPhieuMuon
-ADD COLUMN tinhTrangKhiTra VARCHAR(30) NULL AFTER ngayTra;
-
-ALTER TABLE chinhSachMuon
-ADD COLUMN tienPhatHuHongNhe DECIMAL(12,2) NOT NULL DEFAULT 0 AFTER tienPhatMoiNgay,
-ADD COLUMN tienPhatHuHongNang DECIMAL(12,2) NOT NULL DEFAULT 0 AFTER tienPhatHuHongNhe;
-```
-
-Các bản đã trả trước khi có cột tình trạng có thể được cập nhật như sau:
-
-```sql
-UPDATE chiTietPhieuMuon
-SET tinhTrangKhiTra = 'nguyenVen'
-WHERE ngayTra IS NOT NULL
-  AND tinhTrangKhiTra IS NULL;
-```
 
 ## Đăng nhập và tài khoản
 

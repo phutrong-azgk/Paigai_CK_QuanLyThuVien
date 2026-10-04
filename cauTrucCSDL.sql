@@ -35,14 +35,15 @@ CREATE TABLE IF NOT EXISTS `chinhsachmuon` (
   PRIMARY KEY (`maChinhSach`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table thuvienlibra.chinhsachmuon: ~6 rows (approximately)
+-- Dumping data for table thuvienlibra.chinhsachmuon: ~7 rows (approximately)
 INSERT INTO `chinhsachmuon` (`maChinhSach`, `loaiDocGia`, `soSachToiDa`, `soNgayMuon`, `soLanGiaHan`, `soNgayGiaHan`, `tienPhatMoiNgay`, `tienPhatHuHongNhe`, `tienPhatHuHongNang`, `ngayApDung`, `trangThai`) VALUES
 	(1, 'sinhVien', 3, 14, 1, 7, 5000.00, 0.00, 0.00, '2026-09-01', 'ngungApDung'),
 	(2, 'giangVien', 5, 30, 2, 7, 5000.00, 0.00, 0.00, '2026-09-01', 'ngungApDung'),
 	(3, 'sinhVien', 2, 10, 1, 7, 3000.00, 0.00, 0.00, '2026-01-01', 'ngungApDung'),
-	(4, 'giangVien', 5, 30, 2, 14, 5000.00, 0.00, 0.00, '2026-10-03', 'dangApDung'),
+	(4, 'giangVien', 5, 30, 2, 14, 5000.00, 0.00, 0.00, '2026-10-03', 'ngungApDung'),
 	(5, 'sinhVien', 3, 14, 1, 7, 500000.00, 50000.00, 100000.00, '2026-10-03', 'ngungApDung'),
-	(6, 'sinhVien', 3, 14, 1, 7, 5000.00, 50000.00, 100000.00, '2026-10-03', 'dangApDung');
+	(6, 'sinhVien', 3, 14, 1, 7, 5000.00, 50000.00, 100000.00, '2026-10-03', 'dangApDung'),
+	(7, 'giangVien', 5, 30, 2, 14, 5000.00, 50000.00, 100000.00, '2026-10-04', 'dangApDung');
 
 -- Dumping structure for table thuvienlibra.chitietphieumuon
 CREATE TABLE IF NOT EXISTS `chitietphieumuon` (
@@ -60,10 +61,15 @@ CREATE TABLE IF NOT EXISTS `chitietphieumuon` (
   CONSTRAINT `fkChiTietPhieuMuonTaiLieu` FOREIGN KEY (`maTaiLieu`) REFERENCES `tailieu` (`maTaiLieu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table thuvienlibra.chitietphieumuon: ~2 rows (approximately)
+-- Dumping data for table thuvienlibra.chitietphieumuon: ~7 rows (approximately)
 INSERT INTO `chitietphieumuon` (`maChiTietPhieuMuon`, `maPhieuMuon`, `maTaiLieu`, `hanTra`, `ngayTra`, `tinhTrangKhiTra`, `trangThai`) VALUES
 	(1, 1, 1, '2026-10-23', '2026-10-03 15:53:13', 'nguyenVen', 'daTra'),
-	(2, 2, 6, '2026-10-17', '2026-10-03 16:08:38', 'huHongNhe', 'daTra');
+	(2, 2, 6, '2026-10-17', '2026-10-03 16:08:38', 'nguyenVen', 'daTra'),
+	(3, 3, 6, '2026-10-18', '2026-10-04 14:44:54', 'huHongNhe', 'daTra'),
+	(4, 4, 5, '2026-09-30', '2026-10-04 15:02:03', 'nguyenVen', 'daTra'),
+	(5, 5, 1, '2026-09-21', '2026-10-04 15:11:20', 'huHongNhe', 'daTra'),
+	(6, 5, 3, '2026-09-21', '2026-10-04 15:11:20', 'huHongNhe', 'daTra'),
+	(7, 5, 2, '2026-09-21', '2026-10-04 15:11:20', 'huHongNhe', 'daTra');
 
 -- Dumping structure for table thuvienlibra.chitietyeucaumuon
 CREATE TABLE IF NOT EXISTS `chitietyeucaumuon` (
@@ -78,10 +84,12 @@ CREATE TABLE IF NOT EXISTS `chitietyeucaumuon` (
   CONSTRAINT `chitietyeucaumuon_ibfk_2` FOREIGN KEY (`maTaiLieu`) REFERENCES `tailieu` (`maTaiLieu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table thuvienlibra.chitietyeucaumuon: ~2 rows (approximately)
+-- Dumping data for table thuvienlibra.chitietyeucaumuon: ~3 rows (approximately)
 INSERT INTO `chitietyeucaumuon` (`maChiTietYeuCauMuon`, `maYeuCauMuon`, `maTaiLieu`, `trangThai`) VALUES
 	(2, 2, 1, 'choDuyet'),
-	(3, 3, 6, 'choDuyet');
+	(3, 3, 6, 'choDuyet'),
+	(4, 4, 6, 'choDuyet'),
+	(5, 5, 5, 'choDuyet');
 
 -- Dumping structure for table thuvienlibra.hosodocgia
 CREATE TABLE IF NOT EXISTS `hosodocgia` (
@@ -142,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `nguoidung` (
 
 -- Dumping data for table thuvienlibra.nguoidung: ~5 rows (approximately)
 INSERT INTO `nguoidung` (`maNguoiDung`, `maVaiTro`, `tenDangNhap`, `matKhau`, `hoTen`, `thuDienTu`, `soDienThoai`, `ngaySinh`, `trangThai`, `ngayTao`) VALUES
-	(1, 1, 'ADMIN', '$2y$10$FlLg6PiJW6AmNFvlCUI9meV38/MMVLiP/RekJAl5kxeIfyyB8Xi5q', 'Nguyễn Phú Trọng', 'trong@example.com', '0901000001', '1990-01-15', 'hoatDong', '2026-09-01 08:00:00'),
+	(1, 1, 'ADMIN', '$2y$10$FlLg6PiJW6AmNFvlCUI9meV38/MMVLiP/RekJAl5kxeIfyyB8Xi5q', '', '', '', '1999-01-01', 'hoatDong', '2026-09-01 08:00:00'),
 	(2, 2, 'thuthu01', '$2y$10$iIlxmP2fy3ZEJh8JVJsW/eBIJ.mwmvqnez0JcnRY9qjZxWTltDWem', 'Phạm Khánh Linh', 'linh@libra.edu.vn', '0901000002', '1994-06-12', 'hoatDong', '2026-09-01 08:05:00'),
 	(4, 3, '22110432', '$2y$10$UXJxYN/j3u6QvGIJtC1xXuWXZgMJpSvQQ.IY2ebxut/tFk8.410Jq', 'Nguyễn Minh Anh', 'minhanh@student.edu.vn', '0901234567', '2003-05-12', 'hoatDong', '2026-09-02 08:00:00'),
 	(5, 3, '22110820', NULL, 'Lê Thị Hương', 'huong@student.edu.vn', '0902345678', '2003-08-20', 'hoatDong', '2026-09-02 08:10:00'),
@@ -161,11 +169,12 @@ CREATE TABLE IF NOT EXISTS `nhatkyhethong` (
   CONSTRAINT `nhatkyhethong_ibfk_1` FOREIGN KEY (`maNguoiDung`) REFERENCES `nguoidung` (`maNguoiDung`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table thuvienlibra.nhatkyhethong: ~3 rows (approximately)
+-- Dumping data for table thuvienlibra.nhatkyhethong: ~4 rows (approximately)
 INSERT INTO `nhatkyhethong` (`maNhatKy`, `maNguoiDung`, `hanhDong`, `doiTuong`, `maDoiTuong`, `ngayTao`) VALUES
 	(1, 1, 'capNhatChinhSach', 'chinhSachMuon', 4, '2026-10-03 15:52:17'),
 	(2, 1, 'capNhatChinhSach', 'chinhSachMuon', 5, '2026-10-03 16:27:12'),
-	(3, 1, 'capNhatChinhSach', 'chinhSachMuon', 6, '2026-10-03 16:30:18');
+	(3, 1, 'capNhatChinhSach', 'chinhSachMuon', 6, '2026-10-03 16:30:18'),
+	(4, 1, 'capNhatChinhSach', 'chinhSachMuon', 7, '2026-10-04 14:20:20');
 
 -- Dumping structure for table thuvienlibra.nhaxuatban
 CREATE TABLE IF NOT EXISTS `nhaxuatban` (
@@ -205,10 +214,13 @@ CREATE TABLE IF NOT EXISTS `phieumuon` (
   CONSTRAINT `phieumuon_ibfk_4` FOREIGN KEY (`maYeuCauMuon`) REFERENCES `yeucaumuon` (`maYeuCauMuon`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table thuvienlibra.phieumuon: ~2 rows (approximately)
+-- Dumping data for table thuvienlibra.phieumuon: ~5 rows (approximately)
 INSERT INTO `phieumuon` (`maPhieuMuon`, `maDocGia`, `maThuThu`, `maChinhSach`, `maYeuCauMuon`, `ngayMuon`, `trangThai`) VALUES
 	(1, 1, 2, 1, 2, '2026-10-02 23:01:33', 'daTra'),
-	(2, 1, 2, 1, 3, '2026-10-03 16:08:04', 'daTra');
+	(2, 1, 2, 1, 3, '2026-10-03 16:08:04', 'daTra'),
+	(3, 1, 2, 6, 4, '2026-10-04 14:44:39', 'daTra'),
+	(4, 1, 2, 6, 5, '2026-09-23 14:56:41', 'daTra'),
+	(5, 2, 2, 6, NULL, '2026-09-14 15:09:51', 'daTra');
 
 -- Dumping structure for table thuvienlibra.phieuphat
 CREATE TABLE IF NOT EXISTS `phieuphat` (
@@ -230,7 +242,16 @@ CREATE TABLE IF NOT EXISTS `phieuphat` (
   CONSTRAINT `phieuphat_ibfk_3` FOREIGN KEY (`maNguoiThu`) REFERENCES `nguoidung` (`maNguoiDung`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table thuvienlibra.phieuphat: ~0 rows (approximately)
+-- Dumping data for table thuvienlibra.phieuphat: ~2 rows (approximately)
+INSERT INTO `phieuphat` (`maPhieuPhat`, `maDocGia`, `maChiTietPhieuMuon`, `loaiPhat`, `soTien`, `trangThai`, `ngayLap`, `maNguoiThu`, `ngayThanhToan`) VALUES
+	(1, 1, 3, 'huHongNhe', 50000.00, 'daThanhToan', '2026-10-04 14:44:54', 2, '2026-10-04 14:52:11'),
+	(2, 1, 4, 'quaHan', 20000.00, 'daThanhToan', '2026-10-04 15:02:03', 2, '2026-10-04 15:04:06'),
+	(3, 2, 5, 'quaHan', 65000.00, 'daThanhToan', '2026-10-04 15:11:20', 2, '2026-10-04 15:11:27'),
+	(4, 2, 5, 'huHongNhe', 50000.00, 'daThanhToan', '2026-10-04 15:11:20', 2, '2026-10-04 15:11:28'),
+	(5, 2, 6, 'quaHan', 65000.00, 'daThanhToan', '2026-10-04 15:11:20', 2, '2026-10-04 15:11:29'),
+	(6, 2, 6, 'huHongNhe', 50000.00, 'daThanhToan', '2026-10-04 15:11:20', 2, '2026-10-04 15:11:29'),
+	(7, 2, 7, 'quaHan', 65000.00, 'daThanhToan', '2026-10-04 15:11:20', 2, '2026-10-04 15:11:30'),
+	(8, 2, 7, 'huHongNhe', 50000.00, 'daThanhToan', '2026-10-04 15:11:20', 2, '2026-10-04 15:11:30');
 
 -- Dumping structure for table thuvienlibra.tailieu
 CREATE TABLE IF NOT EXISTS `tailieu` (
@@ -314,10 +335,12 @@ CREATE TABLE IF NOT EXISTS `yeucaumuon` (
   CONSTRAINT `yeucaumuon_ibfk_2` FOREIGN KEY (`maNguoiXuLy`) REFERENCES `nguoidung` (`maNguoiDung`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table thuvienlibra.yeucaumuon: ~2 rows (approximately)
+-- Dumping data for table thuvienlibra.yeucaumuon: ~3 rows (approximately)
 INSERT INTO `yeucaumuon` (`maYeuCauMuon`, `maDocGia`, `maNguoiXuLy`, `ngayYeuCau`, `ngayXuLy`, `trangThai`, `lyDoTuChoi`) VALUES
 	(2, 1, 2, '2026-10-02 22:58:02', '2026-10-02 23:01:33', 'daDuyet', NULL),
-	(3, 1, 2, '2026-10-03 16:07:55', '2026-10-03 16:08:04', 'daDuyet', NULL);
+	(3, 1, 2, '2026-10-03 16:07:55', '2026-10-03 16:08:04', 'daDuyet', NULL),
+	(4, 1, 2, '2026-10-04 14:44:28', '2026-10-04 14:44:39', 'daDuyet', NULL),
+	(5, 1, 2, '2026-10-04 14:56:23', '2026-10-04 14:56:41', 'daDuyet', NULL);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
